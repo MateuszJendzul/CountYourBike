@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:ignore="HardcodedText">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/profile_select_to_main_button_id"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/airstrike"
+        android:foreground="@drawable/button_foreground"
+        android:gravity="center"
+        android:paddingHorizontal="4sp"
+        android:text="back"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.981" />
+
+    <TextView
+        android:id="@+id/bike_profile_text_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/airstrike"
+        android:gravity="center"
+        android:paddingHorizontal="8sp"
+        android:text="bike_profile_text_id"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0
+" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bike1_bike_profile_select_button_id"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/airstrike"
+        android:gravity="center"
+        android:foreground="@drawable/button_foreground"
+        android:paddingHorizontal="8sp"
+        android:text="bike 1"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,18 @@
 package com.matis8571.countyourbike;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+@SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     Button bikesButton;
     TextView mainActivityTitleText;
@@ -17,9 +22,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+        Log.d(TAG, "onCreate: Start");
 
         bikesButton = findViewById(R.id.bikes_button_id);
         mainActivityTitleText = findViewById(R.id.mainActivityTitleID);
         mainActivityTitleText.setText("Count Your Bike");
+
+        bikesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: bikesButton");
+                Intent bikesButtonIntent = new Intent(MainActivity.this, BikeProfileSelect.class);
+                startActivity(bikesButtonIntent);
+            }
+        });
     }
 }
