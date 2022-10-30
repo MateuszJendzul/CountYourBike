@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike;
+package com.matis8571.countyourbike.BikeRelated;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.matis8571.countyourbike.R;
 
 @SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {

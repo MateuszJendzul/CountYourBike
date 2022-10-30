@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike;
+package com.matis8571.countyourbike.BikeRelated;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.matis8571.countyourbike.R;
+
 import java.util.Calendar;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -25,7 +27,8 @@ public class Bike1 extends AppCompatActivity {
     private static final String TAG = "Bike1";
 
     private EditText bike1KmSinceMaintenanceEdit, bike1TotalKmEdit, bike1KmThisMonthEdit;
-    private TextView bike1LastMaintenanceText, bike1Text;
+    private TextView bike1LastMaintenanceText, bike1Text, bike1KmThisMonthText, bike1TotalKmText,
+            bike1KmSinceMaintenanceText;
     private Button bike1DatePickerButton, bike1ToProfileSelectButton, bike1SubmitButton;
     private DatePickerDialog datePickerDialog;
 
@@ -40,6 +43,9 @@ public class Bike1 extends AppCompatActivity {
 
         bike1LastMaintenanceText = findViewById(R.id.bike_1_last_maintenance_text_id);
         bike1Text = findViewById(R.id.bike_1_text_id);
+        bike1KmThisMonthText = findViewById(R.id.bike_1_km_this_month_text_id);
+        bike1TotalKmText = findViewById(R.id.bike_1_total_km_text_id);
+        bike1KmSinceMaintenanceText = findViewById(R.id.bike_1_km_since_maintenance_text_id);
         bike1DatePickerButton = findViewById(R.id.bike_1_date_picker_button_id);
         bike1KmSinceMaintenanceEdit = findViewById(R.id.bike_1_km_since_maintenance_edit_id);
         bike1TotalKmEdit = findViewById(R.id.bike_1_total_km_edit_id);
@@ -49,8 +55,14 @@ public class Bike1 extends AppCompatActivity {
 
         bike1Text.setText("Bike 1 profile:");
         bike1Text.setTextSize(24);
-        bike1LastMaintenanceText.setText("Last Maintenance:");
-        bike1LastMaintenanceText.setTextSize(18);
+        bike1LastMaintenanceText.setText("Last maintenance:");
+        bike1LastMaintenanceText.setTextSize(16);
+        bike1KmThisMonthText.setText("km this month:");
+        bike1KmThisMonthText.setTextSize(16);
+        bike1TotalKmText.setText("km in total:");
+        bike1TotalKmText.setTextSize(16);
+        bike1KmSinceMaintenanceText.setText("km since maintenance:");
+        bike1KmSinceMaintenanceText.setTextSize(16);
         bike1DatePickerButton.setText(getCurrentDate());
 
         //Button to open method which allows to pick a date
@@ -98,11 +110,13 @@ public class Bike1 extends AppCompatActivity {
 
     private String getCurrentDate() {
         Log.d(TAG, "getCurrentDate");
+        SharedPreferences bike1PrefsReceiver = getApplicationContext().getSharedPreferences(
+                "bike1Prefs", Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH);
-        month = month + 1;
-        int year = calendar.get(Calendar.YEAR);
+
+        int day = bike1PrefsReceiver.getInt("day", calendar.get(Calendar.DAY_OF_MONTH));
+        int month = bike1PrefsReceiver.getInt("month", (calendar.get(Calendar.MONTH) + 1));
+        int year = bike1PrefsReceiver.getInt("year", calendar.get(Calendar.YEAR));
 
         return makeDateString(day, month, year);
     }
@@ -113,6 +127,12 @@ public class Bike1 extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
+                SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
+                bike1PrefsEditor.putInt("day", day).apply();
+                bike1PrefsEditor.putInt("month", month).apply();
+                bike1PrefsEditor.putInt("year", year).apply();
+
                 String date = makeDateString(day, month, year);
                 bike1DatePickerButton.setText(date);
             }

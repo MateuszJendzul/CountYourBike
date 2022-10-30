@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike;
+package com.matis8571.countyourbike.BikeRelated;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.matis8571.countyourbike.R;
 
 public class BikeProfileSelect extends AppCompatActivity {
     private static final String TAG = "BikeProfileSelect";

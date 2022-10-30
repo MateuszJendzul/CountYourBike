@@ -7,8 +7,13 @@
             <gradient
                 android:centerColor="@color/gray"
                 android:endColor="#CC707070"
-                android:startColor="#CC707070" />
-            <corners android:radius="15dp" />
+                android:startColor="#CC707070"
+                android:angle="0"/>
+            <corners
+                android:bottomLeftRadius="15dp"
+                android:bottomRightRadius="15dp"
+                android:topLeftRadius="15dp"
+                android:topRightRadius="15dp" />
         </shape>
     </item>
 
@@ -17,8 +22,10 @@
             <gradient
                 android:centerColor="#CC707070"
                 android:endColor="#BCBCBC"
-                android:startColor="#BCBCBC" />
+                android:startColor="#BCBCBC"
+                android:angle="0"/>
             <corners android:radius="15dp" />
         </shape>
     </item>
+
 </selector>

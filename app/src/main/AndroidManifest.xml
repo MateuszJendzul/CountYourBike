@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CountYourBike"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".BikeRelated.MainActivity"
             android:exported="true"
             android:label="MainActivity"
             android:theme="@style/Theme.CountYourBike.NoActionBar">
@@ -26,11 +26,11 @@
         </activity>
         <!-- add new activity here -->
         <activity
-            android:name=".BikeProfileSelect"
+            android:name=".BikeRelated.BikeProfileSelect"
             android:label="BikeProfileSelect"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
         <activity
-            android:name=".Bike1"
+            android:name=".BikeRelated.Bike1"
             android:label="Bike1"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
 
