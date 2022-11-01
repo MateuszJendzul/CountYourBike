@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike.Database;
+package com.matis8571.countyourbike.Notepad.Database;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
@@ -7,10 +7,11 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.matis8571.countyourbike.Models.Notes;
+import com.matis8571.countyourbike.Notepad.Models.Notes;
 
 import java.util.List;
 
+@SuppressWarnings("AndroidUnresolvedRoomSqlReference")
 @Dao
 public interface MainNotepadDAO {
 
@@ -30,4 +31,7 @@ public interface MainNotepadDAO {
     // Method to delete items from the database
     @Delete
     void delete(Notes notes);
+
+    @Query("UPDATE notes SET pinned = :pin WHERE ID = :id")
+    void pin(int id, boolean pin);
 }

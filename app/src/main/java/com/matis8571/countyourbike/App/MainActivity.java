@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike.BikeRelated;
+package com.matis8571.countyourbike.App;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

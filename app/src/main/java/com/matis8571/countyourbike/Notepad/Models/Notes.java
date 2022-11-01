@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike.Models;
+package com.matis8571.countyourbike.Notepad.Models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -23,8 +23,8 @@ public class Notes implements Serializable {
     @ColumnInfo(name = "dateAndTime")
     String dateAndTime = "";
 
-    @ColumnInfo(name = "isPinned")
-    boolean isPinned = false;
+    @ColumnInfo(name = "pinned")
+    boolean pinned = false;
 
     /* To automatically generate getter and setter for method use
         RMB - Generate (alt + insert) - Getter and Setter - select which ones and press ok */
@@ -62,10 +62,10 @@ public class Notes implements Serializable {
     }
 
     public boolean isPinned() {
-        return isPinned;
+        return pinned;
     }
 
     public void setPinned(boolean pinned) {
-        isPinned = pinned;
+        this.pinned = pinned;
     }
 }

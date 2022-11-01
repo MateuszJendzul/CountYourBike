@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CountYourBike"
         tools:targetApi="31">
         <activity
-            android:name=".BikeRelated.MainActivity"
+            android:name=".App.MainActivity"
             android:exported="true"
             android:label="MainActivity"
             android:theme="@style/Theme.CountYourBike.NoActionBar">
@@ -23,17 +23,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- add new activity here -->
+        </activity> <!-- add new activity here -->
         <activity
-            android:name=".BikeRelated.BikeProfileSelect"
+            android:name=".App.BikeProfileSelect"
             android:label="BikeProfileSelect"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
         <activity
-            android:name=".BikeRelated.Bike1"
+            android:name=".App.Bike1"
             android:label="Bike1"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
 
+        <activity
+            android:name=".Notepad.Models.MainActivityNotepad"
+            android:theme="@style/Theme.NotepadApp.NoActionBar" />
+        <activity
+            android:name=".Notepad.NotesTakerActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NotepadApp.NoActionBar" />
     </application>
 
 </manifest>
