@@ -1,37 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
-    tools:context=".Notepad.Models.MainActivityNotepad">
+    tools:context=".Notepad.MainActivityNotepad"
+    tools:ignore="ContentDescription,HardcodedText" >
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchViewHome"
+        android:id="@+id/searchViewHomeID"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:layout_margin="16dp"
-        android:background="@color/gray"
+        android:layout_margin="12dp"
+        android:foreground="@drawable/button_foreground"
+        android:background="@drawable/button_background"
+        android:gravity="center"
         app:iconifiedByDefault="false"
-        app:queryHint="Search..." />
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Search..."
+        tools:layout_editor_absoluteX="24dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_home"
+        android:id="@+id/recyclerHomeID"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/searchViewHome"
-        android:layout_margin="8dp" />
+        android:layout_below="@+id/searchViewHomeID"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/notesBackButtonID"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/airstrike"
+        android:foreground="@drawable/button_foreground"
+        android:gravity="center"
+        android:paddingHorizontal="4sp"
+        android:text="back"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/noteAddButtonID"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_add" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/circle_button_background"
+        android:fontFamily="@font/airstrike"
+        android:foreground="@drawable/circle_button_foreground"
+        android:gravity="center"
+        android:text="note"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/notepadMainToMainID"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/airstrike"
+        android:foreground="@drawable/button_foreground"
+        android:gravity="center"
+        android:paddingHorizontal="4sp"
+        android:text="home"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

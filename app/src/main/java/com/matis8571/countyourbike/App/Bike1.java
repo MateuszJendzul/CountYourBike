@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.matis8571.countyourbike.Notepad.Models.MainActivityNotepad;
+import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
 import com.matis8571.countyourbike.R;
 
 import java.util.Calendar;
@@ -30,7 +30,7 @@ public class Bike1 extends AppCompatActivity {
     private EditText bike1KmSinceMaintenanceEdit, bike1TotalKmEdit, bike1KmThisMonthEdit;
     private TextView bike1LastMaintenanceText, bike1Text, bike1KmThisMonthText, bike1TotalKmText,
             bike1KmSinceMaintenanceText;
-    private Button bike1DatePickerButton, bike1ToProfileSelectButton, bike1SubmitButton,
+    private Button bike1DatePickerButton, bike1BackButton, bike1SubmitButton,
             bike1ToHomeButton, bike1NotesButton;
     private DatePickerDialog datePickerDialog;
 
@@ -43,19 +43,19 @@ public class Bike1 extends AppCompatActivity {
         initDatePicker();
 
 
-        bike1LastMaintenanceText = findViewById(R.id.bike1LastMaintenanceTextId);
-        bike1Text = findViewById(R.id.bike1TextId);
-        bike1KmThisMonthText = findViewById(R.id.bike1KmThisMonthTextId);
-        bike1TotalKmText = findViewById(R.id.bike1TotalKmTextId);
-        bike1KmSinceMaintenanceText = findViewById(R.id.bike1KmSinceMaintenanceTextId);
-        bike1DatePickerButton = findViewById(R.id.bike1DatePickerButtonId);
-        bike1KmSinceMaintenanceEdit = findViewById(R.id.bike1KmSinceMaintenanceEditId);
-        bike1TotalKmEdit = findViewById(R.id.bike1TotalKmEditId);
-        bike1KmThisMonthEdit = findViewById(R.id.bike1KmThisMonthEditId);
-        bike1ToProfileSelectButton = findViewById(R.id.bike1ToProfileSelectButtonId);
-        bike1SubmitButton = findViewById(R.id.bike1SubmitButtonId);
-        bike1ToHomeButton = findViewById(R.id.bike1ToHomeButtonId);
-        bike1NotesButton = findViewById(R.id.bike1NotesButtonId);
+        bike1LastMaintenanceText = findViewById(R.id.bike1LastMaintenanceTextID);
+        bike1Text = findViewById(R.id.bike1TextID);
+        bike1KmThisMonthText = findViewById(R.id.bike1KmThisMonthTextID);
+        bike1TotalKmText = findViewById(R.id.bike1TotalKmTextID);
+        bike1KmSinceMaintenanceText = findViewById(R.id.bike1KmSinceMaintenanceTextID);
+        bike1DatePickerButton = findViewById(R.id.bike1DatePickerButtonID);
+        bike1KmSinceMaintenanceEdit = findViewById(R.id.bike1KmSinceMaintenanceEditID);
+        bike1TotalKmEdit = findViewById(R.id.bike1TotalKmEditID);
+        bike1KmThisMonthEdit = findViewById(R.id.bike1KmThisMonthEditID);
+        bike1BackButton = findViewById(R.id.bike1BackButtonID);
+        bike1SubmitButton = findViewById(R.id.bike1SubmitButtonID);
+        bike1ToHomeButton = findViewById(R.id.bike1ToHomeButtonID);
+        bike1NotesButton = findViewById(R.id.bike1NotesButtonID);
 
         bike1Text.setText("Bike 1 profile:");
         bike1Text.setTextSize(24);
@@ -79,12 +79,11 @@ public class Bike1 extends AppCompatActivity {
         });
 
         //Button to go back to MainActivity from this one
-        bike1ToProfileSelectButton.setOnClickListener(new View.OnClickListener() {
+        bike1BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: bike1ToMainButton");
-                Intent bike1ToMainButtonIntent = new Intent(Bike1.this, BikeProfileSelect.class);
-                startActivity(bike1ToMainButtonIntent);
+                finish();
             }
         });
 

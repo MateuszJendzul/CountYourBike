@@ -8,9 +8,11 @@
     tools:ignore="HardcodedText">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/profile_select_to_main_button_id"
+        android:id="@+id/profileSelectBackButtonID"
         android:layout_width="80dp"
         android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/airstrike"
         android:foreground="@drawable/button_foreground"
@@ -21,16 +23,16 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/bike_profile_text_id"
+        android:id="@+id/bikeProfileTextID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/airstrike"
         android:gravity="center"
         android:paddingHorizontal="8sp"
@@ -46,7 +48,7 @@
 " />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bike1_bike_profile_select_button_id"
+        android:id="@+id/bike1BikeProfileSelectButtonID"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginBottom="180dp"

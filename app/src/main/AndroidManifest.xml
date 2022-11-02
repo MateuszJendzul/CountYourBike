@@ -34,10 +34,10 @@
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
 
         <activity
-            android:name=".Notepad.Models.MainActivityNotepad"
+            android:name=".Notepad.MainActivityNotepad"
             android:theme="@style/Theme.NotepadApp.NoActionBar" />
         <activity
-            android:name=".Notepad.NotesTakerActivity"
+            android:name=".Notepad.Models.NotesTakerActivity"
             android:exported="true"
             android:theme="@style/Theme.NotepadApp.NoActionBar" />
     </application>

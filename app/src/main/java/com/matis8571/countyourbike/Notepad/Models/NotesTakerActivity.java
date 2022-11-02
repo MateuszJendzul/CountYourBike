@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike.Notepad;
+package com.matis8571.countyourbike.Notepad.Models;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.matis8571.countyourbike.Notepad.Models.MainActivityNotepad;
-import com.matis8571.countyourbike.Notepad.Models.Notes;
+import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
 import com.matis8571.countyourbike.R;
 
 import java.text.SimpleDateFormat;
@@ -23,7 +22,7 @@ public class NotesTakerActivity extends AppCompatActivity {
     EditText editTextTitle, editTextNotes;
     ImageView imageViewSave;
     Notes notes;
-    Button notesTakerToNotepad;
+    Button notesTakerBackButton;
     boolean isOldNote = false;
 
     @Override
@@ -34,7 +33,7 @@ public class NotesTakerActivity extends AppCompatActivity {
         imageViewSave = findViewById(R.id.imageViewSaveID);
         editTextTitle = findViewById(R.id.editTextTitleID);
         editTextNotes = findViewById(R.id.editTextNotesID);
-        notesTakerToNotepad = findViewById(R.id.notesTakerToNotepadID);
+        notesTakerBackButton = findViewById(R.id.notesTakerBackButtonID);
 
         notes = new Notes();
         try {
@@ -76,12 +75,10 @@ public class NotesTakerActivity extends AppCompatActivity {
             }
         });
 
-        notesTakerToNotepad.setOnClickListener(new View.OnClickListener() {
+        notesTakerBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent notesTakerToNotesListIntent = new Intent(
-                        NotesTakerActivity.this, MainActivityNotepad.class);
-                startActivity(notesTakerToNotesListIntent);
+                finish();
             }
         });
     }

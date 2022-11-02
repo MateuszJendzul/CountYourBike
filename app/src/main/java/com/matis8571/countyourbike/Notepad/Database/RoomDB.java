@@ -13,10 +13,10 @@ public abstract class RoomDB extends RoomDatabase {
     private static RoomDB database;
     private static final String DATABASE_NAME = "Notepad";
 
-    public synchronized static  RoomDB getInstance(Context context){
-        if (database == null){
+    public synchronized static RoomDB getInstance(Context context) {
+        if (database == null) {
             database = Room.databaseBuilder(
-                    context.getApplicationContext(), RoomDB.class, DATABASE_NAME)
+                            context.getApplicationContext(), RoomDB.class, DATABASE_NAME)
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build();

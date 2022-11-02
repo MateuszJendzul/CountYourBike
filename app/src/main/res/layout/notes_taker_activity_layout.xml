@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
-    tools:context=".Notepad.NotesTakerActivity">
+    tools:context=".Notepad.Models.NotesTakerActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_notes"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView_save"
+                android:id="@+id/imageViewSaveID"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentEnd="true"
@@ -31,7 +31,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
-        android:id="@+id/editText_title"
+        android:id="@+id/editTextTitleID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Title:"
@@ -45,7 +45,7 @@
         tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText
-        android:id="@+id/editText_notes"
+        android:id="@+id/editTextNotesID"
         android:fontFamily="@font/airstrikecond"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,4 +57,26 @@
         android:textStyle="normal"
         tools:ignore="Autofill,HardcodedText,TextFields" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/notesTakerBackButtonID"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/airstrike"
+            android:foreground="@drawable/button_foreground"
+            android:gravity="center"
+            android:paddingHorizontal="4sp"
+            android:text="back"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

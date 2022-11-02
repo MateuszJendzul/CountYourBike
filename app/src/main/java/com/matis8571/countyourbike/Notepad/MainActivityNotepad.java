@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike.Notepad.Models;
+package com.matis8571.countyourbike.Notepad;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -17,11 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.matis8571.countyourbike.App.Bike1;
+import com.matis8571.countyourbike.App.MainActivity;
 import com.matis8571.countyourbike.Notepad.Adapters.NotesListAdapter;
+import com.matis8571.countyourbike.Notepad.Database.NotesClickListener;
 import com.matis8571.countyourbike.Notepad.Database.RoomDB;
-import com.matis8571.countyourbike.Notepad.NotesClickListener;
-import com.matis8571.countyourbike.Notepad.NotesTakerActivity;
+import com.matis8571.countyourbike.Notepad.Models.Notes;
+import com.matis8571.countyourbike.Notepad.Models.NotesTakerActivity;
 import com.matis8571.countyourbike.R;
 
 import java.util.ArrayList;
@@ -29,29 +32,31 @@ import java.util.List;
 
 @SuppressWarnings("Convert2Lambda")
 public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
-    RecyclerView recyclerView;
+    RecyclerView recyclerHome;
     NotesListAdapter notesListAdapter;
     List<Notes> notes = new ArrayList<>();
     RoomDB database;
-    FloatingActionButton fabAdd;
     SearchView searchViewHome;
     Notes selectedNote;
+    Button notesBackButton, noteAddButton, notepadMainToMain;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_noptepad_layout);
 
-        recyclerView = findViewById(R.id.recycler_home);
-        fabAdd = findViewById(R.id.fab_add);
-        searchViewHome = findViewById(R.id.searchViewHome);
+        recyclerHome = findViewById(R.id.recyclerHomeID);
+        searchViewHome = findViewById(R.id.searchViewHomeID);
+        noteAddButton = findViewById(R.id.noteAddButtonID);
+        notesBackButton = findViewById(R.id.notesBackButtonID);
+        notepadMainToMain = findViewById(R.id.notepadMainToMainID);
 
         database = RoomDB.getInstance(this);
         notes = database.mainNotepadDAO().getAll();
 
         updateRecycler(notes);
 
-        fabAdd.setOnClickListener(new View.OnClickListener() {
+        noteAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent fabAddIntent = new Intent(MainActivityNotepad.this, NotesTakerActivity.class);
@@ -70,6 +75,21 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
             public boolean onQueryTextChange(String newText) {
                 filter(newText);
                 return true;
+            }
+        });
+
+        notesBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        notepadMainToMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent notepadMainToMainIntent = new Intent(MainActivityNotepad.this, MainActivity.class);
+                startActivity(notepadMainToMainIntent);
             }
         });
     }
@@ -112,10 +132,10 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     }
 
     private void updateRecycler(List<Notes> notes) {
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
+        recyclerHome.setHasFixedSize(true);
+        recyclerHome.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         notesListAdapter = new NotesListAdapter(MainActivityNotepad.this, notes, notesClickListener);
-        recyclerView.setAdapter(notesListAdapter);
+        recyclerHome.setAdapter(notesListAdapter);
     }
 
     private final NotesClickListener notesClickListener = new NotesClickListener() {
@@ -137,7 +157,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     private void showPopup(CardView cardView) {
         PopupMenu popupMenu = new PopupMenu(this, cardView);
         popupMenu.setOnMenuItemClickListener(this);
-        popupMenu.inflate(R.menu.popup_menu_notepad);
+        popupMenu.inflate(R.menu.popup_notepad_menu);
         popupMenu.show();
     }
 

@@ -17,7 +17,7 @@ public class BikeProfileSelect extends AppCompatActivity {
     private static final String TAG = "BikeProfileSelect";
 
     TextView bikeProfileText;
-    Button bike1BikeProfileSelectButton, profileSelectToMainButton;
+    Button bike1BikeProfileSelectButton, profileSelectBackButton;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -26,9 +26,9 @@ public class BikeProfileSelect extends AppCompatActivity {
         setContentView(R.layout.bike_profile_select_layout);
         Log.d(TAG, "onCreate: Start");
 
-        bikeProfileText = findViewById(R.id.bike_profile_text_id);
-        bike1BikeProfileSelectButton = findViewById(R.id.bike1_bike_profile_select_button_id);
-        profileSelectToMainButton = findViewById(R.id.profile_select_to_main_button_id);
+        bikeProfileText = findViewById(R.id.bikeProfileTextID);
+        bike1BikeProfileSelectButton = findViewById(R.id.bike1BikeProfileSelectButtonID);
+        profileSelectBackButton = findViewById(R.id.profileSelectBackButtonID);
 
         bikeProfileText.setText("Select your bike:");
         bikeProfileText.setTextSize(24);
@@ -41,12 +41,11 @@ public class BikeProfileSelect extends AppCompatActivity {
             }
         });
 
-        profileSelectToMainButton.setOnClickListener(new View.OnClickListener() {
+        profileSelectBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: profileSelectToMainButton");
-                Intent profileSelectToMainButtonIntent = new Intent(BikeProfileSelect.this, MainActivity.class);
-                startActivity(profileSelectToMainButtonIntent);
+                finish();
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.matis8571.countyourbike.Notepad;
+package com.matis8571.countyourbike.Notepad.Database;
 
 import androidx.cardview.widget.CardView;
 

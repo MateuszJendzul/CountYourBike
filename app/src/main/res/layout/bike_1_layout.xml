@@ -8,9 +8,11 @@
     tools:ignore="HardcodedText,Autofill,TextFields">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bike1ToProfileSelectButtonId"
+        android:id="@+id/bike1BackButtonID"
         android:layout_width="80dp"
         android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/airstrike"
         android:foreground="@drawable/button_foreground"
@@ -21,15 +23,16 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bike1ToHomeButtonId"
+        android:id="@+id/bike1ToHomeButtonID"
         android:layout_width="80dp"
         android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/airstrike"
         android:foreground="@drawable/button_foreground"
@@ -43,13 +46,13 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bike1SubmitButtonId"
+        android:id="@+id/bike1SubmitButtonID"
         android:layout_width="180dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/airstrike"
         android:foreground="@drawable/button_foreground"
@@ -58,7 +61,7 @@
         android:text="submit"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1NotesButtonId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1NotesButtonID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +69,7 @@
         app:layout_constraintVertical_bias="1" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bike1NotesButtonId"
+        android:id="@+id/bike1NotesButtonID"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@drawable/button_background"
@@ -78,7 +81,7 @@
         android:text="notes"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1ToHomeButtonId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1ToHomeButtonID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,21 +89,21 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bike1DatePickerButtonId"
+        android:id="@+id/bike1DatePickerButtonID"
         style="?android:spinnerStyle"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="30dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/airstrike"
-        android:foreground="@drawable/button_foreground"
+        android:foreground="@drawable/text_foreground"
         android:gravity="center"
         android:paddingHorizontal="8sp"
         android:paddingVertical="4dp"
         android:layout_marginBottom="20dp"
         android:text="JAN 01 2020"
-        android:textColor="@color/white"
+        android:textColor="@color/background_color"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1SubmitButtonId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1SubmitButtonID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,8 +111,8 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/bike1KmSinceMaintenanceEditId"
-        android:layout_width="100dp"
+        android:id="@+id/bike1KmSinceMaintenanceEditID"
+        android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/edit_background"
@@ -120,7 +123,7 @@
         android:paddingHorizontal="8sp"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1LastMaintenanceTextId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1LastMaintenanceTextID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,8 +131,8 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/bike1TotalKmEditId"
-        android:layout_width="100dp"
+        android:id="@+id/bike1TotalKmEditID"
+        android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/edit_background"
@@ -140,7 +143,7 @@
         android:paddingHorizontal="8sp"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1KmThisMonthTextId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1KmThisMonthTextID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,8 +151,8 @@
         app:layout_constraintVertical_bias="1" />
 
     <EditText
-        android:id="@+id/bike1KmThisMonthEditId"
-        android:layout_width="100dp"
+        android:id="@+id/bike1KmThisMonthEditID"
+        android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/edit_background"
@@ -161,7 +164,7 @@
         android:paddingVertical="8dp"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1KmSinceMaintenanceTextId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1KmSinceMaintenanceTextID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,7 +172,7 @@
         app:layout_constraintVertical_bias="1" />
 
     <TextView
-        android:id="@+id/bike1KmSinceMaintenanceTextId"
+        android:id="@+id/bike1KmSinceMaintenanceTextID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -180,14 +183,14 @@
         android:text="bike_1_km_since_maintenance_text_id"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1KmSinceMaintenanceEditId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1KmSinceMaintenanceEditID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/bike1KmThisMonthTextId"
+        android:id="@+id/bike1KmThisMonthTextID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -198,7 +201,7 @@
         android:text="bike_1_km_this_month_text_id"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1KmThisMonthEditId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1KmThisMonthEditID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +209,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/bike1TotalKmTextId"
+        android:id="@+id/bike1TotalKmTextID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -217,7 +220,7 @@
         android:text="bike_1_total_km_text_id"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1TotalKmEditId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1TotalKmEditID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -225,7 +228,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/bike1LastMaintenanceTextId"
+        android:id="@+id/bike1LastMaintenanceTextID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -236,14 +239,14 @@
         android:text="bike_1_last_maintenance_text_id"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bike1DatePickerButtonId"
+        app:layout_constraintBottom_toTopOf="@+id/bike1DatePickerButtonID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/bike1TextId"
+        android:id="@+id/bike1TextID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
