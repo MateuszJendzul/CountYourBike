@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:hint="Title:"
         android:padding="8dp"
+        android:fontFamily="@font/airstrike"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -45,6 +46,7 @@
 
     <EditText
         android:id="@+id/editText_notes"
+        android:fontFamily="@font/airstrikecond"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Add Notes:"
