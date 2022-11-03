@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageViewSaveID"
+                android:id="@+id/image_view_save_ID"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentEnd="true"
@@ -31,7 +31,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
-        android:id="@+id/editTextTitleID"
+        android:id="@+id/edit_text_title_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Title:"
@@ -45,7 +45,7 @@
         tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText
-        android:id="@+id/editTextNotesID"
+        android:id="@+id/edit_text_notes_ID"
         android:fontFamily="@font/airstrikecond"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/notesTakerBackButtonID"
+            android:id="@+id/notes_taker_back_button_ID"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_marginStart="8dp"

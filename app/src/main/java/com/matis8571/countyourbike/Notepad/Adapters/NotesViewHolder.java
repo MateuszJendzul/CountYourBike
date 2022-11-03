@@ -18,10 +18,10 @@ class NotesViewHolder extends RecyclerView.ViewHolder {
 
     public NotesViewHolder(@NonNull View itemView) {
         super(itemView);
-        notesContainer = itemView.findViewById(R.id.notes_container);
-        textViewDate = itemView.findViewById(R.id.textViewDateID);
-        textViewNotes = itemView.findViewById(R.id.textViewNotesID);
-        textViewTitle = itemView.findViewById(R.id.textViewTitleID);
-        imageViewPin = itemView.findViewById(R.id.imageViewPinID);
+        notesContainer = itemView.findViewById(R.id.notes_container_ID);
+        textViewDate = itemView.findViewById(R.id.text_view_date_ID);
+        textViewNotes = itemView.findViewById(R.id.text_view_notes_ID);
+        textViewTitle = itemView.findViewById(R.id.text_view_title_ID);
+        imageViewPin = itemView.findViewById(R.id.image_view_pin_ID);
     }
 }

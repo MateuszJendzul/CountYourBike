@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity_layout);
         Log.d(TAG, "onCreate: Start");
 
-        bikesButton = findViewById(R.id.bikesButtonID);
-        mainToNotesButton = findViewById(R.id.mainToNotesButtonID);
-        mainActivityTitleText = findViewById(R.id.mainActivityTitleID);
+        bikesButton = findViewById(R.id.bikes_button_ID);
+        mainToNotesButton = findViewById(R.id.main_to_notes_button_ID);
+        mainActivityTitleText = findViewById(R.id.main_activity_title_text_ID);
         mainActivityTitleText.setText("Count Your Bike");
 
         bikesButton.setOnClickListener(new View.OnClickListener() {

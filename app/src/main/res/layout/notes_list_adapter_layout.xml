@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/notes_container"
+    android:id="@+id/notes_container_ID"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textViewTitleID"
+                android:id="@+id/text_view_title_ID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -37,7 +37,7 @@
                 tools:ignore="HardcodedText" />
 
             <ImageView
-                android:id="@+id/imageViewPinID"
+                android:id="@+id/image_view_pin_ID"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
@@ -45,7 +45,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/textViewNotesID"
+            android:id="@+id/text_view_notes_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airstrikecond"
@@ -58,7 +58,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/textViewDateID"
+            android:id="@+id/text_view_date_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"

@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.matis8571.countyourbike.App.Bike1;
 import com.matis8571.countyourbike.App.MainActivity;
 import com.matis8571.countyourbike.Notepad.Adapters.NotesListAdapter;
 import com.matis8571.countyourbike.Notepad.Database.NotesClickListener;
@@ -45,11 +44,11 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_noptepad_layout);
 
-        recyclerHome = findViewById(R.id.recyclerHomeID);
-        searchViewHome = findViewById(R.id.searchViewHomeID);
-        noteAddButton = findViewById(R.id.noteAddButtonID);
-        notesBackButton = findViewById(R.id.notesBackButtonID);
-        notepadMainToMain = findViewById(R.id.notepadMainToMainID);
+        recyclerHome = findViewById(R.id.recycler_home_ID);
+        searchViewHome = findViewById(R.id.search_view_home_ID);
+        noteAddButton = findViewById(R.id.note_add_button_ID);
+        notesBackButton = findViewById(R.id.notes_back_button_ID);
+        notepadMainToMain = findViewById(R.id.notepad_main_to_main_ID);
 
         database = RoomDB.getInstance(this);
         notes = database.mainNotepadDAO().getAll();

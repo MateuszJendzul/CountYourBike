@@ -27,12 +27,13 @@ import java.util.Calendar;
 public class Bike1 extends AppCompatActivity {
     private static final String TAG = "Bike1";
 
-    private EditText bike1KmSinceMaintenanceEdit, bike1TotalKmEdit, bike1KmThisMonthEdit;
-    private TextView bike1LastMaintenanceText, bike1Text, bike1KmThisMonthText, bike1TotalKmText,
+    EditText bike1KmSinceMaintenanceEdit, bike1TotalKmEdit, bike1KmThisMonthEdit;
+    TextView bike1LastMaintenanceText, bike1Text, bike1KmThisMonthText, bike1TotalKmText,
             bike1KmSinceMaintenanceText;
-    private Button bike1DatePickerButton, bike1BackButton, bike1SubmitButton,
+    Button bike1DatePickerButton, bike1BackButton, bike1SubmitButton,
             bike1ToHomeButton, bike1NotesButton;
-    private DatePickerDialog datePickerDialog;
+    DatePickerDialog datePickerDialog;
+    private boolean hintsLocker;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -42,20 +43,35 @@ public class Bike1 extends AppCompatActivity {
         Log.d(TAG, "onCreate: Start");
         initDatePicker();
 
+        bike1LastMaintenanceText = findViewById(R.id.bike_1_last_maintenance_text_ID);
+        bike1Text = findViewById(R.id.bike_1_text_ID);
+        bike1KmThisMonthText = findViewById(R.id.bike_1_km_this_month_text_ID);
+        bike1TotalKmText = findViewById(R.id.bike_1_total_km_text_ID);
+        bike1KmSinceMaintenanceText = findViewById(R.id.bike_1_km_since_maintenance_text_ID);
+        bike1DatePickerButton = findViewById(R.id.bike_1_date_picker_button_ID);
+        bike1KmSinceMaintenanceEdit = findViewById(R.id.bike_1_km_since_maintenance_edit_ID);
+        bike1TotalKmEdit = findViewById(R.id.bike_1_total_km_edit_ID);
+        bike1KmThisMonthEdit = findViewById(R.id.bike_1_km_this_month_edit_ID);
+        bike1BackButton = findViewById(R.id.bike_1_back_button_ID);
+        bike1SubmitButton = findViewById(R.id.bike_1_submit_button_ID);
+        bike1ToHomeButton = findViewById(R.id.bike_1_to_home_button_ID);
+        bike1NotesButton = findViewById(R.id.bike_1_notes_button_ID);
 
-        bike1LastMaintenanceText = findViewById(R.id.bike1LastMaintenanceTextID);
-        bike1Text = findViewById(R.id.bike1TextID);
-        bike1KmThisMonthText = findViewById(R.id.bike1KmThisMonthTextID);
-        bike1TotalKmText = findViewById(R.id.bike1TotalKmTextID);
-        bike1KmSinceMaintenanceText = findViewById(R.id.bike1KmSinceMaintenanceTextID);
-        bike1DatePickerButton = findViewById(R.id.bike1DatePickerButtonID);
-        bike1KmSinceMaintenanceEdit = findViewById(R.id.bike1KmSinceMaintenanceEditID);
-        bike1TotalKmEdit = findViewById(R.id.bike1TotalKmEditID);
-        bike1KmThisMonthEdit = findViewById(R.id.bike1KmThisMonthEditID);
-        bike1BackButton = findViewById(R.id.bike1BackButtonID);
-        bike1SubmitButton = findViewById(R.id.bike1SubmitButtonID);
-        bike1ToHomeButton = findViewById(R.id.bike1ToHomeButtonID);
-        bike1NotesButton = findViewById(R.id.bike1NotesButtonID);
+        SharedPreferences bike1PrefsReceiver = getApplicationContext().getSharedPreferences(
+                "bike1Prefs", Context.MODE_PRIVATE);
+        int bike1KmSinceMaintenance = bike1PrefsReceiver.getInt("bike1KmSinceMaintenance", 0);
+        int bike1KmThisMonth = bike1PrefsReceiver.getInt("bike1KmThisMonth", 0);
+        int bike1TotalKm = bike1PrefsReceiver.getInt("bike1TotalKm", 0);
+
+        if (!hintsLocker) {
+            bike1KmThisMonthEdit.setHint(" " + bike1KmThisMonth + " ");
+            bike1TotalKmEdit.setHint(" " + bike1TotalKm + " ");
+            bike1KmSinceMaintenanceEdit.setHint(" " + bike1KmSinceMaintenance + " ");
+        } else {
+            bike1KmThisMonthEdit.setHint("type here:");
+            bike1TotalKmEdit.setHint("type here:");
+            bike1KmSinceMaintenanceEdit.setHint("type here:");
+        }
 
         bike1Text.setText("Bike 1 profile:");
         bike1Text.setTextSize(24);
@@ -67,7 +83,7 @@ public class Bike1 extends AppCompatActivity {
         bike1TotalKmText.setTextSize(16);
         bike1KmSinceMaintenanceText.setText("km since maintenance:");
         bike1KmSinceMaintenanceText.setTextSize(16);
-        bike1DatePickerButton.setText(getCurrentDate());
+        bike1DatePickerButton.setText(getSavedDate());
 
         //Button to open method which allows to pick a date
         bike1DatePickerButton.setOnClickListener(new View.OnClickListener() {
@@ -90,25 +106,37 @@ public class Bike1 extends AppCompatActivity {
         bike1SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bike1KmSinceMaintenanceEdit.getText().toString().isEmpty() ||
-                        bike1KmThisMonthEdit.getText().toString().isEmpty() ||
-                        bike1TotalKmEdit.getText().toString().isEmpty()) {
-                    Toast.makeText(Bike1.this, "Empty fields", Toast.LENGTH_SHORT).show();
-                } else {
-                    int bike1KmSinceMaintenance = Integer.parseInt(bike1KmSinceMaintenanceEdit.getText().toString());
-                    int bike1KmThisMonth = Integer.parseInt(bike1KmThisMonthEdit.getText().toString());
-                    int bike1TotalKm = Integer.parseInt(bike1TotalKmEdit.getText().toString());
+                try {
+                    if (bike1KmSinceMaintenanceEdit.getText().toString().isEmpty() ||
+                            bike1KmThisMonthEdit.getText().toString().isEmpty() ||
+                            bike1TotalKmEdit.getText().toString().isEmpty()) {
+                        Toast.makeText(Bike1.this, "Empty fields", Toast.LENGTH_SHORT).show();
 
-                    SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
-                    bike1PrefsEditor.putInt("bike1KmSinceMaintenance", bike1KmSinceMaintenance).apply();
-                    bike1PrefsEditor.putInt("bike1KmThisMonth", bike1KmThisMonth).apply();
-                    bike1PrefsEditor.putInt("bike1TotalKm", bike1TotalKm).apply();
+                    } else {
+                        SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
+                        int bike1KmSinceMaintenance = Integer.parseInt(bike1KmSinceMaintenanceEdit.getText().toString());
+                        int bike1KmThisMonth = Integer.parseInt(bike1KmThisMonthEdit.getText().toString());
+                        int bike1TotalKm = Integer.parseInt(bike1TotalKmEdit.getText().toString());
+                        bike1PrefsEditor.putInt("bike1KmSinceMaintenance", bike1KmSinceMaintenance).apply();
+                        bike1PrefsEditor.putInt("bike1KmThisMonth", bike1KmThisMonth).apply();
+                        bike1PrefsEditor.putInt("bike1TotalKm", bike1TotalKm).apply();
+                        hintsLocker = false;
 
-                    Toast.makeText(Bike1.this, "Bike updated", Toast.LENGTH_SHORT).show();
+                        finish();
+                        overridePendingTransition(0, 0);
+                        startActivity(getIntent());
+                        overridePendingTransition(0, 0);
+                        Toast.makeText(Bike1.this, "Bike updated", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    Toast.makeText(Bike1.this, "Number ERROR", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
             }
         });
+
 
         bike1ToHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,8 +155,14 @@ public class Bike1 extends AppCompatActivity {
         });
     }
 
-    private String getCurrentDate() {
-        Log.d(TAG, "getCurrentDate");
+    /**
+     * Gets from SP (SharedPreferences) variables with previously saved date values and sets it to
+     * display at spinner button which is responsible for setting up and displaying date.
+     *
+     * @return use makeDateString method to create String containing the set date.
+     */
+    private String getSavedDate() {
+        Log.d(TAG, "getSavedDate");
         SharedPreferences bike1PrefsReceiver = getApplicationContext().getSharedPreferences(
                 "bike1Prefs", Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
@@ -140,6 +174,9 @@ public class Bike1 extends AppCompatActivity {
         return makeDateString(day, month, year);
     }
 
+    /**
+     * Allows user to manually set a date and then saves it in SP (SharedPreferences).
+     */
     private void initDatePicker() {
         Log.d(TAG, "initDatePicker");
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -151,9 +188,6 @@ public class Bike1 extends AppCompatActivity {
                 bike1PrefsEditor.putInt("day", day).apply();
                 bike1PrefsEditor.putInt("month", month).apply();
                 bike1PrefsEditor.putInt("year", year).apply();
-
-                String date = makeDateString(day, month, year);
-                bike1DatePickerButton.setText(date);
             }
         };
 
@@ -168,11 +202,25 @@ public class Bike1 extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
 
+    /**
+     * Sets set variables in order to create date String.
+     *
+     * @param day   set day to save.
+     * @param month set month to save.
+     * @param year  set year to save.
+     * @return date String value in MM/DD/YYYY format with MM in the form of its name (e.g. FEB).
+     */
     private String makeDateString(int day, int month, int year) {
         Log.d(TAG, "makeDateString");
         return getMonthFormat(month) + " " + day + " " + year;
     }
 
+    /**
+     * Gets month as int value and matches it with its name to display.
+     *
+     * @param month set month in its numeric (int) format.
+     * @return matched name, or displays ERROR if probably number is out of range of month amount (1-12).
+     */
     private String getMonthFormat(int month) {
         Log.d(TAG, "getMonthFormat");
         if (month == 1) {
@@ -200,7 +248,7 @@ public class Bike1 extends AppCompatActivity {
         } else if (month == 12) {
             return "DEC";
         } else {
-            return "ERROR";
+            return "ERROR: Out of range?";
         }
     }
 }

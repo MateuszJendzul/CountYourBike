@@ -30,10 +30,10 @@ public class NotesTakerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_taker_activity_layout);
 
-        imageViewSave = findViewById(R.id.imageViewSaveID);
-        editTextTitle = findViewById(R.id.editTextTitleID);
-        editTextNotes = findViewById(R.id.editTextNotesID);
-        notesTakerBackButton = findViewById(R.id.notesTakerBackButtonID);
+        imageViewSave = findViewById(R.id.image_view_save_ID);
+        editTextTitle = findViewById(R.id.edit_text_title_ID);
+        editTextNotes = findViewById(R.id.edit_text_notes_ID);
+        notesTakerBackButton = findViewById(R.id.notes_taker_back_button_ID);
 
         notes = new Notes();
         try {
