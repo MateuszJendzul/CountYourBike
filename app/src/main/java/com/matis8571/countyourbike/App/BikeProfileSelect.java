@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.matis8571.countyourbike.R;
 
+@SuppressWarnings("Convert2Lambda")
 public class BikeProfileSelect extends AppCompatActivity {
     private static final String TAG = "BikeProfileSelect";
 

@@ -18,7 +18,7 @@
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/drawable/text_foreground.xml" value="0.1815" />
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout-notepad/activity_notes_taker.xml" value="0.2552372808892689" />
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/activity_notes_taker.xml" value="0.33" />
-        <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/bike_1_layout.xml" value="0.33" />
+        <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/bike_1_layout.xml" value="0.47962962962962963" />
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/bike_profile_select_layout.xml" value="0.3202247191011236" />
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/main_activity_layout.xml" value="0.33" />
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/main_activity_noptepad_layout.xml" value="0.25" />
@@ -26,6 +26,7 @@
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/notes_list_adapter_layout.xml" value="0.4514749893116717" />
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/layout/notes_taker_activity_layout.xml" value="0.33" />
         <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/menu/popup_menu_notepad.xml" value="0.4506199230440359" />
+        <entry key="..\:/Programming/CountYourBikeApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.191" />
         <entry key="..\:/Users/user/AndroidStudioProjects/CountYourBike/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.228" />
         <entry key="..\:/Users/user/AndroidStudioProjects/CountYourBike/app/src/main/res/drawable/button_foreground.xml" value="0.228" />
         <entry key="..\:/Users/user/AndroidStudioProjects/CountYourBike/app/src/main/res/drawable/button_gradient.xml" value="0.228" />
