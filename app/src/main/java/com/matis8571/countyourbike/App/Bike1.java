@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,10 +44,18 @@ public class Bike1 extends AppCompatActivity {
         setContentView(R.layout.bike_1_layout);
         Log.d(TAG, "onCreate: Start");
         initDatePicker();
+        countKm();
 
         SharedPreferences bike1PrefsReceiver = getApplicationContext().getSharedPreferences(
                 "bike1Prefs", Context.MODE_PRIVATE);
         int kmAtMaintenance = bike1PrefsReceiver.getInt("kmAtMaintenance", 0);
+        SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
+        int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
+        int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
+        int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
+        int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
+        int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
 
         bike1Text = findViewById(R.id.bike_1_text_ID);
         bike1LastMaintenanceText = findViewById(R.id.bike_1_last_maintenance_text_ID);
@@ -71,15 +80,15 @@ public class Bike1 extends AppCompatActivity {
         bike1Text.setTextSize(24);
         bike1LastMaintenanceText.setText("Last maintenance:");
         bike1LastMaintenanceText.setTextSize(16);
-        bike1KmTodayText.setText("km today:");
+        bike1KmTodayText.setText("km today: " + kmToday);
         bike1KmTodayText.setTextSize(16);
-        bike1KmThisWeekText.setText("km this week");
+        bike1KmThisWeekText.setText("km this week: " + kmThisWeek);
         bike1KmThisWeekText.setTextSize(16);
-        bike1KmThisMonthText.setText("km this month:");
+        bike1KmThisMonthText.setText("km this month: " + kmThisMonth);
         bike1KmThisMonthText.setTextSize(16);
-        bike1KmThisYearText.setText("km this year:");
+        bike1KmThisYearText.setText("km this year: " + kmThisYear);
         bike1KmThisYearText.setTextSize(16);
-        bike1TotalKmText.setText("km in total:");
+        bike1TotalKmText.setText("km in total: " + kmInTotal);
         bike1TotalKmText.setTextSize(16);
         bike1KmAtMaintenanceText.setText("km at maintenance: " + kmAtMaintenance);
         bike1KmAtMaintenanceText.setTextSize(16);
@@ -88,7 +97,8 @@ public class Bike1 extends AppCompatActivity {
         bike1KmToAddOrRemoveTextTip.setTextSize(8);
         bike1DatePickerButton.setText(getSavedDate());
 
-        //Open method which allows to pick a date
+
+        //Opens method which allows to pick a date
         bike1DatePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +107,7 @@ public class Bike1 extends AppCompatActivity {
             }
         });
 
-        //Go back to previous activity
+        //Goes back to previous activity
         bike1BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,44 +116,172 @@ public class Bike1 extends AppCompatActivity {
             }
         });
 
-        //Open home activity
+        //Opens home activity
         bike1ToHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: bike1ToHomeButton");
                 Intent bike1ToHomeButtonIntent = new Intent(Bike1.this, MainActivity.class);
                 startActivity(bike1ToHomeButtonIntent);
             }
         });
 
-        //Open notepad activity
+        //Opens notepad activity
         bike1NotesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: bike1NotesButton");
                 Intent bike1NotesButtonIntent = new Intent(Bike1.this, MainActivityNotepad.class);
                 startActivity(bike1NotesButtonIntent);
             }
         });
 
-        /* Change EditText according to contained methods, pretty self-exploratory
-            also store and use user input using SP (SharedPreferences)
+        //Gets user input value to count it in countKm method
+        bike1KmToAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: bike1KmToAddButton");
+                if (bike1KmToAddOrRemoveEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(Bike1.this, "Empty fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    int kmToAdd = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
+                    bike1PrefsEditor.putInt("kmToAdd", kmToAdd).apply();
+                    countKm();
+                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
+                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
+                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
+                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
+                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
+                    String kmTodayString = "km today: " + kmToday;
+                    bike1KmTodayText.setText(kmTodayString);
+                    String kmThisWeekString = "km this week: " + kmThisWeek;
+                    bike1KmThisWeekText.setText(kmThisWeekString);
+                    String kmThisMonthString = "km this month: " + kmThisMonth;
+                    bike1KmThisMonthText.setText(kmThisMonthString);
+                    String kmThisYearString = "km this year: " + kmThisYear;
+                    bike1KmThisYearText.setText(kmThisYearString);
+                    String knInTotalString = "km in total: " + kmInTotal;
+                    bike1TotalKmText.setText(knInTotalString);
+                }
+            }
+        });
+
+        //Gets user input value to count it in countKm method
+        bike1KmToAddButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d(TAG, "onLongClick: bike1KmToAddButton");
+                if (bike1KmToAddOrRemoveEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(Bike1.this, "Empty fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    int kmToAddOnLongClick = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
+                    bike1PrefsEditor.putInt("kmToAddOnLongClick", kmToAddOnLongClick).apply();
+                    countKm();
+                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
+                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
+                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
+                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
+                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
+                    String kmTodayString = "km today: " + kmToday;
+                    bike1KmTodayText.setText(kmTodayString);
+                    String kmThisWeekString = "km this week: " + kmThisWeek;
+                    bike1KmThisWeekText.setText(kmThisWeekString);
+                    String kmThisMonthString = "km this month: " + kmThisMonth;
+                    bike1KmThisMonthText.setText(kmThisMonthString);
+                    String kmThisYearString = "km this year: " + kmThisYear;
+                    bike1KmThisYearText.setText(kmThisYearString);
+                    String knInTotalString = "km in total: " + kmInTotal;
+                    bike1TotalKmText.setText(knInTotalString);
+                }
+                return true;
+            }
+        });
+
+        //Gets user input value to count it in countKm method
+        bike1KmRemoveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: bike1KmRemoveButton");
+                if (bike1KmToAddOrRemoveEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(Bike1.this, "Empty fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    int kmToRemove = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
+                    bike1PrefsEditor.putInt("kmToRemove", kmToRemove).apply();
+                    countKm();
+                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
+                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
+                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
+                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
+                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
+                    String kmTodayString = "km today: " + kmToday;
+                    bike1KmTodayText.setText(kmTodayString);
+                    String kmThisWeekString = "km this week: " + kmThisWeek;
+                    bike1KmThisWeekText.setText(kmThisWeekString);
+                    String kmThisMonthString = "km this month: " + kmThisMonth;
+                    bike1KmThisMonthText.setText(kmThisMonthString);
+                    String kmThisYearString = "km this year: " + kmThisYear;
+                    bike1KmThisYearText.setText(kmThisYearString);
+                    String knInTotalString = "km in total: " + kmInTotal;
+                    bike1TotalKmText.setText(knInTotalString);
+                }
+            }
+        });
+
+        //Gets user input value to count it in countKm method
+        bike1KmRemoveButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d(TAG, "onLongClick");
+                if (bike1KmToAddOrRemoveEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(Bike1.this, "Empty fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    int kmToRemoveOnLongClick = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
+                    bike1PrefsEditor.putInt("kmToRemoveOnLongClick", kmToRemoveOnLongClick).apply();
+                    countKm();
+                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
+                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
+                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
+                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
+                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
+                    String kmTodayString = "km today: " + kmToday;
+                    bike1KmTodayText.setText(kmTodayString);
+                    String kmThisWeekString = "km this week: " + kmThisWeek;
+                    bike1KmThisWeekText.setText(kmThisWeekString);
+                    String kmThisMonthString = "km this month: " + kmThisMonth;
+                    bike1KmThisMonthText.setText(kmThisMonthString);
+                    String kmThisYearString = "km this year: " + kmThisYear;
+                    bike1KmThisYearText.setText(kmThisYearString);
+                    String knInTotalString = "km in total: " + kmInTotal;
+                    bike1TotalKmText.setText(knInTotalString);
+                }
+                return true;
+            }
+        });
+
+        /* Changes EditText according to contained methods, pretty self-exploratory
+            also store and use user input using SP
          */
         //noinspection FieldMayBeFinal
         bike1MaintenanceKmEdit.addTextChangedListener(new TextWatcher() {
+            private static final String TAG = "bike1MaintenanceKmEdit";
             int kmAtMaintenance;
 
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "beforeTextChanged");
                 bike1MaintenanceKmEdit.setHint("type here:");
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "onTextChanged");
                 bike1KmAtMaintenanceText.setText("km at maintenance: " + charSequence);
                 kmAtMaintenance = Integer.parseInt(charSequence.toString());
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                Log.d(TAG, "afterTextChanged");
                 bike1MaintenanceKmEdit.setHint("type here:");
                 SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
@@ -153,7 +291,47 @@ public class Bike1 extends AppCompatActivity {
     }
 
     /**
-     * Gets from SP (SharedPreferences) variables with previously saved date values and sets it to
+     * Based on user input stored in SP counts distance traveled, stores these results in SP to
+     * display it on TextViews on bike profile and removes stored user input values to prevent
+     * miscalculations.
+     */
+    private void countKm() {
+        Log.d(TAG, "countKm");
+        SharedPreferences bike1PrefsReceiver = getApplicationContext().getSharedPreferences(
+                "bike1Prefs", Context.MODE_PRIVATE);
+        SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
+
+        int kmToAdd = bike1PrefsReceiver.getInt("kmToAdd", 0);
+        int kmToAddOnLongClick = bike1PrefsReceiver.getInt("kmToAddOnLongClick", 0);
+        int kmToRemove = bike1PrefsReceiver.getInt("kmToRemove", 0);
+        int kmToRemoveOnLongClick = bike1PrefsReceiver.getInt("kmToRemoveOnLongClick", 0);
+
+        int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
+        kmToday = (kmToday + kmToAdd) - kmToRemove;
+        int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
+        kmThisWeek = (kmThisWeek + kmToAdd) - kmToRemove;
+        int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
+        kmThisMonth = (kmThisMonth + kmToAdd) - kmToRemove;
+        int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
+        kmThisYear = (kmThisYear + kmToAdd) - kmToRemove;
+        int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
+        kmInTotal = (kmInTotal + kmToAdd + kmToAddOnLongClick) - (kmToRemove + kmToRemoveOnLongClick);
+
+        bike1PrefsEditor.putInt("kmToday", kmToday).apply();
+        bike1PrefsEditor.putInt("kmThisWeek", kmThisWeek).apply();
+        bike1PrefsEditor.putInt("kmThisMonth", kmThisMonth).apply();
+        bike1PrefsEditor.putInt("kmThisYear", kmThisYear).apply();
+        bike1PrefsEditor.putInt("kmInTotal", kmInTotal).apply();
+
+        bike1PrefsReceiver.edit().remove("kmToAdd").apply();
+        bike1PrefsReceiver.edit().remove("kmToAddOnLongClick").apply();
+        bike1PrefsReceiver.edit().remove("kmToRemove").apply();
+        bike1PrefsReceiver.edit().remove("kmToRemoveOnLongClick").apply();
+    }
+
+    /**
+     * Gets from SP variables with previously saved date values and sets it to
      * display at spinner button which is responsible for setting up and displaying date.
      *
      * @return use makeDateString method to create String containing the set date.
@@ -254,4 +432,5 @@ public class Bike1 extends AppCompatActivity {
             return "ERROR: Out of range?";
         }
     }
+    //SP - SharedPreferences
 }

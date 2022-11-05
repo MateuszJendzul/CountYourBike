@@ -16,6 +16,7 @@
         android:fontFamily="@font/airstrike"
         android:gravity="center"
         android:hint=" type here "
+        android:inputType="number"
         android:paddingStart="6sp"
         android:paddingEnd="8sp"
         android:textColor="@color/white"
