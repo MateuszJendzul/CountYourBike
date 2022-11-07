@@ -29,9 +29,9 @@ import java.util.Calendar;
 public class Bike1 extends AppCompatActivity {
     private static final String TAG = "Bike1";
 
-    EditText bike1KmToAddOrRemoveEdit, bike1MaintenanceKmEdit;
-    TextView bike1Text, bike1LastMaintenanceText, bike1TotalKmText, bike1KmAtMaintenanceText,
-            bike1KmTodayText, bike1KmThisWeekText, bike1KmThisMonthText, bike1KmThisYearText,
+    EditText bike1KmToAddOrRemoveEdit, bike1MaintenanceKmEdit, bike1TitleEdit;
+    TextView bike1TotalKmText, bike1MaintenanceText, bike1KmTodayText,
+            bike1KmThisWeekText, bike1KmThisMonthText, bike1KmThisYearText,
             bike1KmToAddOrRemoveText, bike1KmToAddOrRemoveTextTip;
     Button bike1DatePickerButton, bike1BackButton, bike1ToHomeButton,
             bike1NotesButton, bike1KmRemoveButton, bike1KmToAddButton;
@@ -48,7 +48,6 @@ public class Bike1 extends AppCompatActivity {
 
         SharedPreferences bike1PrefsReceiver = getApplicationContext().getSharedPreferences(
                 "bike1Prefs", Context.MODE_PRIVATE);
-        int kmAtMaintenance = bike1PrefsReceiver.getInt("kmAtMaintenance", 0);
         SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
         int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
@@ -56,15 +55,16 @@ public class Bike1 extends AppCompatActivity {
         int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
         int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
         int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
+        int kmAtMaintenance = bike1PrefsReceiver.getInt("kmAtMaintenance", 0);
+        String bike1Title = bike1PrefsReceiver.getString("bike1Title", "Bike 1");
 
-        bike1Text = findViewById(R.id.bike_1_text_ID);
-        bike1LastMaintenanceText = findViewById(R.id.bike_1_last_maintenance_text_ID);
+        bike1TitleEdit = findViewById(R.id.bike_1_title_edit_ID);
         bike1KmTodayText = findViewById(R.id.bike_1_km_today_text_ID);
         bike1KmThisWeekText = findViewById(R.id.bike_1_km_this_week_text_ID);
         bike1KmThisMonthText = findViewById(R.id.bike_1_km_this_month_text_ID);
         bike1KmThisYearText = findViewById(R.id.bike_1_km_this_year_text_ID);
         bike1TotalKmText = findViewById(R.id.bike_1_total_km_text_ID);
-        bike1KmAtMaintenanceText = findViewById(R.id.bike_1_km_at_maintenance_text_ID);
+        bike1MaintenanceText = findViewById(R.id.bike_1_maintenance_text_ID);
         bike1KmToAddOrRemoveText = findViewById(R.id.bike_1_km_to_add_or_remove_text_ID);
         bike1KmToAddOrRemoveTextTip = findViewById(R.id.bike_1_km_to_add_or_remove_text_tip_ID);
         bike1DatePickerButton = findViewById(R.id.bike_1_date_picker_button_ID);
@@ -76,10 +76,12 @@ public class Bike1 extends AppCompatActivity {
         bike1KmToAddOrRemoveEdit = findViewById(R.id.bike_1_km_to_add_or_remove_edit_ID);
         bike1MaintenanceKmEdit = findViewById(R.id.bike_1_maintenance_km_edit_ID);
 
-        bike1Text.setText("Bike 1 profile:");
-        bike1Text.setTextSize(24);
-        bike1LastMaintenanceText.setText("Last maintenance:");
-        bike1LastMaintenanceText.setTextSize(16);
+        /* With more fancy fonts you may be forced to use transparent shadow to prevent some
+             letters being clipped
+         */
+        bike1TitleEdit.setHint(bike1Title);
+        bike1TitleEdit.setTextSize(30);
+        bike1MaintenanceKmEdit.setHint(kmAtMaintenance + " km");
         bike1KmTodayText.setText("km today: " + kmToday);
         bike1KmTodayText.setTextSize(16);
         bike1KmThisWeekText.setText("km this week: " + kmThisWeek);
@@ -90,13 +92,12 @@ public class Bike1 extends AppCompatActivity {
         bike1KmThisYearText.setTextSize(16);
         bike1TotalKmText.setText("km in total: " + kmInTotal);
         bike1TotalKmText.setTextSize(16);
-        bike1KmAtMaintenanceText.setText("km at maintenance: " + kmAtMaintenance);
-        bike1KmAtMaintenanceText.setTextSize(16);
+        bike1MaintenanceText.setText("Last maintenance:");
+        bike1MaintenanceText.setTextSize(16);
         bike1KmToAddOrRemoveText.setText("Add or remove km");
         bike1KmToAddOrRemoveTextTip.setText("Hold button to add count outside of today's summary");
         bike1KmToAddOrRemoveTextTip.setTextSize(8);
         bike1DatePickerButton.setText(getSavedDate());
-
 
         //Opens method which allows to pick a date
         bike1DatePickerButton.setOnClickListener(new View.OnClickListener() {
@@ -147,21 +148,6 @@ public class Bike1 extends AppCompatActivity {
                     int kmToAdd = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
                     bike1PrefsEditor.putInt("kmToAdd", kmToAdd).apply();
                     countKm();
-                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
-                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
-                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
-                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
-                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
-                    String kmTodayString = "km today: " + kmToday;
-                    bike1KmTodayText.setText(kmTodayString);
-                    String kmThisWeekString = "km this week: " + kmThisWeek;
-                    bike1KmThisWeekText.setText(kmThisWeekString);
-                    String kmThisMonthString = "km this month: " + kmThisMonth;
-                    bike1KmThisMonthText.setText(kmThisMonthString);
-                    String kmThisYearString = "km this year: " + kmThisYear;
-                    bike1KmThisYearText.setText(kmThisYearString);
-                    String knInTotalString = "km in total: " + kmInTotal;
-                    bike1TotalKmText.setText(knInTotalString);
                 }
             }
         });
@@ -177,21 +163,6 @@ public class Bike1 extends AppCompatActivity {
                     int kmToAddOnLongClick = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
                     bike1PrefsEditor.putInt("kmToAddOnLongClick", kmToAddOnLongClick).apply();
                     countKm();
-                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
-                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
-                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
-                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
-                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
-                    String kmTodayString = "km today: " + kmToday;
-                    bike1KmTodayText.setText(kmTodayString);
-                    String kmThisWeekString = "km this week: " + kmThisWeek;
-                    bike1KmThisWeekText.setText(kmThisWeekString);
-                    String kmThisMonthString = "km this month: " + kmThisMonth;
-                    bike1KmThisMonthText.setText(kmThisMonthString);
-                    String kmThisYearString = "km this year: " + kmThisYear;
-                    bike1KmThisYearText.setText(kmThisYearString);
-                    String knInTotalString = "km in total: " + kmInTotal;
-                    bike1TotalKmText.setText(knInTotalString);
                 }
                 return true;
             }
@@ -208,21 +179,6 @@ public class Bike1 extends AppCompatActivity {
                     int kmToRemove = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
                     bike1PrefsEditor.putInt("kmToRemove", kmToRemove).apply();
                     countKm();
-                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
-                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
-                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
-                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
-                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
-                    String kmTodayString = "km today: " + kmToday;
-                    bike1KmTodayText.setText(kmTodayString);
-                    String kmThisWeekString = "km this week: " + kmThisWeek;
-                    bike1KmThisWeekText.setText(kmThisWeekString);
-                    String kmThisMonthString = "km this month: " + kmThisMonth;
-                    bike1KmThisMonthText.setText(kmThisMonthString);
-                    String kmThisYearString = "km this year: " + kmThisYear;
-                    bike1KmThisYearText.setText(kmThisYearString);
-                    String knInTotalString = "km in total: " + kmInTotal;
-                    bike1TotalKmText.setText(knInTotalString);
                 }
             }
         });
@@ -238,21 +194,6 @@ public class Bike1 extends AppCompatActivity {
                     int kmToRemoveOnLongClick = Integer.parseInt(bike1KmToAddOrRemoveEdit.getText().toString());
                     bike1PrefsEditor.putInt("kmToRemoveOnLongClick", kmToRemoveOnLongClick).apply();
                     countKm();
-                    int kmToday = bike1PrefsReceiver.getInt("kmToday", 0);
-                    int kmThisWeek = bike1PrefsReceiver.getInt("kmThisWeek", 0);
-                    int kmThisMonth = bike1PrefsReceiver.getInt("kmThisMonth", 0);
-                    int kmThisYear = bike1PrefsReceiver.getInt("kmThisYear", 0);
-                    int kmInTotal = bike1PrefsReceiver.getInt("kmInTotal", 0);
-                    String kmTodayString = "km today: " + kmToday;
-                    bike1KmTodayText.setText(kmTodayString);
-                    String kmThisWeekString = "km this week: " + kmThisWeek;
-                    bike1KmThisWeekText.setText(kmThisWeekString);
-                    String kmThisMonthString = "km this month: " + kmThisMonth;
-                    bike1KmThisMonthText.setText(kmThisMonthString);
-                    String kmThisYearString = "km this year: " + kmThisYear;
-                    bike1KmThisYearText.setText(kmThisYearString);
-                    String knInTotalString = "km in total: " + kmInTotal;
-                    bike1TotalKmText.setText(knInTotalString);
                 }
                 return true;
             }
@@ -264,28 +205,38 @@ public class Bike1 extends AppCompatActivity {
         //noinspection FieldMayBeFinal
         bike1MaintenanceKmEdit.addTextChangedListener(new TextWatcher() {
             private static final String TAG = "bike1MaintenanceKmEdit";
-            int kmAtMaintenance;
 
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Log.d(TAG, "beforeTextChanged");
-                bike1MaintenanceKmEdit.setHint("type here:");
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Log.d(TAG, "onTextChanged");
-                bike1KmAtMaintenanceText.setText("km at maintenance: " + charSequence);
-                kmAtMaintenance = Integer.parseInt(charSequence.toString());
+                int kmAtMaintenance = Integer.parseInt(charSequence.toString());
+                bike1PrefsEditor.putInt("kmAtMaintenance", kmAtMaintenance).apply();
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Log.d(TAG, "afterTextChanged");
-                bike1MaintenanceKmEdit.setHint("type here:");
-                SharedPreferences bike1Prefs = getSharedPreferences("bike1Prefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor bike1PrefsEditor = bike1Prefs.edit();
-                bike1PrefsEditor.putInt("kmAtMaintenance", kmAtMaintenance).apply();
+            }
+        });
+
+        bike1TitleEdit.addTextChangedListener(new TextWatcher() {
+            private static final String TAG = "Bike1TitleEdit";
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d(TAG, "onTextChanged");
+                String bike1Title = charSequence.toString();
+                bike1PrefsEditor.putString("bike1Title", bike1Title).apply();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
             }
         });
     }
@@ -328,6 +279,23 @@ public class Bike1 extends AppCompatActivity {
         bike1PrefsReceiver.edit().remove("kmToAddOnLongClick").apply();
         bike1PrefsReceiver.edit().remove("kmToRemove").apply();
         bike1PrefsReceiver.edit().remove("kmToRemoveOnLongClick").apply();
+
+        bike1KmTodayText = findViewById(R.id.bike_1_km_today_text_ID);
+        bike1KmThisWeekText = findViewById(R.id.bike_1_km_this_week_text_ID);
+        bike1KmThisMonthText = findViewById(R.id.bike_1_km_this_month_text_ID);
+        bike1KmThisYearText = findViewById(R.id.bike_1_km_this_year_text_ID);
+        bike1TotalKmText = findViewById(R.id.bike_1_total_km_text_ID);
+
+        String kmTodayString = "km today: " + kmToday;
+        bike1KmTodayText.setText(kmTodayString);
+        String kmThisWeekString = "km this week: " + kmThisWeek;
+        bike1KmThisWeekText.setText(kmThisWeekString);
+        String kmThisMonthString = "km this month: " + kmThisMonth;
+        bike1KmThisMonthText.setText(kmThisMonthString);
+        String kmThisYearString = "km this year: " + kmThisYear;
+        bike1KmThisYearText.setText(kmThisYearString);
+        String knInTotalString = "km in total: " + kmInTotal;
+        bike1TotalKmText.setText(knInTotalString);
     }
 
     /**
