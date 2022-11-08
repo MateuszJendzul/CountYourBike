@@ -2,26 +2,37 @@ package com.matis8571.countyourbike.App;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.ConditionVariable;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.matis8571.countyourbike.App.Database.BikesRoomDB;
+import com.matis8571.countyourbike.App.Models.Bikes;
+import com.matis8571.countyourbike.Notepad.Adapters.NotesListAdapter;
 import com.matis8571.countyourbike.R;
 
-@SuppressWarnings("Convert2Lambda")
-public class BikeProfileSelect extends AppCompatActivity {
-    private static final String TAG = "BikeProfileSelect";
+import java.util.ArrayList;
+import java.util.List;
 
+@SuppressWarnings("Convert2Lambda")
+public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+    private static final String TAG = "BikeProfileSelect";
+    List<Bikes> bikes = new ArrayList<>();
+    RecyclerView bikeProfileRecycler;
+    NotesListAdapter bikeProfileNotesListAdapter;
+    BikesRoomDB bikesRoomDB;
+    Bikes selectedBikes;
     TextView bikeProfileText;
-    Button bikeBike1ProfileSelectButton, profileSelectBackButton;
+    Button bikeProfileAddNewBikeButton, bikeProfileBackButton;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -35,28 +46,42 @@ public class BikeProfileSelect extends AppCompatActivity {
         String bike1Title = bike1PrefsReceiver.getString("bike1Title", "Bike 1");
 
         bikeProfileText = findViewById(R.id.bike_profile_text_ID);
-        bikeBike1ProfileSelectButton = findViewById(R.id.bike_bike_1_profile_select_button_ID);
-        profileSelectBackButton = findViewById(R.id.profile_select_back_button_ID);
+        bikeProfileAddNewBikeButton = findViewById(R.id.bike_profile_add_new_bike_button_ID);
+        bikeProfileBackButton = findViewById(R.id.bike_profile_back_button_ID);
+        bikeProfileRecycler = findViewById(R.id.bike_profile_recycler);
 
         bikeProfileText.setText("Select your bike:");
         bikeProfileText.setTextSize(28);
-        bikeBike1ProfileSelectButton.setText(bike1Title);
+        bikeProfileAddNewBikeButton.setText(bike1Title);
 
-        bikeBike1ProfileSelectButton.setOnClickListener(new View.OnClickListener() {
+        bikesRoomDB = BikesRoomDB.getInstance(this);
+        bikes = bikesRoomDB.bikesDAO().getAll();
+        updateRecycler(bikes);
+
+        bikeProfileAddNewBikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: bike1BikeProfileSelectButton");
-                Intent bike1BikeProfileSelectButtonIntent = new Intent(BikeProfileSelect.this, Bike1.class);
-                startActivity(bike1BikeProfileSelectButtonIntent);
+                Log.d(TAG, "onClick: addNewBikeButton");
+
             }
         });
 
-        profileSelectBackButton.setOnClickListener(new View.OnClickListener() {
+        bikeProfileBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: profileSelectToMainButton");
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

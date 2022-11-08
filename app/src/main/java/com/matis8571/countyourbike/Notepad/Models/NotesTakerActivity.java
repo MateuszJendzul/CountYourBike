@@ -19,10 +19,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NotesTakerActivity extends AppCompatActivity {
+    private static final String TAG = "NotesTakerActivity";
     EditText editTextTitle, editTextNotes;
-    ImageView imageViewSave;
     Notes notes;
-    Button notesTakerBackButton;
+    Button notesTakerBackButton, notesTakerAddButton;
     boolean isOldNote = false;
 
     @Override
@@ -30,10 +30,10 @@ public class NotesTakerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_taker_activity_layout);
 
-        imageViewSave = findViewById(R.id.image_view_save_ID);
         editTextTitle = findViewById(R.id.edit_text_title_ID);
         editTextNotes = findViewById(R.id.edit_text_notes_ID);
         notesTakerBackButton = findViewById(R.id.notes_taker_back_button_ID);
+        notesTakerAddButton = findViewById(R.id.notes_taker_add_button_ID);
 
         notes = new Notes();
         try {
@@ -45,7 +45,7 @@ public class NotesTakerActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        imageViewSave.setOnClickListener(new View.OnClickListener() {
+        notesTakerAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = editTextTitle.getText().toString();

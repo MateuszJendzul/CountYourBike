@@ -32,7 +32,8 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder> {
     @NonNull
     @Override
     public NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NotesViewHolder(LayoutInflater.from(context).inflate(R.layout.notes_list_adapter_layout, parent, false));
+        return new NotesViewHolder(LayoutInflater.from(context).inflate(R.layout.notes_list_adapter_layout,
+                parent, false));
     }
 
     @Override
@@ -96,4 +97,3 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder> {
         notifyDataSetChanged();
     }
 }
-

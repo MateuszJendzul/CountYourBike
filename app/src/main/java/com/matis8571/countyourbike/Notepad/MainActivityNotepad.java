@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,8 +21,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.matis8571.countyourbike.App.MainActivity;
 import com.matis8571.countyourbike.Notepad.Adapters.NotesListAdapter;
+import com.matis8571.countyourbike.Notepad.Database.NotepadRoomDB;
 import com.matis8571.countyourbike.Notepad.Database.NotesClickListener;
-import com.matis8571.countyourbike.Notepad.Database.RoomDB;
 import com.matis8571.countyourbike.Notepad.Models.Notes;
 import com.matis8571.countyourbike.Notepad.Models.NotesTakerActivity;
 import com.matis8571.countyourbike.R;
@@ -31,16 +32,18 @@ import java.util.List;
 
 @SuppressWarnings("Convert2Lambda")
 public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+    private static final String TAG = "MainActivityNotepad";
     RecyclerView recyclerHome;
     NotesListAdapter notesListAdapter;
     List<Notes> notes = new ArrayList<>();
-    RoomDB database;
+    NotepadRoomDB database;
     SearchView searchViewHome;
     Notes selectedNote;
     Button notesBackButton, noteAddButton, notepadMainToMain;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_noptepad_layout);
 
@@ -50,9 +53,8 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
         notesBackButton = findViewById(R.id.notes_back_button_ID);
         notepadMainToMain = findViewById(R.id.notepad_main_to_main_ID);
 
-        database = RoomDB.getInstance(this);
+        database = NotepadRoomDB.getInstance(this);
         notes = database.mainNotepadDAO().getAll();
-
         updateRecycler(notes);
 
         noteAddButton.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +96,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     }
 
     private void filter(String newText) {
+        Log.d(TAG, "filter");
         List<Notes> filteredList = new ArrayList<>();
         for (Notes singleNote : notes) {
             if (singleNote.getTitle().toLowerCase().contains(newText.toLowerCase())
@@ -108,7 +111,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.d(TAG, "onActivityResult");
         if (requestCode == 101) {
             if (resultCode == Activity.RESULT_OK) {
                 assert data != null;
@@ -131,6 +134,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     }
 
     private void updateRecycler(List<Notes> notes) {
+        Log.d(TAG, "updateRecycler");
         recyclerHome.setHasFixedSize(true);
         recyclerHome.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         notesListAdapter = new NotesListAdapter(MainActivityNotepad.this, notes, notesClickListener);
@@ -138,8 +142,10 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     }
 
     private final NotesClickListener notesClickListener = new NotesClickListener() {
+        private static final String TAG = "notesClickListener";
         @Override
         public void onClick(Notes notes) {
+            Log.d(TAG, "onClick");
             Intent intent = new Intent(MainActivityNotepad.this, NotesTakerActivity.class);
             intent.putExtra("oldNote", notes);
             //noinspection deprecation
@@ -148,12 +154,14 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
 
         @Override
         public void onLongClick(Notes notes, CardView cardView) {
+            Log.d(TAG, "onLongClick");
             selectedNote = notes;
             showPopup(cardView);
         }
     };
 
     private void showPopup(CardView cardView) {
+        Log.d(TAG, "showPopup");
         PopupMenu popupMenu = new PopupMenu(this, cardView);
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.inflate(R.menu.popup_notepad_menu);
@@ -163,6 +171,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     @SuppressLint({"NonConstantResourceId", "NotifyDataSetChanged"})
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        Log.d(TAG, "onMenuItemClick");
         switch (item.getItemId()) {
             case R.id.pin:
                 if (selectedNote.isPinned()) {

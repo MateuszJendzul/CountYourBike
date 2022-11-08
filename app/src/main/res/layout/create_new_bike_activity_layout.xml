@@ -6,41 +6,106 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
-    tools:context=".Notepad.Models.NotesTakerActivity">
+    tools:ignore="HardcodedText, Autofill">
 
     <EditText
-        android:id="@+id/edit_text_title_ID"
+        android:id="@+id/name_edit_ID"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:fontFamily="@font/airstrike"
-        android:hint="Title:"
+        android:fontFamily="@font/airstrikecond"
+        android:hint="name:"
+        android:inputType="text"
         android:padding="8dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="20sp"
-        android:textStyle="bold"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
+        android:textStyle="normal" />
 
     <EditText
-        android:id="@+id/edit_text_notes_ID"
+        android:id="@+id/bike_type_edit_ID"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:fontFamily="@font/airstrikecond"
-        android:hint="Add Notes:"
+        android:hint="bike type:"
+        android:inputType="text"
         android:padding="8dp"
+        android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        tools:ignore="Autofill,HardcodedText,TextFields" />
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/brand_edit_ID"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="@font/airstrikecond"
+        android:hint="brand:"
+        android:inputType="text"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/model_edit_ID"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="@font/airstrikecond"
+        android:hint="model:"
+        android:inputType="text"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/mileage_edit_ID"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:fontFamily="@font/airstrikecond"
+        android:hint="mileage:"
+        android:inputType="text"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        android:textStyle="normal" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/notes_taker_add_button_ID"
+            android:id="@+id/create_new_bike_back_button_ID"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/airstrike"
+            android:foreground="@drawable/button_foreground"
+            android:gravity="center"
+            android:paddingHorizontal="4sp"
+            android:text="back"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="HardcodedText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/create_new_bike_add_button_ID"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_marginEnd="8dp"
@@ -60,23 +125,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="HardcodedText" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/notes_taker_back_button_ID"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/airstrike"
-            android:foreground="@drawable/button_foreground"
-            android:gravity="center"
-            android:paddingHorizontal="4sp"
-            android:text="back"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="HardcodedText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
