@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bikes_container_ID"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/background_color"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
@@ -18,81 +18,17 @@
         <TextView
             android:id="@+id/bike_text_view_name_ID"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:fontFamily="@font/airstrikecond"
+            android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
             android:padding="8dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:text="name"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/bike_text_view_bike_type_ID"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/airstrikecond"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="8dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="bike type"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/bike_text_view_brand_ID"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/airstrikecond"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="8dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="brand"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/bike_text_view_model_ID"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/airstrikecond"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="8dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="model"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/bike_ext_view_mileage_ID"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/airstrikecond"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="8dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="mileage"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

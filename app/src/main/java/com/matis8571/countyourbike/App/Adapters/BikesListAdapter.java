@@ -39,23 +39,10 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BikeViewHolder holder, int position) {
         holder.textViewName.setText(list.get(position).getName());
-        holder.textViewName.setSelected(true);
 
-        holder.textViewBikeType.setText(list.get(position).getBikeType());
-        holder.textViewBikeType.setSelected(true);
-
-        holder.textViewBrand.setText(list.get(position).getBrand());
-        holder.textViewBrand.setSelected(true);
-
-        holder.textViewModel.setText(list.get(position).getModel());
-        holder.textViewModel.setSelected(true);
-
-        holder.textViewMileage.setText(list.get(position).getMileage());
-        holder.textViewMileage.setSelected(true);
-
-        int colorCode = getRandomColor();
+        int color = getColor();
         holder.bikesContainer.setCardBackgroundColor(holder.itemView.getResources()
-                .getColor(colorCode, null));
+                .getColor(color, null));
 
         holder.bikesContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +60,7 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
         });
     }
 
-    private int getRandomColor() {
+    private int getColor() {
         List<Integer> colorCode = new ArrayList<>();
 
         colorCode.add(R.color.color1);
@@ -90,11 +77,5 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
     @Override
     public int getItemCount() {
         return list.size();
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    public void filterList(List<Bikes> filteredList) {
-        list = filteredList;
-        notifyDataSetChanged();
     }
 }

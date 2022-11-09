@@ -33,9 +33,9 @@ import java.util.List;
 @SuppressWarnings("Convert2Lambda")
 public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private static final String TAG = "MainActivityNotepad";
+    List<Notes> notes = new ArrayList<>();
     RecyclerView recyclerHome;
     NotesListAdapter notesListAdapter;
-    List<Notes> notes = new ArrayList<>();
     NotepadRoomDB database;
     SearchView searchViewHome;
     Notes selectedNote;
@@ -43,7 +43,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate");
+        Log.d(TAG, "onCreate: Start");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_noptepad_layout);
 
@@ -60,9 +60,9 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
         noteAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent fabAddIntent = new Intent(MainActivityNotepad.this, NotesTakerActivity.class);
+                Intent noteAddButtonIntent = new Intent(MainActivityNotepad.this, NotesTakerActivity.class);
                 //noinspection deprecation
-                startActivityForResult(fabAddIntent, 101);
+                startActivityForResult(noteAddButtonIntent, 101);
             }
         });
 
@@ -146,21 +146,21 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
         @Override
         public void onClick(Notes notes) {
             Log.d(TAG, "onClick");
-            Intent intent = new Intent(MainActivityNotepad.this, NotesTakerActivity.class);
-            intent.putExtra("oldNote", notes);
+            Intent notesClickListenerIntent = new Intent(MainActivityNotepad.this, NotesTakerActivity.class);
+            notesClickListenerIntent.putExtra("oldNote", notes);
             //noinspection deprecation
-            startActivityForResult(intent, 102);
+            startActivityForResult(notesClickListenerIntent, 102);
         }
 
         @Override
         public void onLongClick(Notes notes, CardView cardView) {
             Log.d(TAG, "onLongClick");
             selectedNote = notes;
-            showPopup(cardView);
+            showPopUp(cardView);
         }
     };
 
-    private void showPopup(CardView cardView) {
+    private void showPopUp(CardView cardView) {
         Log.d(TAG, "showPopup");
         PopupMenu popupMenu = new PopupMenu(this, cardView);
         popupMenu.setOnMenuItemClickListener(this);

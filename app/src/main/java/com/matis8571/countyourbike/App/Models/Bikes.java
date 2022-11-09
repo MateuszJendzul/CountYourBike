@@ -1,14 +1,16 @@
 package com.matis8571.countyourbike.App.Models;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity(tableName = "bikes")
 public class Bikes implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    int ID = 1;
+    int ID = 0;
 
     @ColumnInfo(name = "name")
     String name = "";
@@ -24,6 +26,14 @@ public class Bikes implements Serializable {
 
     @ColumnInfo(name = "mileage")
     String mileage = "";
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getBikeType() {
         return bikeType;

@@ -68,9 +68,9 @@ public class NotesTakerActivity extends AppCompatActivity {
                 notes.setNotes(description);
                 notes.setDateAndTime(formatter.format(date));
 
-                Intent intent = new Intent();
-                intent.putExtra("note", notes);
-                setResult(Activity.RESULT_OK, intent);
+                Intent notesTakerAddButtonIntent = new Intent();
+                notesTakerAddButtonIntent.putExtra("note", notes);
+                setResult(Activity.RESULT_OK, notesTakerAddButtonIntent);
                 finish();
             }
         });

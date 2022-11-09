@@ -11,7 +11,7 @@
     <EditText
         android:id="@+id/name_edit_ID"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/airstrikecond"
         android:hint="name:"
         android:inputType="text"
@@ -25,7 +25,7 @@
     <EditText
         android:id="@+id/bike_type_edit_ID"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/airstrikecond"
         android:hint="bike type:"
         android:inputType="text"
@@ -39,7 +39,7 @@
     <EditText
         android:id="@+id/brand_edit_ID"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/airstrikecond"
         android:hint="brand:"
         android:inputType="text"
@@ -53,7 +53,7 @@
     <EditText
         android:id="@+id/model_edit_ID"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/airstrikecond"
         android:hint="model:"
         android:inputType="text"
@@ -67,7 +67,7 @@
     <EditText
         android:id="@+id/mileage_edit_ID"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/airstrikecond"
         android:hint="mileage:"
         android:inputType="text"
@@ -125,6 +125,26 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="HardcodedText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/create_new_bike_notes_button_ID"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/airstrike"
+            android:foreground="@drawable/button_foreground"
+            android:gravity="center"
+            android:paddingHorizontal="8dp"
+            android:text="notes"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

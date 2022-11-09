@@ -16,10 +16,6 @@ class BikeViewHolder extends RecyclerView.ViewHolder {
     public BikeViewHolder(@NonNull View itemView) {
         super(itemView);
         textViewName = itemView.findViewById(R.id.bike_text_view_name_ID);
-        textViewBikeType = itemView.findViewById(R.id.bike_text_view_bike_type_ID);
-        textViewBrand = itemView.findViewById(R.id.bike_text_view_brand_ID);
-        textViewModel = itemView.findViewById(R.id.bike_text_view_model_ID);
-        textViewMileage = itemView.findViewById(R.id.bike_ext_view_mileage_ID);
         bikesContainer = itemView.findViewById(R.id.bikes_container_ID);
     }
 }
