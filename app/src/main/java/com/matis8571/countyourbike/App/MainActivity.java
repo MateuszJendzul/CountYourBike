@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mainToNotesButton = findViewById(R.id.main_to_notes_button_ID);
         mainActivityTitleText = findViewById(R.id.main_activity_title_text_ID);
         mainActivityTitleText.setText("Count Your Bike");
-        mainActivityTitleText.setTextSize(36);
+        mainActivityTitleText.setTextSize(40);
 
         bikesButton.setOnClickListener(new View.OnClickListener() {
             @Override

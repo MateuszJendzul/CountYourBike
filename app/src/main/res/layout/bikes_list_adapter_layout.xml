@@ -7,13 +7,21 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     app:cardBackgroundColor="@color/background_color"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="15dp"
     app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/bikes_list_image_ID"
+            android:layout_width="match_parent"
+            android:src="@drawable/bike_1"
+            android:layout_height="200dp"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/bike_text_view_name_ID"
@@ -26,7 +34,7 @@
             android:padding="8dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:text="name"
+            android:text="Name"
             android:textColor="@color/white"
             android:textSize="20sp"
             tools:ignore="HardcodedText" />

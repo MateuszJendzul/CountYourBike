@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
     Bikes selectedBike;
     TextView bikeProfileText;
     Button bikeProfileAddNewBikeButton, bikeProfileBackButton;
+    private int x;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,13 +109,14 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
     private void updateRecycler(List<Bikes> bikes) {
         Log.d(TAG, "updateRecycler");
         bikeProfileRecycler.setHasFixedSize(true);
-        bikeProfileRecycler.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
+        bikeProfileRecycler.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
         bikesListAdapter = new BikesListAdapter(BikeProfileSelect.this, bikes, bikesClickListener);
         bikeProfileRecycler.setAdapter(bikesListAdapter);
     }
 
     private final BikesClickListener bikesClickListener = new BikesClickListener() {
         private static final String TAG = "bikesClickListener";
+
         @Override
         public void onClick(Bikes bikes) {
             Log.d(TAG, "onClick");

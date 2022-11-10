@@ -8,75 +8,216 @@
     android:orientation="vertical"
     tools:ignore="HardcodedText, Autofill">
 
+    <TextView
+        android:id="@+id/name_text_ID"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
+        android:fontFamily="@font/airstrike"
+        android:gravity="start"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
+        android:singleLine="true"
+        android:text="Name:"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
+        android:textStyle="normal" />
+
     <EditText
         android:id="@+id/name_edit_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
         android:fontFamily="@font/airstrikecond"
-        android:hint="name:"
+        android:gravity="start"
+        android:hint="Name:"
         android:inputType="text"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:textStyle="normal" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/bike_type_text_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
+        android:fontFamily="@font/airstrike"
+        android:gravity="start"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
+        android:singleLine="true"
+        android:text="Bike Type:"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
         android:textStyle="normal" />
 
     <EditText
         android:id="@+id/bike_type_edit_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
         android:fontFamily="@font/airstrikecond"
-        android:hint="bike type:"
+        android:gravity="start"
+        android:hint="Bike Type:"
         android:inputType="text"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:textStyle="normal" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/brand_text_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
+        android:fontFamily="@font/airstrike"
+        android:gravity="start"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
+        android:singleLine="true"
+        android:text="Brand:"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
         android:textStyle="normal" />
 
     <EditText
         android:id="@+id/brand_edit_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
         android:fontFamily="@font/airstrikecond"
-        android:hint="brand:"
+        android:gravity="start"
+        android:hint="Brand:"
         android:inputType="text"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:textStyle="normal" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/model_text_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
+        android:fontFamily="@font/airstrike"
+        android:gravity="start"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="0dp"
+        android:singleLine="true"
+        android:text="Model:"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
         android:textStyle="normal" />
 
     <EditText
         android:id="@+id/model_edit_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
         android:fontFamily="@font/airstrikecond"
-        android:hint="model:"
+        android:gravity="start"
+        android:hint="Model:"
         android:inputType="text"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:textStyle="normal" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/mileage_text_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
+        android:fontFamily="@font/airstrike"
+        android:gravity="start"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
+        android:singleLine="true"
+        android:text="Mileage:"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
         android:textStyle="normal" />
 
     <EditText
         android:id="@+id/mileage_edit_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
         android:fontFamily="@font/airstrikecond"
-        android:hint="mileage:"
+        android:gravity="start"
+        android:hint="Mileage:"
         android:inputType="text"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="normal" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

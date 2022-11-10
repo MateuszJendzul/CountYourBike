@@ -63,10 +63,9 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
     private int getColor() {
         List<Integer> colorCode = new ArrayList<>();
 
-        colorCode.add(R.color.color1);
-        colorCode.add(R.color.color2);
         colorCode.add(R.color.color3);
-        colorCode.add(R.color.color4);
+        colorCode.add(R.color.gray);
+        colorCode.add(R.color.button_color);
         colorCode.add(R.color.color5);
 
         Random random = new Random();

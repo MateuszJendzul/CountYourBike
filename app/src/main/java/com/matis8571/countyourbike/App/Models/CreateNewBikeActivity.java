@@ -2,19 +2,16 @@ package com.matis8571.countyourbike.App.Models;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.AbsoluteSizeSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
 import com.matis8571.countyourbike.R;
@@ -46,16 +43,13 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         try {
             bikes = (Bikes) getIntent().getSerializableExtra("oldBike");
 
-            Spannable editNameString = new SpannableString("Name: " + bikes.getName());
-            editNameString.setSpan(new RelativeSizeSpan(1f), 0,0,0);
-            editNameString.setSpan(new ForegroundColorSpan(Color.BLUE),0,0,0);
+            String nameEditString = bikes.getName();
+            String bikeTypeEditString = bikes.getBikeType();
+            String brandEditString = bikes.getBrand();
+            String modelEditString = bikes.getModel();
+            String mileageEditString = bikes.getMileage();
 
-            String bikeTypeEditString = "Bike Type: " + bikes.getBikeType();
-            String brandEditString = "Brand: " + bikes.getBrand();
-            String modelEditString = "Model: " + bikes.getModel();
-            String mileageEditString = "Mileage: " + bikes.getMileage();
-
-            nameEdit.setText(editNameString);
+            nameEdit.setText(nameEditString);
             bikeTypeEdit.setText(bikeTypeEditString);
             brandEdit.setText(brandEditString);
             modelEdit.setText(modelEditString);
@@ -74,20 +68,34 @@ public class CreateNewBikeActivity extends AppCompatActivity {
                 String model = modelEdit.getText().toString();
                 String mileage = mileageEdit.getText().toString();
 
-                if (!isOldNote) {
-                    bikes = new Bikes();
-                }
-                bikes.setName(name);
-                bikes.setBikeType(bikeType);
-                bikes.setBrand(brand);
-                bikes.setModel(model);
-                bikes.setMileage(mileage);
+                if (nameEdit.getText().toString().isEmpty() || bikeTypeEdit.getText().toString().isEmpty()
+                        || brandEdit.getText().toString().isEmpty() || modelEdit.getText().toString().isEmpty()
+                        || mileageEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(CreateNewBikeActivity.this, "Empty fields", Toast.LENGTH_SHORT).show();
+                } else {
 
-                Intent createNewBikeAddButtonIntent = new Intent();
-                // To put extra make Notes.class implement Serializable
-                createNewBikeAddButtonIntent.putExtra("bike", bikes);
-                setResult(Activity.RESULT_OK, createNewBikeAddButtonIntent);
-                finish();
+                    if (!isOldNote) {
+                        bikes = new Bikes();
+                    }
+                    bikes.setName(name);
+                    bikes.setBikeType(bikeType);
+                    bikes.setBrand(brand);
+                    bikes.setModel(model);
+                    bikes.setMileage(mileage);
+
+                    Intent createNewBikeAddButtonIntent = new Intent();
+                    // To put extra make Notes.class implement Serializable
+                    createNewBikeAddButtonIntent.putExtra("bike", bikes);
+                    setResult(Activity.RESULT_OK, createNewBikeAddButtonIntent);
+                    finish();
+                }
+            }
+        });
+
+        bikeTypeEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
@@ -106,11 +114,5 @@ public class CreateNewBikeActivity extends AppCompatActivity {
                 startActivity(createNewBikeNotesButtonIntent);
             }
         });
-    }
-
-    public static void setFontSizeForPath(Spannable spannable, String path, int fontSizeInPixel) {
-        int startIndexOfPath = spannable.toString().indexOf(path);
-        spannable.setSpan(new AbsoluteSizeSpan(fontSizeInPixel), startIndexOfPath,
-                startIndexOfPath + path.length(), 0);
     }
 }

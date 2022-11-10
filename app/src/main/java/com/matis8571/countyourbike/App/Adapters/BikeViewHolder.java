@@ -1,6 +1,7 @@
 package com.matis8571.countyourbike.App.Adapters;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matis8571.countyourbike.R;
 
 class BikeViewHolder extends RecyclerView.ViewHolder {
-    TextView textViewName, textViewBikeType, textViewBrand, textViewModel, textViewMileage;
+    TextView textViewName;
     CardView bikesContainer;
 
     public BikeViewHolder(@NonNull View itemView) {

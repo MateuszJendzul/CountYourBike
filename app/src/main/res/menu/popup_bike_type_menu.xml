@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+    <item
+        android:id="@+id/bike_type_MTB_menu_ID"
+        android:title="MTB" />
+
+    <item
+        android:id="@+id/bike_type_road_menu_ID"
+        android:title="Road" />
+
+    <item
+        android:id="@+id/bike_type_electric_menu_ID"
+        android:title="Electric" />
+
+    <item
+        android:id="@+id/bike_type_classic_menu_ID"
+        android:title="classic" />
+
+    <item
+        android:id="@+id/bike_type_cruiser_menu_ID"
+        android:title="Cruiser" />
+
+</menu>
