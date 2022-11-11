@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +40,6 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
     Bikes selectedBike;
     TextView bikeProfileText;
     Button bikeProfileAddNewBikeButton, bikeProfileBackButton;
-    private int x;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +78,14 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         });
     }
 
+    /**
+     * Creates new, or updates old bike object of Bikes list based on inserted code.
+     * @param requestCode code specified in methods listening to user input
+     *                    (e.g. startActivityForResult in onClick button intent).
+     * @param resultCode checks for result from activity.
+     * @param data used to import extra ("bike") attached to intent from CreateNewBikeActivity.class
+     *             when creating new bike of Bikes list
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -106,6 +112,11 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         }
     }
 
+    /**
+     * Updates recycler used to display objects of Bikes list in bike_profile_select_layout.xml
+     * Sets size and number of displayed columns, As well as in which axis of view to display them.
+     * @param bikes object of Bikes list.
+     */
     private void updateRecycler(List<Bikes> bikes) {
         Log.d(TAG, "updateRecycler");
         bikeProfileRecycler.setHasFixedSize(true);
