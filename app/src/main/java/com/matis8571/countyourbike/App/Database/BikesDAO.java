@@ -21,8 +21,12 @@ public interface BikesDAO {
     @Query("SELECT * FROM bikes ORDER BY id DESC")
     List<Bikes> getAll();
 
-    @Query("UPDATE bikes SET name = :name, bikeType = :bikeType, brand = :brand, model = :model, mileage = :mileage WHERE ID = :id")
-    void update(int id, String name, String bikeType, String brand, String model, String mileage);
+    @Query("UPDATE bikes SET name = :name, bikeType = :bikeType, brand = :brand, model = :model, " +
+            "mileage = :mileage, day = :day, month = :month, year = :year, kmToday = :kmToday," +
+            "kmThisWeek =:kmThisWeek, kmThisMonth =:kmThisMonth, kmThisYear =:kmThisYear WHERE ID = :id")
+    void update(int id, String name, String bikeType, String brand, String model, int mileage,
+                int day, int month, int year, int kmToday, int kmThisWeek, int kmThisMonth,
+                int kmThisYear);
 
     @Delete
     void delete(Bikes bikes);

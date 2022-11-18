@@ -12,28 +12,50 @@
         android:id="@+id/edit_text_title_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/background_color"
         android:fontFamily="@font/airstrike"
         android:hint="Title:"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:singleLine="true"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="20sp"
+        android:textColorHint="@color/text_color"
+        android:textSize="26sp"
         android:textStyle="bold"
         tools:ignore="Autofill,HardcodedText,TextFields" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
 
     <EditText
         android:id="@+id/edit_text_notes_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background_color"
         android:fontFamily="@font/airstrikecond"
         android:hint="Add Notes:"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="18sp"
+        android:textColorHint="@color/text_color"
+        android:textSize="22sp"
         android:textStyle="normal"
         tools:ignore="Autofill,HardcodedText,TextFields" />
+
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -78,5 +100,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="HardcodedText" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

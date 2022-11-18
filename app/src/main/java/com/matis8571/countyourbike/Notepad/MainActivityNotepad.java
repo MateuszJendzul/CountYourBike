@@ -136,7 +136,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     private void updateRecycler(List<Notes> notes) {
         Log.d(TAG, "updateRecycler");
         recyclerHome.setHasFixedSize(true);
-        recyclerHome.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
+        recyclerHome.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
         notesListAdapter = new NotesListAdapter(MainActivityNotepad.this, notes, notesClickListener);
         recyclerHome.setAdapter(notesListAdapter);
     }

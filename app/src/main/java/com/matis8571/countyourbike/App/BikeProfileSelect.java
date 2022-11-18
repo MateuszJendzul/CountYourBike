@@ -78,14 +78,6 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         });
     }
 
-    /**
-     * Creates new, or updates old bike object of Bikes list based on inserted code.
-     * @param requestCode code specified in methods listening to user input
-     *                    (e.g. startActivityForResult in onClick button intent).
-     * @param resultCode checks for result from activity.
-     * @param data used to import extra ("bike") attached to intent from CreateNewBikeActivity.class
-     *             when creating new bike of Bikes list
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -93,8 +85,8 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         if (requestCode == 201) {
             if (resultCode == Activity.RESULT_OK) {
                 assert data != null;
-                Bikes newBikes = (Bikes) data.getSerializableExtra("bike");
-                bikesRoomDB.bikesDAO().insert(newBikes);
+                Bikes newBikesP1 = (Bikes) data.getSerializableExtra("bike");
+                bikesRoomDB.bikesDAO().insert(newBikesP1);
                 bikes.clear();
                 bikes.addAll(bikesRoomDB.bikesDAO().getAll());
                 bikesListAdapter.notifyDataSetChanged();
@@ -102,9 +94,12 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         } else if (requestCode == 202) {
             if (resultCode == Activity.RESULT_OK) {
                 assert data != null;
-                Bikes newBikes = (Bikes) data.getSerializableExtra("bike");
-                bikesRoomDB.bikesDAO().update(newBikes.getID(), newBikes.getName(),
-                        newBikes.getBikeType(), newBikes.getBrand(), newBikes.getModel(), newBikes.getMileage());
+                Bikes newBikesP1 = (Bikes) data.getSerializableExtra("bike");
+                bikesRoomDB.bikesDAO().update(newBikesP1.getID(), newBikesP1.getName(),
+                        newBikesP1.getBikeType(), newBikesP1.getBrand(), newBikesP1.getModel(),
+                        newBikesP1.getMileage(), newBikesP1.getDay(), newBikesP1.getMonth(),
+                        newBikesP1.getYear(), newBikesP1.getKmToday(), newBikesP1.getKmThisWeek(),
+                        newBikesP1.getKmThisMonth(), newBikesP1.getKmThisYear());
                 bikes.clear();
                 bikes.addAll(bikesRoomDB.bikesDAO().getAll());
                 bikesListAdapter.notifyDataSetChanged();
@@ -112,11 +107,6 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         }
     }
 
-    /**
-     * Updates recycler used to display objects of Bikes list in bike_profile_select_layout.xml
-     * Sets size and number of displayed columns, As well as in which axis of view to display them.
-     * @param bikes object of Bikes list.
-     */
     private void updateRecycler(List<Bikes> bikes) {
         Log.d(TAG, "updateRecycler");
         bikeProfileRecycler.setHasFixedSize(true);

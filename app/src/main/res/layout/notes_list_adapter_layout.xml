@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/background_color"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
@@ -39,7 +39,7 @@
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:text="Title"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -50,9 +50,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/airstrikecond"
             android:maxLines="10"
+            android:gravity="center"
             android:padding="8dp"
             android:text="Notes"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="normal"
             tools:ignore="HardcodedText" />
@@ -66,6 +67,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="10"
             android:padding="8dp"
+            android:gravity="end"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:text="Date"

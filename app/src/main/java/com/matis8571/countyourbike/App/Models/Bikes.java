@@ -1,8 +1,5 @@
 package com.matis8571.countyourbike.App.Models;
 
-import android.widget.Button;
-import android.widget.ImageView;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -14,6 +11,21 @@ public class Bikes implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     int ID = 0;
+
+    @ColumnInfo(name = "mileage")
+    int mileage = 0;
+
+    @ColumnInfo(name = "kmToday")
+    int kmToday = 0;
+
+    @ColumnInfo(name = "kmThisWeek")
+    int kmThisWeek = 0;
+
+    @ColumnInfo(name = "kmThisMonth")
+    int kmThisMonth = 0;
+
+    @ColumnInfo(name = "kmThisYear")
+    int kmThisYear = 0;
 
     @ColumnInfo(name = "name")
     String name = "";
@@ -27,8 +39,46 @@ public class Bikes implements Serializable {
     @ColumnInfo(name = "model")
     String model = "";
 
-    @ColumnInfo(name = "mileage")
-    String mileage = "";
+    @ColumnInfo(name = "day")
+    int day = 0;
+
+    @ColumnInfo(name = "month")
+    int month = 0;
+
+    @ColumnInfo(name = "year")
+    int year = 0;
+
+    public int getKmToday() {
+        return kmToday;
+    }
+
+    public void setKmToday(int kmToday) {
+        this.kmToday = kmToday;
+    }
+
+    public int getKmThisWeek() {
+        return kmThisWeek;
+    }
+
+    public void setKmThisWeek(int kmThisWeek) {
+        this.kmThisWeek = kmThisWeek;
+    }
+
+    public int getKmThisMonth() {
+        return kmThisMonth;
+    }
+
+    public void setKmThisMonth(int kmThisMonth) {
+        this.kmThisMonth = kmThisMonth;
+    }
+
+    public int getKmThisYear() {
+        return kmThisYear;
+    }
+
+    public void setKmThisYear(int kmThisYear) {
+        this.kmThisYear = kmThisYear;
+    }
 
     public int getID() {
         return ID;
@@ -62,11 +112,11 @@ public class Bikes implements Serializable {
         this.model = model;
     }
 
-    public String getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
-    public void setMileage(String mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 
@@ -76,5 +126,29 @@ public class Bikes implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
