@@ -22,29 +22,35 @@ import com.matis8571.countyourbike.R;
 import java.util.Calendar;
 
 @SuppressWarnings("Convert2Lambda")
+@SuppressLint("SetTextI18n")
 public class CreateNewBikeActivity extends AppCompatActivity {
     private static final String TAG = "CreateNewBikeActivity";
     DatePickerDialog datePickerDialog;
     Button createNewBikeBackButton, createNewBikeAddButton, createNewBikeNotesButton,
-            createNewBikeNextButton, datePickerButton, removeKmButton, addKmButton; //TODO here
+            datePickerButton, removeKmButton, addKmButton;
     TextView nameText, bikeTypeText, brandText, modelText, mileageText, kmTodayTitleText, kmThisWeekTitleText,
             kmThisMonthTitleText, kmThisYearTitleText, kmTodayText, kmThisWeekText, kmThisMonthText,
             kmThisYearText, kmToCountText;
     EditText nameEdit, bikeTypeEdit, brandEdit, modelEdit, mileageEdit, kmToCountEdit;
     Bikes bikes;
+    Calendar currentDateCalendar = Calendar.getInstance();
+    private int toAdd, toRemove;
     boolean isOldBike = false;
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_new_bike_activity_layout);
         Log.d(TAG, "onCreate");
+        resetVariables();
         initDatePicker();
 
         createNewBikeAddButton = findViewById(R.id.create_new_bike_add_button_ID);
         createNewBikeBackButton = findViewById(R.id.create_new_bike_back_button_ID);
         createNewBikeNotesButton = findViewById(R.id.create_new_bike_notes_button_ID);
+        datePickerButton = findViewById(R.id.date_picker_button_ID);
+        addKmButton = findViewById(R.id.add_km_button_ID);
+        removeKmButton = findViewById(R.id.remove_km_button_ID);
 
         nameText = findViewById(R.id.name_text_ID);
         bikeTypeText = findViewById(R.id.bike_type_text_ID);
@@ -77,7 +83,10 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             brandEdit.setText(bikes.getBrand());
             modelEdit.setText(bikes.getModel());
             mileageEdit.setText("" + bikes.getMileage());
-
+            kmTodayText.setText("" + bikes.getKmToday());
+            kmThisWeekText.setText("" + bikes.getKmThisWeek());
+            kmThisMonthText.setText("" + bikes.getKmThisMonth());
+            kmThisYearText.setText("" + bikes.getKmThisYear());
 
             isOldBike = true;
         } catch (Exception e) {
@@ -114,6 +123,31 @@ public class CreateNewBikeActivity extends AppCompatActivity {
                     createNewBikeExtraIntent.putExtra("bike", bikes);
                     setResult(Activity.RESULT_OK, createNewBikeExtraIntent);
                     Toast.makeText(CreateNewBikeActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        });
+
+        addKmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (kmToCountEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(CreateNewBikeActivity.this, "Empty field", Toast.LENGTH_SHORT).show();
+                } else {
+                    toAdd = Integer.parseInt(kmToCountEdit.getText().toString());
+                    countKm();
+                }
+            }
+        });
+
+        removeKmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (kmToCountEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(CreateNewBikeActivity.this, "Empty field", Toast.LENGTH_SHORT).show();
+                } else {
+                    toRemove = Integer.parseInt(kmToCountEdit.getText().toString());
+                    countKm();
                 }
             }
         });
@@ -124,15 +158,6 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: datePickerButton");
                 datePickerDialog.show();
-            }
-        });
-
-        createNewBikeNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent createNewBikeNextButtonIntent = new Intent(
-                        CreateNewBikeActivity.this, CreateNewBikeActivityP2.class);
-                startActivity(createNewBikeNextButtonIntent);
             }
         });
 
@@ -151,6 +176,30 @@ public class CreateNewBikeActivity extends AppCompatActivity {
                 startActivity(createNewBikeNotesButtonIntent);
             }
         });
+    }
+
+    private void resetVariables() {
+        Calendar savedDayCalendar = Calendar.getInstance();
+        if (currentDateCalendar.after(savedDayCalendar)) {
+            bikes.setKmToday(0);
+            savedDayCalendar.add(Calendar.DATE, 1);
+        }
+    }
+
+    private void countKm() {
+        bikes.setKmToday(bikes.getKmToday() + toAdd - toRemove);
+        bikes.setKmThisWeek(bikes.getKmThisWeek() + toAdd - toRemove);
+        bikes.setKmThisMonth(bikes.getKmThisMonth() + toAdd - toRemove);
+        bikes.setKmThisYear(bikes.getKmThisYear() + toAdd - toRemove);
+        bikes.setMileage(bikes.getMileage() + toAdd - toRemove);
+
+        kmTodayText.setText("" + bikes.getKmToday());
+        kmThisWeekText.setText("" + bikes.getKmThisWeek());
+        kmThisMonthText.setText("" + bikes.getKmThisMonth());
+        kmThisYearText.setText("" + bikes.getKmThisYear());
+        mileageEdit.setText("" + bikes.getMileage());
+        toAdd = 0;
+        toRemove = 0;
     }
 
     /**

@@ -44,7 +44,7 @@
             android:id="@+id/name_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrike"
             android:gravity="start"
@@ -233,13 +233,13 @@
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
-            android:hint="Mileage:"
             android:inputType="number"
             android:paddingStart="16dp"
             android:paddingTop="0dp"
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:singleLine="true"
+            android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
@@ -269,20 +269,19 @@
             android:textSize="24sp"
             android:textStyle="normal" />
 
-        <EditText
+        <TextView
             android:id="@+id/km_today_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
-            android:hint="KM Today:"
-            android:inputType="text"
             android:paddingStart="16dp"
             android:paddingTop="0dp"
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:singleLine="true"
+            android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
@@ -311,20 +310,19 @@
             android:textSize="24sp"
             android:textStyle="normal" />
 
-        <EditText
+        <TextView
             android:id="@+id/km_this_week_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
-            android:hint="KM This Week:"
-            android:inputType="text"
             android:paddingStart="16dp"
             android:paddingTop="0dp"
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:singleLine="true"
+            android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
@@ -353,20 +351,19 @@
             android:textSize="24sp"
             android:textStyle="normal" />
 
-        <EditText
+        <TextView
             android:id="@+id/km_this_month_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
-            android:hint="KM This Month:"
-            android:inputType="text"
             android:paddingStart="16dp"
             android:paddingTop="0dp"
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:singleLine="true"
+            android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
@@ -395,20 +392,19 @@
             android:textSize="24sp"
             android:textStyle="normal" />
 
-        <EditText
+        <TextView
             android:id="@+id/km_this_year_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
-            android:hint="KM This Year:"
-            android:inputType="text"
             android:paddingStart="16dp"
             android:paddingTop="0dp"
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:singleLine="true"
+            android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
@@ -424,13 +420,11 @@
             android:id="@+id/date_picker_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrike"
             android:gravity="center"
-            android:paddingStart="16dp"
             android:paddingTop="16dp"
-            android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:singleLine="true"
             android:text="Maintenance:"
@@ -470,9 +464,7 @@
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrike"
             android:gravity="center"
-            android:paddingStart="16dp"
             android:paddingTop="16dp"
-            android:paddingEnd="16dp"
             android:paddingBottom="0dp"
             android:singleLine="true"
             android:text="KM to Count:"
@@ -482,7 +474,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="120dp">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/create_new_bike_back_button_ID"
@@ -516,7 +508,7 @@
                 android:foreground="@drawable/button_foreground"
                 android:gravity="center"
                 android:hint="Type Here:"
-                android:inputType="text"
+                android:inputType="number"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:shadowColor="@color/transparent"
@@ -549,13 +541,13 @@
                 android:id="@+id/remove_km_button_ID"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
                 android:background="@drawable/button_background"
                 android:drawableTop="@drawable/ic_remove"
                 android:fontFamily="@font/airstrike"
                 android:foreground="@drawable/button_foreground"
                 android:gravity="center"
                 android:paddingTop="3dp"
-                android:layout_marginEnd="12dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -568,8 +560,8 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/add_km_button_ID"
                 android:layout_width="60dp"
-                android:layout_marginStart="12dp"
                 android:layout_height="30dp"
+                android:layout_marginStart="12dp"
                 android:background="@drawable/button_background"
                 android:drawableTop="@drawable/ic_add_white"
                 android:fontFamily="@font/airstrike"
