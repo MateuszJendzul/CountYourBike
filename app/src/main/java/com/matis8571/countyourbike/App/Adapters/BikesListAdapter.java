@@ -1,6 +1,5 @@
 package com.matis8571.countyourbike.App.Adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +22,13 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
     List<Bikes> list;
     BikesClickListener listener;
 
-    public BikesListAdapter(Context context, List<Bikes> list, BikesClickListener listener){
+    public BikesListAdapter(Context context, List<Bikes> list, BikesClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
+    }
+
+    public BikesListAdapter() {
     }
 
     @NonNull

@@ -29,10 +29,6 @@
             android:label="BikeProfileSelect"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
         <activity
-            android:name=".App.Bike1"
-            android:label="Bike1"
-            android:theme="@style/Theme.CountYourBike.NoActionBar" />
-        <activity
             android:name=".App.Models.CreateNewBikeActivity"
             android:label="CreateNewBikeActivity"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />

@@ -49,22 +49,19 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/main_to_notes_button_ID"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_background"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/light_ripple_circle_background"
         android:fontFamily="@font/airstrike"
-        android:foreground="@drawable/button_foreground"
+        android:foreground="@drawable/ic_notes"
         android:gravity="center"
-        android:paddingHorizontal="4sp"
-        android:text="notes"
-        android:textColor="@color/white"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bikes_button_ID"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

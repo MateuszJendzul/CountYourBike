@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.matis8571.countyourbike.App.MainActivity;
 import com.matis8571.countyourbike.Notepad.Adapters.NotesListAdapter;
 import com.matis8571.countyourbike.Notepad.Database.NotepadRoomDB;
 import com.matis8571.countyourbike.Notepad.Database.NotesClickListener;
@@ -39,7 +38,7 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
     NotepadRoomDB database;
     SearchView searchViewHome;
     Notes selectedNote;
-    Button notesBackButton, noteAddButton, notepadMainToMain;
+    Button notesBackButton, noteAddButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
         searchViewHome = findViewById(R.id.search_view_home_ID);
         noteAddButton = findViewById(R.id.note_add_button_ID);
         notesBackButton = findViewById(R.id.notes_back_button_ID);
-        notepadMainToMain = findViewById(R.id.notepad_main_to_main_ID);
 
         database = NotepadRoomDB.getInstance(this);
         notes = database.mainNotepadDAO().getAll();
@@ -83,14 +81,6 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-
-        notepadMainToMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent notepadMainToMainIntent = new Intent(MainActivityNotepad.this, MainActivity.class);
-                startActivity(notepadMainToMainIntent);
             }
         });
     }

@@ -63,43 +63,34 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/notes_taker_add_button_ID"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/airstrike"
-            android:foreground="@drawable/button_foreground"
-            android:gravity="center"
-            android:paddingHorizontal="4sp"
-            android:text="add"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/light_ripple_circle_background"
+            android:foreground="@drawable/ic_save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/notes_taker_back_button_ID"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/airstrike"
-            android:foreground="@drawable/button_foreground"
-            android:gravity="center"
-            android:paddingHorizontal="4sp"
-            android:text="back"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/light_ripple_circle_background"
+            android:foreground="@drawable/ic_arrow_back"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

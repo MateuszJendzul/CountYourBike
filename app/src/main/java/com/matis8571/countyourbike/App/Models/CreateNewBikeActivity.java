@@ -96,6 +96,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         createNewBikeAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: createNewBikeAddButton");
 
                 if (nameEdit.getText().toString().isEmpty() || bikeTypeEdit.getText().toString().isEmpty()
                         || brandEdit.getText().toString().isEmpty() || modelEdit.getText().toString().isEmpty()
@@ -131,6 +132,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         addKmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: addKmButton");
                 if (kmToCountEdit.getText().toString().isEmpty()) {
                     Toast.makeText(CreateNewBikeActivity.this, "Empty field", Toast.LENGTH_SHORT).show();
                 } else {
@@ -143,6 +145,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         removeKmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: removeKmButton");
                 if (kmToCountEdit.getText().toString().isEmpty()) {
                     Toast.makeText(CreateNewBikeActivity.this, "Empty field", Toast.LENGTH_SHORT).show();
                 } else {
@@ -164,6 +167,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         createNewBikeBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: createNewBikeBackButton");
                 finish();
             }
         });
@@ -171,6 +175,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         createNewBikeNotesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: createNewBikeNotesButton");
                 Intent createNewBikeNotesButtonIntent = new Intent(
                         CreateNewBikeActivity.this, MainActivityNotepad.class);
                 startActivity(createNewBikeNotesButtonIntent);
@@ -179,6 +184,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     }
 
     private void resetVariables() {
+        Log.d(TAG, "resetVariables");
         Calendar savedDayCalendar = Calendar.getInstance();
         if (currentDateCalendar.after(savedDayCalendar)) {
             bikes.setKmToday(0);
@@ -187,6 +193,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     }
 
     private void countKm() {
+        Log.d(TAG, "countKm");
         bikes.setKmToday(bikes.getKmToday() + toAdd - toRemove);
         bikes.setKmThisWeek(bikes.getKmThisWeek() + toAdd - toRemove);
         bikes.setKmThisMonth(bikes.getKmThisMonth() + toAdd - toRemove);
