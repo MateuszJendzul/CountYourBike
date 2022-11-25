@@ -28,9 +28,6 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
         this.listener = listener;
     }
 
-    public BikesListAdapter() {
-    }
-
     @NonNull
     @Override
     public BikeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

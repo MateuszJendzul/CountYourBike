@@ -12,6 +12,7 @@
     <color name="background_color">#3C424C</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="text_color">#FFA000</color>
+    <color name="red">#D32F2F</color>
 
     <color name="color1">#4567A1</color>
     <color name="color2">#3576DA</color>

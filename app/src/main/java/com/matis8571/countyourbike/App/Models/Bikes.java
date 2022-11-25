@@ -40,13 +40,19 @@ public class Bikes implements Serializable {
     String model = "";
 
     @ColumnInfo(name = "day")
-    int day = 0;
+    int day = 1;
 
     @ColumnInfo(name = "month")
-    int month = 0;
+    int month = 1;
 
     @ColumnInfo(name = "year")
-    int year = 0;
+    int year = 2020;
+
+    @ColumnInfo(name = "imageID")
+    int imageID = 0;
+
+    @ColumnInfo(name = "bikeCreated")
+    boolean bikeCreated = false;
 
     public int getKmToday() {
         return kmToday;
@@ -150,5 +156,21 @@ public class Bikes implements Serializable {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
+    }
+
+    public boolean isBikeCreated() {
+        return bikeCreated;
+    }
+
+    public void setBikeCreated(boolean bikeCreated) {
+        this.bikeCreated = bikeCreated;
     }
 }

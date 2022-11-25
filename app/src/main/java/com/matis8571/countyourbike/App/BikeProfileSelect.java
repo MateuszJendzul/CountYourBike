@@ -52,7 +52,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         bikeProfileBackButton = findViewById(R.id.bike_profile_back_button_ID);
         bikeProfileRecycler = findViewById(R.id.bike_profile_recycler);
 
-        bikeProfileText.setText("Select your bike:");
+        bikeProfileText.setText("<<   Select your bike   >>");
         bikeProfileText.setTextSize(28);
 
         bikesRoomDB = BikesRoomDB.getInstance(this);
@@ -85,8 +85,8 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         if (requestCode == 201) {
             if (resultCode == Activity.RESULT_OK) {
                 assert data != null;
-                Bikes newBikesP1 = (Bikes) data.getSerializableExtra("bike");
-                bikesRoomDB.bikesDAO().insert(newBikesP1);
+                Bikes newBikes = (Bikes) data.getSerializableExtra("bike");
+                bikesRoomDB.bikesDAO().insert(newBikes);
                 bikes.clear();
                 bikes.addAll(bikesRoomDB.bikesDAO().getAll());
                 bikesListAdapter.notifyDataSetChanged();
@@ -94,12 +94,13 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         } else if (requestCode == 202) {
             if (resultCode == Activity.RESULT_OK) {
                 assert data != null;
-                Bikes newBikesP1 = (Bikes) data.getSerializableExtra("bike");
-                bikesRoomDB.bikesDAO().update(newBikesP1.getID(), newBikesP1.getName(),
-                        newBikesP1.getBikeType(), newBikesP1.getBrand(), newBikesP1.getModel(),
-                        newBikesP1.getMileage(), newBikesP1.getDay(), newBikesP1.getMonth(),
-                        newBikesP1.getYear(), newBikesP1.getKmToday(), newBikesP1.getKmThisWeek(),
-                        newBikesP1.getKmThisMonth(), newBikesP1.getKmThisYear());
+                Bikes newBikes = (Bikes) data.getSerializableExtra("bike");
+                bikesRoomDB.bikesDAO().update(newBikes.getID(), newBikes.getName(),
+                        newBikes.getBikeType(), newBikes.getBrand(), newBikes.getModel(),
+                        newBikes.getMileage(), newBikes.getDay(), newBikes.getMonth(),
+                        newBikes.getYear(), newBikes.getKmToday(), newBikes.getKmThisWeek(),
+                        newBikes.getKmThisMonth(), newBikes.getKmThisYear(), newBikes.getImageID(),
+                        newBikes.isBikeCreated());
                 bikes.clear();
                 bikes.addAll(bikesRoomDB.bikesDAO().getAll());
                 bikesListAdapter.notifyDataSetChanged();
