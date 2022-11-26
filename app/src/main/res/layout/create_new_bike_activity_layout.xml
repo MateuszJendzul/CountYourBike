@@ -46,17 +46,18 @@
             android:paddingStart="16dp"
             android:paddingTop="12dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="Name:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <EditText
             android:id="@+id/name_edit_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -69,55 +70,104 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/bike_type_text_ID"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:text="Bike Type:"
-            android:textColor="@color/text_color"
-            android:textSize="24sp"
-            android:textStyle="normal" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/bike_type_edit_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:hint="Bike Type:"
-            android:inputType="text"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="24sp"
-            android:textStyle="normal" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bike_type_left_arrow_button_ID"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
+                app:layout_constraintVertical_bias="0.009" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bike_type_right_arrow_button_ID"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
+                app:layout_constraintVertical_bias="0.018" />
+
+            <TextView
+                android:id="@+id/bike_type_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:text="Bike Type:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/bike_type_selector_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:hint="Bike Type:"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal"
+                app:layout_constraintBaseline_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -130,17 +180,18 @@
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="Brand:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <EditText
             android:id="@+id/brand_edit_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -153,13 +204,15 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -172,17 +225,18 @@
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="0dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="Model:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <EditText
             android:id="@+id/model_edit_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -195,13 +249,15 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -214,17 +270,18 @@
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="Mileage:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <EditText
             android:id="@+id/mileage_edit_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -237,13 +294,15 @@
             android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -257,17 +316,18 @@
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="KM Today:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <TextView
             android:id="@+id/km_today_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -279,13 +339,15 @@
             android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -298,17 +360,18 @@
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="KM This Week:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <TextView
             android:id="@+id/km_this_week_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -320,13 +383,15 @@
             android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -339,17 +404,18 @@
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="KM This Month:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <TextView
             android:id="@+id/km_this_month_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -361,13 +427,15 @@
             android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -380,17 +448,18 @@
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="0dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="KM This Year:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <TextView
             android:id="@+id/km_this_year_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/light_ripple_edit_background"
             android:fontFamily="@font/airstrikecond"
             android:gravity="start"
@@ -402,13 +471,15 @@
             android:text="0"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -420,11 +491,11 @@
             android:fontFamily="@font/airstrike"
             android:gravity="center"
             android:paddingTop="16dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="6dp"
             android:singleLine="true"
             android:text="Maintenance:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -446,9 +517,11 @@
             android:textStyle="normal" />
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@color/white" />
 
         <TextView
@@ -460,11 +533,11 @@
             android:fontFamily="@font/airstrike"
             android:gravity="center"
             android:paddingTop="16dp"
-            android:paddingBottom="0dp"
+            android:paddingBottom="2dp"
             android:singleLine="true"
             android:text="KM to Count:"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="normal" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -514,10 +587,12 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <View
-                android:layout_width="380dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_gravity="center"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
                 android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

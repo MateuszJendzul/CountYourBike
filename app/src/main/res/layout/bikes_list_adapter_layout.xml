@@ -19,8 +19,8 @@
         <ImageView
             android:id="@+id/bikes_list_image_ID"
             android:layout_width="match_parent"
-            android:src="@drawable/bike_1"
             android:layout_height="200dp"
+            android:background="@drawable/bike_1"
             tools:ignore="ContentDescription" />
 
         <TextView

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +29,17 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     private static final String TAG = "CreateNewBikeActivity";
     DatePickerDialog datePickerDialog;
     Button createNewBikeBackButton, createNewBikeAddButton, createNewBikeNotesButton,
-            datePickerButton, removeKmButton, addKmButton;
+            datePickerButton, removeKmButton, addKmButton, bikeTypeLeftArrowButton,
+            bikeTypeRightArrowButton;
     TextView nameText, bikeTypeText, brandText, modelText, mileageText, kmTodayTitleText, kmThisWeekTitleText,
             kmThisMonthTitleText, kmThisYearTitleText, kmTodayText, kmThisWeekText, kmThisMonthText,
-            kmThisYearText, kmToCountText;
-    EditText nameEdit, bikeTypeEdit, brandEdit, modelEdit, mileageEdit, kmToCountEdit;
+            kmThisYearText, kmToCountText, bikeTypeSelectorText;
+    EditText nameEdit, brandEdit, modelEdit, mileageEdit, kmToCountEdit;
     Bikes bikes;
     Calendar currentDateCalendar = Calendar.getInstance();
-    private int toAdd, toRemove, savedDay, savedWeek, savedMonth, savedYear;
+    ImageView bikesListImage;
+    private final String[] bikeImageBoardNames = {"Mountain", "Road", "Gravel", "Electric", "City"};
+    private int toAdd, toRemove, savedDay, savedWeek, savedMonth, savedYear, bikeImageBoardPosition;
     private boolean isOldBike = false, isBikeCreatedLocal = false;
 
     @Override
@@ -52,7 +56,8 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         datePickerButton = findViewById(R.id.date_picker_button_ID);
         addKmButton = findViewById(R.id.add_km_button_ID);
         removeKmButton = findViewById(R.id.remove_km_button_ID);
-
+        bikeTypeLeftArrowButton = findViewById(R.id.bike_type_left_arrow_button_ID);
+        bikeTypeRightArrowButton = findViewById(R.id.bike_type_right_arrow_button_ID);
         nameText = findViewById(R.id.name_text_ID);
         bikeTypeText = findViewById(R.id.bike_type_text_ID);
         brandText = findViewById(R.id.brand_text_ID);
@@ -69,11 +74,12 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         kmThisYearText = findViewById(R.id.km_this_year_text_ID);
 
         nameEdit = findViewById(R.id.name_edit_ID);
-        bikeTypeEdit = findViewById(R.id.bike_type_edit_ID);
+        bikeTypeSelectorText = findViewById(R.id.bike_type_selector_text_ID);
         brandEdit = findViewById(R.id.brand_edit_ID);
         modelEdit = findViewById(R.id.model_edit_ID);
         mileageEdit = findViewById(R.id.mileage_edit_ID);
         kmToCountEdit = findViewById(R.id.km_to_count_edit_ID);
+        bikesListImage = findViewById(R.id.bikes_list_image_ID);
 
         bikes = new Bikes();
         //If object already created, gets serialized variable values from Bike.class intent and
@@ -81,7 +87,8 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         try {
             bikes = (Bikes) getIntent().getSerializableExtra("oldBike");
             nameEdit.setText(bikes.getName());
-            bikeTypeEdit.setText(bikes.getBikeType());
+            bikes.setImageID(bikeImageBoardPosition);
+            bikeTypeSelectorText.setText(bikes.getBikeType());
             brandEdit.setText(bikes.getBrand());
             modelEdit.setText(bikes.getModel());
             mileageEdit.setText("" + bikes.getMileage());
@@ -98,9 +105,9 @@ public class CreateNewBikeActivity extends AppCompatActivity {
 
         //Tries to overwrite local boolean value with one assigned to this bike object, which is set
         // to true when bike is created.
-        try{
+        try {
             isBikeCreatedLocal = bikes.isBikeCreated();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -115,15 +122,15 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: createNewBikeAddButton");
 
-                if (nameEdit.getText().toString().isEmpty() || bikeTypeEdit.getText().toString().isEmpty()
-                        || brandEdit.getText().toString().isEmpty() || modelEdit.getText().toString().isEmpty()
-                        || mileageEdit.getText().toString().isEmpty()) {
+                if (nameEdit.getText().toString().isEmpty() || brandEdit.getText().toString().isEmpty()
+                        || modelEdit.getText().toString().isEmpty() ||
+                        mileageEdit.getText().toString().isEmpty()) {
                     Toast.makeText(CreateNewBikeActivity.this, "Empty fields", Toast.LENGTH_SHORT).show();
 
                 } else {
                     int mileage = Integer.parseInt(mileageEdit.getText().toString());
                     String name = nameEdit.getText().toString();
-                    String bikeType = bikeTypeEdit.getText().toString();
+                    String bikeType = bikeTypeSelectorText.getText().toString();
                     String brand = brandEdit.getText().toString();
                     String model = modelEdit.getText().toString();
 
@@ -135,6 +142,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
                     bikes.setBrand(brand);
                     bikes.setModel(model);
                     bikes.setMileage(mileage);
+                    bikes.setImageID(bikeImageBoardPosition);
                     bikes.setBikeCreated(true);
 
                     Intent createNewBikeExtraIntent = new Intent();
@@ -210,6 +218,42 @@ public class CreateNewBikeActivity extends AppCompatActivity {
                 Intent createNewBikeNotesButtonIntent = new Intent(
                         CreateNewBikeActivity.this, MainActivityNotepad.class);
                 startActivity(createNewBikeNotesButtonIntent);
+            }
+        });
+
+        bikeTypeLeftArrowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isBikeCreatedLocal) {
+                    Toast.makeText(CreateNewBikeActivity.this, "Save to edit", Toast.LENGTH_SHORT).show();
+                } else {
+                    bikeImageBoardPosition++;
+                    if (bikeImageBoardPosition > bikeImageBoardNames.length) {
+                        bikeImageBoardPosition = bikeImageBoardNames.length;
+                    }
+
+                    bikes.setImageID(bikeImageBoardPosition);
+                    bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getImageID()]);
+                    setBikeImage(bikeImageBoardNames[bikes.getImageID()]);
+                }
+            }
+        });
+
+        bikeTypeRightArrowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isBikeCreatedLocal) {
+                    Toast.makeText(CreateNewBikeActivity.this, "Save to edit", Toast.LENGTH_SHORT).show();
+                } else {
+                    bikeImageBoardPosition--;
+                    if (bikeImageBoardPosition < 0) {
+                        bikeImageBoardPosition = 0;
+                    }
+
+                    bikes.setImageID(bikeImageBoardPosition);
+                    bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getImageID()]);
+                    setBikeImage(bikeImageBoardNames[bikes.getImageID()]);
+                }
             }
         });
     }
@@ -290,7 +334,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         Calendar minDate = Calendar.getInstance();
         minDate.set(Calendar.DAY_OF_MONTH, 1);
         minDate.set(Calendar.MONTH, 0);
-        minDate.set(Calendar.YEAR, 2020);
+        minDate.set(Calendar.YEAR, 2000);
 
         //Window theme
         @SuppressWarnings("deprecation") int style = AlertDialog.THEME_HOLO_LIGHT;
@@ -300,7 +344,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates String which is displayed as
+     * Creates date format String with text representative of month value e.g. JAN 01 2020
      */
     private String makeDateString(int day, int month, int year) {
         Log.d(TAG, "makeDateString");
@@ -309,6 +353,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
 
     /**
      * Matches numeric month value with its text name and returns it as value to display.
+     *
      * @param month gets month in its numeric (int) format.
      * @return returns text name, or displays ERROR (probably when number is out of range).
      */
@@ -340,6 +385,30 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             return "DEC";
         } else {
             return "ERROR: Out of range?";
+        }
+    }
+
+    private void setBikeImage(String imageStringID) {
+        switch (imageStringID) {
+            case "Mountain":
+                bikesListImage.setBackgroundResource(R.drawable.bike_4);
+                break;
+
+            case "Electric":
+                bikesListImage.setBackgroundResource(R.drawable.bike_2);
+                break;
+
+            case "Gravel":
+                bikesListImage.setBackgroundResource(R.drawable.bike_3);
+                break;
+
+            case "City":
+                bikesListImage.setBackgroundResource(R.drawable.bike_5);
+                break;
+
+            case "Road":
+                bikesListImage.setBackgroundResource(R.drawable.bike_6);
+                break;
         }
     }
 }
