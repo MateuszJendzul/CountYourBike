@@ -96,11 +96,13 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
                 assert data != null;
                 Bikes newBikes = (Bikes) data.getSerializableExtra("bike");
                 bikesRoomDB.bikesDAO().update(newBikes.getID(), newBikes.getName(),
-                        newBikes.getBikeType(), newBikes.getBrand(), newBikes.getModel(),
-                        newBikes.getMileage(), newBikes.getDay(), newBikes.getMonth(),
-                        newBikes.getYear(), newBikes.getKmToday(), newBikes.getKmThisWeek(),
-                        newBikes.getKmThisMonth(), newBikes.getKmThisYear(), newBikes.getImageID(),
-                        newBikes.isBikeCreated());
+                        newBikes.getBrand(), newBikes.getModel(), newBikes.getMileage(),
+                        newBikes.getDay(), newBikes.getMonth(), newBikes.getYear(),
+                        newBikes.getKmToday(), newBikes.getKmThisWeek(), newBikes.getKmThisMonth(),
+                        newBikes.getKmThisYear(), newBikes.getBikeImageID(),
+                        newBikes.getBikeImageBoardPosition(), newBikes.isBikeCreated(),
+                        newBikes.getDayToCompare(), newBikes.getWeekToCompare(),
+                        newBikes.getMonthToCompare(), newBikes.getYearToCompare());
                 bikes.clear();
                 bikes.addAll(bikesRoomDB.bikesDAO().getAll());
                 bikesListAdapter.notifyDataSetChanged();

@@ -1,5 +1,6 @@
 package com.matis8571.countyourbike.App.Models;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -30,9 +31,6 @@ public class Bikes implements Serializable {
     @ColumnInfo(name = "name")
     String name = "";
 
-    @ColumnInfo(name = "bikeType")
-    String bikeType = "";
-
     @ColumnInfo(name = "brand")
     String brand = "";
 
@@ -40,16 +38,31 @@ public class Bikes implements Serializable {
     String model = "";
 
     @ColumnInfo(name = "day")
-    int day = 1;
+    int day = 0;
+
+    @ColumnInfo(name = "dayToCompare")
+    int dayToCompare = 0;
+
+    @ColumnInfo(name = "weekToCompare")
+    int weekToCompare = 0;
+
+    @ColumnInfo(name = "monthToCompare")
+    int monthToCompare = 0;
+
+    @ColumnInfo(name = "yearToCompare")
+    int yearToCompare = 0;
 
     @ColumnInfo(name = "month")
-    int month = 1;
+    int month = 0;
 
     @ColumnInfo(name = "year")
-    int year = 2020;
+    int year = 0;
 
-    @ColumnInfo(name = "imageID")
-    int imageID = 0;
+    @ColumnInfo(name = "bikeImageID")
+    int bikeImageID = 0;
+
+    @ColumnInfo(name = "bikeImageBoardPosition")
+    int bikeImageBoardPosition = 0;
 
     @ColumnInfo(name = "bikeCreated")
     boolean bikeCreated = false;
@@ -92,14 +105,6 @@ public class Bikes implements Serializable {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public String getBikeType() {
-        return bikeType;
-    }
-
-    public void setBikeType(String bikeType) {
-        this.bikeType = bikeType;
     }
 
     public String getBrand() {
@@ -158,12 +163,12 @@ public class Bikes implements Serializable {
         this.year = year;
     }
 
-    public int getImageID() {
-        return imageID;
+    public int getBikeImageID() {
+        return bikeImageID;
     }
 
-    public void setImageID(int imageID) {
-        this.imageID = imageID;
+    public void setBikeImageID(int bikeImage) {
+        this.bikeImageID = bikeImage;
     }
 
     public boolean isBikeCreated() {
@@ -172,5 +177,45 @@ public class Bikes implements Serializable {
 
     public void setBikeCreated(boolean bikeCreated) {
         this.bikeCreated = bikeCreated;
+    }
+
+    public int getBikeImageBoardPosition() {
+        return bikeImageBoardPosition;
+    }
+
+    public void setBikeImageBoardPosition(int bikeImageBoardPosition) {
+        this.bikeImageBoardPosition = bikeImageBoardPosition;
+    }
+
+    public int getDayToCompare() {
+        return dayToCompare;
+    }
+
+    public void setDayToCompare(int dayToCompare) {
+        this.dayToCompare = dayToCompare;
+    }
+
+    public int getWeekToCompare() {
+        return weekToCompare;
+    }
+
+    public void setWeekToCompare(int weekToCompare) {
+        this.weekToCompare = weekToCompare;
+    }
+
+    public int getMonthToCompare() {
+        return monthToCompare;
+    }
+
+    public void setMonthToCompare(int monthToCompare) {
+        this.monthToCompare = monthToCompare;
+    }
+
+    public int getYearToCompare() {
+        return yearToCompare;
+    }
+
+    public void setYearToCompare(int yearToCompare) {
+        this.yearToCompare = yearToCompare;
     }
 }

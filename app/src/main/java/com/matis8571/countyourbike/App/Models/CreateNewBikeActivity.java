@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +21,6 @@ import com.matis8571.countyourbike.R;
 
 import java.util.Calendar;
 
-//TODO save id to every bike image and select images using these ids
 @SuppressWarnings("Convert2Lambda")
 @SuppressLint("SetTextI18n")
 public class CreateNewBikeActivity extends AppCompatActivity {
@@ -36,19 +34,15 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             kmThisYearText, kmToCountText, bikeTypeSelectorText;
     EditText nameEdit, brandEdit, modelEdit, mileageEdit, kmToCountEdit;
     Bikes bikes;
-    Calendar currentDateCalendar = Calendar.getInstance();
-    ImageView bikesListImage;
-    private final String[] bikeImageBoardNames = {"Mountain", "Road", "Gravel", "Electric", "City"};
-    private int toAdd, toRemove, savedDay, savedWeek, savedMonth, savedYear, bikeImageBoardPosition;
-    private boolean isOldBike = false, isBikeCreatedLocal = false;
+    private final String[] bikeImageBoardNames = {"Mountain", "Electric", "Gravel", "Electric", "City"};
+    private int toAdd, toRemove;
+    private boolean isOldBike = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_new_bike_activity_layout);
         Log.d(TAG, "onCreate");
-        initDatePicker();
-        resetVariables();
 
         createNewBikeAddButton = findViewById(R.id.create_new_bike_add_button_ID);
         createNewBikeBackButton = findViewById(R.id.create_new_bike_back_button_ID);
@@ -58,6 +52,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         removeKmButton = findViewById(R.id.remove_km_button_ID);
         bikeTypeLeftArrowButton = findViewById(R.id.bike_type_left_arrow_button_ID);
         bikeTypeRightArrowButton = findViewById(R.id.bike_type_right_arrow_button_ID);
+
         nameText = findViewById(R.id.name_text_ID);
         bikeTypeText = findViewById(R.id.bike_type_text_ID);
         brandText = findViewById(R.id.brand_text_ID);
@@ -72,86 +67,105 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         kmThisWeekText = findViewById(R.id.km_this_week_text_ID);
         kmThisMonthText = findViewById(R.id.km_this_month_text_ID);
         kmThisYearText = findViewById(R.id.km_this_year_text_ID);
+        bikeTypeSelectorText = findViewById(R.id.bike_type_selector_text_ID);
 
         nameEdit = findViewById(R.id.name_edit_ID);
-        bikeTypeSelectorText = findViewById(R.id.bike_type_selector_text_ID);
         brandEdit = findViewById(R.id.brand_edit_ID);
         modelEdit = findViewById(R.id.model_edit_ID);
         mileageEdit = findViewById(R.id.mileage_edit_ID);
         kmToCountEdit = findViewById(R.id.km_to_count_edit_ID);
-        bikesListImage = findViewById(R.id.bikes_list_image_ID);
 
         bikes = new Bikes();
-        //If object already created, gets serialized variable values from Bike.class intent and
+        //If object is already created, gets serialized variables values from Bike.class via intent and
         // displays them on top of default ones.
-        try {
-            bikes = (Bikes) getIntent().getSerializableExtra("oldBike");
-            nameEdit.setText(bikes.getName());
-            bikes.setImageID(bikeImageBoardPosition);
-            bikeTypeSelectorText.setText(bikes.getBikeType());
-            brandEdit.setText(bikes.getBrand());
-            modelEdit.setText(bikes.getModel());
-            mileageEdit.setText("" + bikes.getMileage());
-            kmTodayText.setText("" + bikes.getKmToday());
-            kmThisWeekText.setText("" + bikes.getKmThisWeek());
-            kmThisMonthText.setText("" + bikes.getKmThisMonth());
-            kmThisYearText.setText("" + bikes.getKmThisYear());
-            datePickerButton.setText(makeDateString(bikes.getDay(), bikes.getMonth(), bikes.getYear()));
-            bikes.setBikeCreated(true);
-            isOldBike = true;
-        } catch (Exception e) {
-            e.printStackTrace();
+        Intent ifIntentHasExtra = getIntent();
+        if (ifIntentHasExtra.hasExtra("oldBike")) {
+            try {
+                bikes = (Bikes) getIntent().getSerializableExtra("oldBike");
+                nameEdit.setText(bikes.getName());
+                bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getBikeImageBoardPosition()]);
+                brandEdit.setText(bikes.getBrand());
+                modelEdit.setText(bikes.getModel());
+                mileageEdit.setText("" + bikes.getMileage());
+                kmTodayText.setText("" + bikes.getKmToday());
+                kmThisWeekText.setText("" + bikes.getKmThisWeek());
+                kmThisMonthText.setText("" + bikes.getKmThisMonth());
+                kmThisYearText.setText("" + bikes.getKmThisYear());
+                datePickerButton.setText(makeDateString(bikes.getDay(), bikes.getMonth(), bikes.getYear()));
+                bikes.setBikeCreated(true);
+                isOldBike = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            if (!isOldBike) {
+                bikes = new Bikes();
+            }
+            //Makes new bike object if none is already created, initiates all required variables
+            // and sets condition to true to prevent further usage of this code.
+            if (!bikes.isBikeCreated()) {
+                bikes.setName(null);
+                bikes.setBrand(null);
+                bikes.setModel(null);
+                bikes.setMileage(0);
+                bikes.setBikeImageID(0);
+                bikes.setDay(0);
+                bikes.setMonth(0);
+                bikes.setYear(0);
+                bikes.setDayToCompare(getCurrentDay());
+                bikes.setWeekToCompare(getCurrentWeek());
+                bikes.setMonthToCompare(getCurrentMonth());
+                bikes.setYearToCompare(getCurrentYear());
+                bikeTypeSelectorText.setText(bikeImageBoardNames[0]);
+                datePickerButton.setText(makeDateString(getCurrentDay(), getCurrentMonth(), getCurrentYear()));
+                bikes.setDay(getCurrentDay());
+                bikes.setMonth(getCurrentMonth());
+                bikes.setYear(getCurrentYear());
+                bikes.setBikeCreated(true);
+            }
+
+            Intent createNewBikeExtraIntent = new Intent();
+            //To put extra make Bikes.class implement Serializable
+            createNewBikeExtraIntent.putExtra("bike", bikes);
+            setResult(Activity.RESULT_OK, createNewBikeExtraIntent);
         }
 
-        //Tries to overwrite local boolean value with one assigned to this bike object, which is set
-        // to true when bike is created.
-        try {
-            isBikeCreatedLocal = bikes.isBikeCreated();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //Methods are added here, because object needs to be created first.
+        initDatePicker();
+        resetVariables();
 
-        kmToCountEdit.setEnabled(false);
-        if (isBikeCreatedLocal) {
-            kmToCountEdit.setEnabled(true);
-        }
-
-        //Creates new bike object when all main fields are filled
+        //Creates new bike object when all main fields are filled.
         createNewBikeAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: createNewBikeAddButton");
 
-                if (nameEdit.getText().toString().isEmpty() || brandEdit.getText().toString().isEmpty()
-                        || modelEdit.getText().toString().isEmpty() ||
-                        mileageEdit.getText().toString().isEmpty()) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Empty fields", Toast.LENGTH_SHORT).show();
+                int mileage = Integer.parseInt(mileageEdit.getText().toString());
+                String name = nameEdit.getText().toString();
+                String brand = brandEdit.getText().toString();
+                String model = modelEdit.getText().toString();
 
-                } else {
-                    int mileage = Integer.parseInt(mileageEdit.getText().toString());
-                    String name = nameEdit.getText().toString();
-                    String bikeType = bikeTypeSelectorText.getText().toString();
-                    String brand = brandEdit.getText().toString();
-                    String model = modelEdit.getText().toString();
-
-                    if (!isOldBike) {
-                        bikes = new Bikes();
-                    }
-                    bikes.setName(name);
-                    bikes.setBikeType(bikeType);
-                    bikes.setBrand(brand);
-                    bikes.setModel(model);
+                if (!mileageEdit.getText().toString().isEmpty()) {
                     bikes.setMileage(mileage);
-                    bikes.setImageID(bikeImageBoardPosition);
-                    bikes.setBikeCreated(true);
-
-                    Intent createNewBikeExtraIntent = new Intent();
-                    // To put extra make Bikes.class implement Serializable
-                    createNewBikeExtraIntent.putExtra("bike", bikes);
-                    setResult(Activity.RESULT_OK, createNewBikeExtraIntent);
-                    Toast.makeText(CreateNewBikeActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                    finish();
                 }
+                if (!nameEdit.getText().toString().isEmpty()) {
+                    bikes.setName(name);
+                }
+                if (!brandEdit.getText().toString().isEmpty()) {
+                    bikes.setBrand(brand);
+                }
+                if (!modelEdit.getText().toString().isEmpty()) {
+                    bikes.setModel(model);
+                }
+                bikes.setBikeImageID(bikes.getBikeImageBoardPosition());
+
+                Intent createNewBikeExtraIntent = new Intent();
+                createNewBikeExtraIntent.putExtra("bike", bikes);
+                setResult(Activity.RESULT_OK, createNewBikeExtraIntent);
+                Toast.makeText(CreateNewBikeActivity.this, "Updated",
+                        Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
@@ -161,10 +175,9 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: addKmButton");
-                if (!isBikeCreatedLocal) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Save to edit", Toast.LENGTH_SHORT).show();
-                } else if (kmToCountEdit.getText().toString().isEmpty()) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Empty field", Toast.LENGTH_SHORT).show();
+                if (kmToCountEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(CreateNewBikeActivity.this, "Empty field",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     toAdd = Integer.parseInt(kmToCountEdit.getText().toString());
                     countKm();
@@ -177,10 +190,9 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: removeKmButton");
-                if (!isBikeCreatedLocal) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Save to edit", Toast.LENGTH_SHORT).show();
-                } else if (kmToCountEdit.getText().toString().isEmpty()) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Empty field", Toast.LENGTH_SHORT).show();
+                if (kmToCountEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(CreateNewBikeActivity.this, "Empty field",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     toRemove = Integer.parseInt(kmToCountEdit.getText().toString());
                     countKm();
@@ -193,11 +205,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: datePickerButton");
-                if (!isBikeCreatedLocal) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Save to edit", Toast.LENGTH_SHORT).show();
-                } else {
-                    datePickerDialog.show();
-                }
+                datePickerDialog.show();
             }
         });
 
@@ -221,78 +229,80 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             }
         });
 
-        bikeTypeLeftArrowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isBikeCreatedLocal) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Save to edit", Toast.LENGTH_SHORT).show();
-                } else {
-                    bikeImageBoardPosition++;
-                    if (bikeImageBoardPosition > bikeImageBoardNames.length) {
-                        bikeImageBoardPosition = bikeImageBoardNames.length;
-                    }
-
-                    bikes.setImageID(bikeImageBoardPosition);
-                    bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getImageID()]);
-                    setBikeImage(bikeImageBoardNames[bikes.getImageID()]);
-                }
-            }
-        });
-
         bikeTypeRightArrowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!isBikeCreatedLocal) {
-                    Toast.makeText(CreateNewBikeActivity.this, "Save to edit", Toast.LENGTH_SHORT).show();
-                } else {
-                    bikeImageBoardPosition--;
-                    if (bikeImageBoardPosition < 0) {
-                        bikeImageBoardPosition = 0;
-                    }
-
-                    bikes.setImageID(bikeImageBoardPosition);
-                    bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getImageID()]);
-                    setBikeImage(bikeImageBoardNames[bikes.getImageID()]);
+                bikes.setBikeImageBoardPosition(bikes.getBikeImageBoardPosition() + 1);
+                if (bikes.getBikeImageBoardPosition() > bikeImageBoardNames.length - 1) {
+                    bikes.setBikeImageBoardPosition(bikeImageBoardNames.length - 1);
                 }
+
+                bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getBikeImageBoardPosition()]);
+                bikes.setBikeImageID(bikes.getBikeImageBoardPosition());
+            }
+        });
+
+        bikeTypeLeftArrowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bikes.setBikeImageBoardPosition(bikes.getBikeImageBoardPosition() - 1);
+                if (bikes.getBikeImageBoardPosition() < 0) {
+                    bikes.setBikeImageBoardPosition(0);
+                }
+
+                bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getBikeImageBoardPosition()]);
+                bikes.setBikeImageID(bikes.getBikeImageBoardPosition());
             }
         });
     }
 
-    //Resets values of individual variables responsible for containing how many kilometers user
-    // traveled in specified span of time. Except of "mileage" which shows total km traveled.
+    /**
+     * Dedicated to reset values of variables responsible for counting values of driven kilometers.
+     * Resets values of individual variables based on how much time passed between.
+     * e.g. if saved day is not equal to current day, reset kilometers driven today and set saved
+     * day as current one.
+     */
     private void resetVariables() {
-        if (isBikeCreatedLocal) {
-            Log.d(TAG, "resetVariables");
-            if (currentDateCalendar.get(Calendar.DAY_OF_MONTH) != savedDay) {
-                bikes.setKmToday(0);
-                savedDay = Calendar.DAY_OF_MONTH;
-            }
+        Log.d(TAG, "resetVariables");
+        if (getCurrentDay() != bikes.getDayToCompare()) {
+            bikes.setKmToday(0);
+            bikes.setDayToCompare(getCurrentDay());
+        }
 
-            if (currentDateCalendar.get(Calendar.WEEK_OF_MONTH) != savedWeek) {
-                bikes.setKmThisWeek(0);
-                savedWeek = Calendar.WEEK_OF_MONTH;
-            }
+        if (getCurrentWeek() != bikes.getWeekToCompare()) {
+            bikes.setKmThisWeek(0);
+            bikes.setWeekToCompare(getCurrentWeek());
+        }
 
-            if (currentDateCalendar.get(Calendar.MONTH) != savedMonth) {
-                bikes.setKmThisMonth(0);
-                savedMonth = Calendar.MONTH;
-            }
+        if (getCurrentMonth() != bikes.getMonthToCompare()) {
+            bikes.setKmThisMonth(0);
+            bikes.setMonthToCompare(getCurrentMonth());
+        }
 
-            if (currentDateCalendar.get(Calendar.YEAR) != savedYear) {
-                bikes.setKmThisYear(0);
-                savedYear = Calendar.YEAR;
-            }
+        if (getCurrentYear() != bikes.getYearToCompare()) {
+            bikes.setKmThisYear(0);
+            bikes.setYearToCompare(getCurrentYear());
         }
     }
 
-    //Counts traveled kilometers based on user input.
+    /**
+     * Counts traveled kilometers and updates variables values of bike object.
+     * Sets texts of TextViews which are meant to display those values in bike profile card.
+     * Prevents user from reaching negative numbers in parameters.
+     * Resets values of variables carried from buttons, which are adding or removing value of driven
+     * kilometers.
+     */
     private void countKm() {
         Log.d(TAG, "countKm");
-        bikes.setKmToday(bikes.getKmToday() + toAdd - toRemove);
-        bikes.setKmThisWeek(bikes.getKmThisWeek() + toAdd - toRemove);
-        bikes.setKmThisMonth(bikes.getKmThisMonth() + toAdd - toRemove);
-        bikes.setKmThisYear(bikes.getKmThisYear() + toAdd - toRemove);
-        bikes.setMileage(bikes.getMileage() + toAdd - toRemove);
+        if (bikes.getKmToday() + toAdd - toRemove >= 0) {
+            bikes.setKmToday(bikes.getKmToday() + toAdd - toRemove);
+            bikes.setKmThisWeek(bikes.getKmThisWeek() + toAdd - toRemove);
+            bikes.setKmThisMonth(bikes.getKmThisMonth() + toAdd - toRemove);
+            bikes.setKmThisYear(bikes.getKmThisYear() + toAdd - toRemove);
+            bikes.setMileage(bikes.getMileage() + toAdd - toRemove);
+        } else {
+            Toast.makeText(this, "Do not count below 0", Toast.LENGTH_SHORT).show();
+        }
 
         kmTodayText.setText("" + bikes.getKmToday());
         kmThisWeekText.setText("" + bikes.getKmThisWeek());
@@ -304,32 +314,32 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates datePickerButton saved date based on user input.
+     * Calls for a method which allows to pick a date, which is going to be overridden on top of
+     * previously displayed one.
+     * After calling method, shows window with current date, chosen style,
+     * as well as minimum and maximum values of displayed date.
      */
     private void initDatePicker() {
         Log.d(TAG, "initDatePicker");
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
 
             /**
-             * Opens window which allows user to select, then save, specified date.
-             * @param datePicker name.
-             * @param year etc.. selected by user from DatePickerDialog window.
+             * Opens window which allows user to select, specified date, to override shown one.
+             * Saves values which user chooses from shown datePicker window. Then saves them
+             * as variables of bike object to use them to override previously shown date.
+             * @param datePicker name of DatePicker.
+             * @param year year to save.
+             * @param month month to save.
+             * @param day day to save.
              */
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
                 bikes.setDay(day);
                 bikes.setMonth(month);
                 bikes.setYear(year);
-                String date = makeDateString(day, month, year);
-                datePickerButton.setText(date);
+                datePickerButton.setText(makeDateString(day, month, year));
             }
         };
-
-        Calendar currentDate = Calendar.getInstance();
-        int day = currentDate.get(Calendar.DAY_OF_MONTH);
-        int month = currentDate.get(Calendar.MONTH);
-        int year = currentDate.get(Calendar.YEAR);
 
         Calendar minDate = Calendar.getInstance();
         minDate.set(Calendar.DAY_OF_MONTH, 1);
@@ -338,13 +348,16 @@ public class CreateNewBikeActivity extends AppCompatActivity {
 
         //Window theme
         @SuppressWarnings("deprecation") int style = AlertDialog.THEME_HOLO_LIGHT;
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, getCurrentYear(),
+                getCurrentMonth(), getCurrentDay());
         datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
 
     /**
-     * Creates date format String with text representative of month value e.g. JAN 01 2020
+     * Creates date format String with text representative of month value.
+     * e.g. instead of displaying 01 01 2020, will display JAN 01 2020.
      */
     private String makeDateString(int day, int month, int year) {
         Log.d(TAG, "makeDateString");
@@ -352,63 +365,80 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     }
 
     /**
-     * Matches numeric month value with its text name and returns it as value to display.
+     * Standalone method which returns current day.
+     *
+     * @return returns current day as integer value.
+     */
+    private int getCurrentDay() {
+        Calendar currentDateCalendar = Calendar.getInstance();
+        return currentDateCalendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    /**
+     * Standalone method which returns current week of the month.
+     *
+     * @return returns current week of the month as integer value.
+     */
+    private int getCurrentWeek() {
+        Calendar currentDateCalendar = Calendar.getInstance();
+        return currentDateCalendar.get(Calendar.WEEK_OF_MONTH);
+    }
+
+    /**
+     * Standalone method which returns current month.
+     * Remember that months counting starts from 0 instead of 1.
+     *
+     * @return returns current month as integer value.
+     */
+    private int getCurrentMonth() {
+        Calendar currentDateCalendar = Calendar.getInstance();
+        return currentDateCalendar.get(Calendar.MONTH);
+    }
+
+    /**
+     * Standalone method which returns current year.
+     *
+     * @return returns current year as integer value.
+     */
+    private int getCurrentYear() {
+        Calendar currentDateCalendar = Calendar.getInstance();
+        return currentDateCalendar.get(Calendar.YEAR);
+    }
+
+    /**
+     * Matches numeric month value with its text name, which will be returned.
      *
      * @param month gets month in its numeric (int) format.
-     * @return returns text name, or displays ERROR (probably when number is out of range).
+     * @return displays ERROR (probably when number is out of range).
      */
     private String getMonthFormat(int month) {
         Log.d(TAG, "getMonthFormat");
-        if (month == 1) {
+        if (month == 0) {
             return "JAN";
-        } else if (month == 2) {
+        } else if (month == 1) {
             return "FEB";
-        } else if (month == 3) {
+        } else if (month == 2) {
             return "MAR";
-        } else if (month == 4) {
+        } else if (month == 3) {
             return "APR";
-        } else if (month == 5) {
+        } else if (month == 4) {
             return "MAY";
-        } else if (month == 6) {
+        } else if (month == 5) {
             return "JUN";
-        } else if (month == 7) {
+        } else if (month == 6) {
             return "JUL";
-        } else if (month == 8) {
+        } else if (month == 7) {
             return "AUG";
-        } else if (month == 9) {
+        } else if (month == 8) {
             return "SEP";
-        } else if (month == 10) {
+        } else if (month == 9) {
             return "OCT";
-        } else if (month == 11) {
+        } else if (month == 10) {
             return "NOV";
-        } else if (month == 12) {
+        } else if (month == 11) {
             return "DEC";
         } else {
             return "ERROR: Out of range?";
-        }
-    }
-
-    private void setBikeImage(String imageStringID) {
-        switch (imageStringID) {
-            case "Mountain":
-                bikesListImage.setBackgroundResource(R.drawable.bike_4);
-                break;
-
-            case "Electric":
-                bikesListImage.setBackgroundResource(R.drawable.bike_2);
-                break;
-
-            case "Gravel":
-                bikesListImage.setBackgroundResource(R.drawable.bike_3);
-                break;
-
-            case "City":
-                bikesListImage.setBackgroundResource(R.drawable.bike_5);
-                break;
-
-            case "Road":
-                bikesListImage.setBackgroundResource(R.drawable.bike_6);
-                break;
         }
     }
 }

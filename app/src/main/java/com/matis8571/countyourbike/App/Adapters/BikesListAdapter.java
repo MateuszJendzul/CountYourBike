@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +43,8 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
         holder.bikesContainer.setCardBackgroundColor(holder.itemView.getResources()
                 .getColor(color, null));
 
+        holder.bikesListImage.setImageResource(setImage(list.get(position).getBikeImageID()));
+
         holder.bikesContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +72,33 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
         Random random = new Random();
         int randomColor = random.nextInt(colorCode.size());
         return colorCode.get(randomColor);
+    }
+
+    private int setImage(int boardPosition) {
+        if (boardPosition == 0) {
+            //Mountain
+            return (R.drawable.bike_4);
+
+        } else if (boardPosition == 1) {
+            //Electric
+            return (R.drawable.bike_2);
+
+        } else if (boardPosition == 2) {
+            //Gravel
+            return (R.drawable.bike_3);
+
+        } else if (boardPosition == 3) {
+            //City
+            return (R.drawable.bike_5);
+
+        } else if (boardPosition == 4) {
+            //Road
+            return (R.drawable.bike_6);
+
+        } else {
+            //Should never happen, because of limitations set while changing board position
+            return 0;
+        }
     }
 
     @Override

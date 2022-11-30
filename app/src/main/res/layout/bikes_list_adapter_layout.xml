@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bikes_container_ID"
+    android:id="@+id/bikes_list_adapter_layout_ID"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
@@ -20,7 +20,6 @@
             android:id="@+id/bikes_list_image_ID"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/bike_1"
             tools:ignore="ContentDescription" />
 
         <TextView
