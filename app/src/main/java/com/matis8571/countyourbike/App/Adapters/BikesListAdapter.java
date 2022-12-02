@@ -80,20 +80,20 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
             return (R.drawable.bike_4);
 
         } else if (boardPosition == 1) {
-            //Electric
-            return (R.drawable.bike_2);
+            //Road
+            return (R.drawable.bike_6);
 
         } else if (boardPosition == 2) {
             //Gravel
             return (R.drawable.bike_3);
 
         } else if (boardPosition == 3) {
-            //City
-            return (R.drawable.bike_5);
+            //Electric
+            return (R.drawable.bike_2);
 
         } else if (boardPosition == 4) {
-            //Road
-            return (R.drawable.bike_6);
+            //City
+            return (R.drawable.bike_5);
 
         } else {
             //Should never happen, because of limitations set while changing board position

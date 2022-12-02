@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
+    android:orientation="vertical"
+    android:theme="@style/Theme.CountYourBike.NoActionBar"
     tools:ignore="HardcodedText, Autofill">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/create_new_bike_activity_toolbar_ID"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="?actionBarSize"
+        android:background="@color/darker_text_color"
+        app:contentInsetStart="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_margin="0dp">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/create_new_bike_notes_button_ID"
@@ -34,562 +39,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/name_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="12dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="Name:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <EditText
-            android:id="@+id/name_edit_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:hint="Name:"
-            android:inputType="text"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/brand_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="Brand:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <EditText
-            android:id="@+id/brand_edit_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:hint="Brand:"
-            android:inputType="text"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/model_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="Model:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <EditText
-            android:id="@+id/model_edit_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:hint="Model:"
-            android:inputType="text"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/mileage_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="Mileage:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <EditText
-            android:id="@+id/mileage_edit_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:inputType="number"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bike_type_left_arrow_button_ID"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_arrow_left"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
-                app:layout_constraintVertical_bias="0.009" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bike_type_right_arrow_button_ID"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_arrow_right"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
-                app:layout_constraintVertical_bias="0.018" />
-
-            <TextView
-                android:id="@+id/bike_type_text_ID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/light_ripple_edit_background"
-                android:fontFamily="@font/airstrike"
-                android:gravity="start"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="4dp"
-                android:singleLine="true"
-                android:text="Bike Type:"
-                android:textColor="@color/text_color"
-                android:textSize="28sp"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/bike_type_selector_text_ID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/light_ripple_edit_background"
-                android:fontFamily="@font/airstrikecond"
-                android:gravity="start"
-                android:hint="Bike Type:"
-                android:paddingStart="10dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="4dp"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="26sp"
-                android:textStyle="normal"
-                app:layout_constraintBaseline_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
-                app:layout_constraintVertical_bias="0.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/km_today_title_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="KM Today:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/km_today_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/km_this_week_title_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="KM This Week:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/km_this_week_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/km_this_month_title_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="KM This Month:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/km_this_month_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/km_this_year_title_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="KM This Year:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/km_this_year_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="start"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="4dp"
-            android:singleLine="true"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="26sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/date_picker_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="6dp"
-            android:singleLine="true"
-            android:text="Maintenance:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/date_picker_button_ID"
-            style="?android:spinnerStyle"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrikecond"
-            android:gravity="center"
-            android:paddingStart="16dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="16dp"
-            android:singleLine="true"
-            android:text="JAN 01 2020"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="24sp"
-            android:textStyle="normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/km_to_count_text_ID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/light_ripple_edit_background"
-            android:fontFamily="@font/airstrike"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="2dp"
-            android:singleLine="true"
-            android:text="KM to Count:"
-            android:textColor="@color/text_color"
-            android:textSize="28sp"
-            android:textStyle="normal" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="140dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/create_new_bike_back_button_ID"
+                android:id="@+id/create_new_bike_home_button_ID"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/light_ripple_circle_background"
-                android:foreground="@drawable/ic_arrow_back"
+                android:fontFamily="@font/airstrike"
+                android:foreground="@drawable/ic_home_24"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <EditText
-                android:id="@+id/km_to_count_edit_ID"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/light_ripple_edit_background"
-                android:fontFamily="@font/airstrikecond"
-                android:foreground="@drawable/button_foreground"
-                android:gravity="center"
-                android:hint="Type Here:"
-                android:inputType="number"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:shadowColor="@color/transparent"
-                android:shadowDx="10"
-                android:shadowRadius="1"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
@@ -598,61 +60,643 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="40dp"
-                android:background="@color/white"
+                android:background="@color/gray"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/km_to_count_edit_ID"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/remove_km_button_ID"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="12dp"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ic_remove"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/km_to_count_edit_ID"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/add_km_button_ID"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="12dp"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ic_add_white"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/km_to_count_edit_ID"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/create_new_bike_add_button_ID"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/light_ripple_circle_background"
-                android:foreground="@drawable/ic_save"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1"
+                tools:layout_editor_absoluteX="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-</ScrollView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="Name:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/name_edit_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:hint="Name:"
+                android:inputType="text"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/brand_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="Brand:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/brand_edit_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:hint="Brand:"
+                android:inputType="text"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/model_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="Model:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/model_edit_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:hint="Model:"
+                android:inputType="text"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/mileage_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="Mileage:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/mileage_edit_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:inputType="number"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bike_type_left_arrow_button_ID"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_arrow_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
+                    app:layout_constraintVertical_bias="0.009" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bike_type_right_arrow_button_ID"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
+                    app:layout_constraintVertical_bias="0.018" />
+
+                <TextView
+                    android:id="@+id/bike_type_text_ID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/light_ripple_edit_background"
+                    android:fontFamily="@font/airstrike"
+                    android:gravity="start"
+                    android:paddingStart="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="4dp"
+                    android:singleLine="true"
+                    android:text="Bike Type:"
+                    android:textColor="@color/text_color"
+                    android:textSize="28sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/bike_type_selector_text_ID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/light_ripple_edit_background"
+                    android:fontFamily="@font/airstrikecond"
+                    android:gravity="start"
+                    android:hint="Bike Type:"
+                    android:paddingStart="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="4dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBaseline_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bike_type_text_ID"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/km_today_title_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="KM Today:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/km_today_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/km_this_week_title_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="KM This Week:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/km_this_week_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/km_this_month_title_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="KM This Month:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/km_this_month_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/km_this_year_title_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="KM This Year:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/km_this_year_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="start"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="26sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/date_picker_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:paddingBottom="6dp"
+                android:singleLine="true"
+                android:text="Maintenance:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/date_picker_button_ID"
+                style="?android:spinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrikecond"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="16dp"
+                android:singleLine="true"
+                android:text="JAN 01 2020"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="24sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/km_to_count_text_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/light_ripple_edit_background"
+                android:fontFamily="@font/airstrike"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:paddingBottom="2dp"
+                android:singleLine="true"
+                android:text="KM to Count:"
+                android:textColor="@color/text_color"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/create_new_bike_back_button_ID"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/light_ripple_circle_background"
+                    android:foreground="@drawable/ic_arrow_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <EditText
+                    android:id="@+id/km_to_count_edit_ID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/light_ripple_edit_background"
+                    android:fontFamily="@font/airstrikecond"
+                    android:foreground="@drawable/button_foreground"
+                    android:gravity="center"
+                    android:hint="Type Here:"
+                    android:inputType="number"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:shadowColor="@color/transparent"
+                    android:shadowDx="10"
+                    android:shadowRadius="1"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/km_to_count_edit_ID"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/remove_km_button_ID"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@color/transparent"
+                    android:foreground="@drawable/ic_remove"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/km_to_count_edit_ID"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_km_button_ID"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@color/transparent"
+                    android:foreground="@drawable/ic_add_white"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/km_to_count_edit_ID"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/create_new_bike_add_button_ID"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/light_ripple_circle_background"
+                    android:foreground="@drawable/ic_save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -16,7 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.matis8571.countyourbike.App.Adapters.BikesListAdapter;
@@ -24,6 +26,7 @@ import com.matis8571.countyourbike.App.Database.BikesClickListener;
 import com.matis8571.countyourbike.App.Database.BikesRoomDB;
 import com.matis8571.countyourbike.App.Models.Bikes;
 import com.matis8571.countyourbike.App.Models.CreateNewBikeActivity;
+import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
 import com.matis8571.countyourbike.R;
 
 import java.util.ArrayList;
@@ -39,7 +42,9 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
     BikesRoomDB bikesRoomDB;
     Bikes selectedBike;
     TextView bikeProfileText;
-    Button bikeProfileAddNewBikeButton, bikeProfileBackButton;
+    Button bikeProfileAddNewBikeButton, bikeProfileBackButton, bikeProfileHomeButton,
+            bikeProfileNotesButton;
+    SnapHelper snapHelper = new LinearSnapHelper();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,10 +52,14 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         setContentView(R.layout.bike_profile_select_layout);
         Log.d(TAG, "onCreate: Start");
 
+        bikeProfileRecycler = findViewById(R.id.bike_profile_recycler);
+
         bikeProfileText = findViewById(R.id.bike_profile_text_ID);
+
         bikeProfileAddNewBikeButton = findViewById(R.id.bike_profile_add_new_bike_button_ID);
         bikeProfileBackButton = findViewById(R.id.bike_profile_back_button_ID);
-        bikeProfileRecycler = findViewById(R.id.bike_profile_recycler);
+        bikeProfileHomeButton = findViewById(R.id.bike_profile_home_button_ID);
+        bikeProfileNotesButton = findViewById(R.id.bike_profile_notes_button_ID);
 
         bikeProfileText.setText("<<   Select your bike   >>");
         bikeProfileText.setTextSize(28);
@@ -66,6 +75,24 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
                 Intent bikeProfileAddNewBikeButtonIntent = new Intent(
                         BikeProfileSelect.this, CreateNewBikeActivity.class);
                 startActivityForResult(bikeProfileAddNewBikeButtonIntent, 201);
+            }
+        });
+
+        bikeProfileNotesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent bikeProfileNotesButtonIntent = new Intent(BikeProfileSelect.this,
+                        MainActivityNotepad.class);
+                startActivity(bikeProfileNotesButtonIntent);
+            }
+        });
+
+        bikeProfileHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent bikeProfileHomeButtonIntent = new Intent(BikeProfileSelect.this,
+                        MainActivity.class);
+                startActivity(bikeProfileHomeButtonIntent);
             }
         });
 
@@ -116,6 +143,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         bikeProfileRecycler.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
         bikesListAdapter = new BikesListAdapter(BikeProfileSelect.this, bikes, bikesClickListener);
         bikeProfileRecycler.setAdapter(bikesListAdapter);
+        snapHelper.attachToRecyclerView(bikeProfileRecycler);
     }
 
     private final BikesClickListener bikesClickListener = new BikesClickListener() {

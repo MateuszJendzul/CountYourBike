@@ -16,7 +16,7 @@ import com.matis8571.countyourbike.R;
 @SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    Button bikesButton, mainToNotesButton;
+    Button bikesButton, mainToNotesButton, mainActivityNotesButton;
     TextView mainActivityTitleText;
 
     @SuppressLint("SetTextI18n")
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         bikesButton = findViewById(R.id.bikes_button_ID);
         mainToNotesButton = findViewById(R.id.main_to_notes_button_ID);
+        mainActivityNotesButton = findViewById(R.id.main_activity_notes_button_ID);
+
         mainActivityTitleText = findViewById(R.id.main_activity_title_text_ID);
         mainActivityTitleText.setText("Count Your Bike");
         mainActivityTitleText.setTextSize(40);
@@ -38,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: bikesButton");
                 Intent bikesButtonIntent = new Intent(MainActivity.this, BikeProfileSelect.class);
                 startActivity(bikesButtonIntent);
+            }
+        });
+
+        mainActivityNotesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mainActivityNotesButtonIntent = new Intent(MainActivity.this,
+                        MainActivityNotepad.class);
+                startActivity(mainActivityNotesButtonIntent);
             }
         });
 

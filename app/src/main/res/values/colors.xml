@@ -13,6 +13,7 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="text_color">#FFA000</color>
     <color name="red">#D32F2F</color>
+    <color name="darker_text_color">#D38B12</color>
 
     <color name="color1">#4567A1</color>
     <color name="color2">#3576DA</color>
