@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
+    android:foreground="@drawable/notes_list_adapter_foreground"
     app:cardBackgroundColor="@color/background_color"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="9dp"
     app:cardElevation="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/image_view_pin_ID"
@@ -49,8 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airstrikecond"
-            android:maxLines="10"
             android:gravity="center"
+            android:maxLines="10"
             android:padding="8dp"
             android:text="Notes"
             android:textColor="@color/white"
@@ -64,15 +65,15 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:fontFamily="@font/airstrikecond"
+            android:gravity="end"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="10"
             android:padding="8dp"
-            android:gravity="end"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:text="Date"
             android:textColor="@color/gray"
-            android:textSize="14sp"
+            android:textSize="12sp"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 

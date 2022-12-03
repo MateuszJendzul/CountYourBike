@@ -7,7 +7,7 @@
     android:background="@color/background_color"
     android:orientation="vertical"
     tools:context=".Notepad.MainActivityNotepad"
-    tools:ignore="ContentDescription,HardcodedText" >
+    tools:ignore="ContentDescription,HardcodedText">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view_home_ID"
@@ -15,8 +15,8 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:layout_margin="12dp"
-        android:foreground="@drawable/button_foreground"
         android:background="@drawable/button_background"
+        android:foreground="@drawable/notes_list_adapter_foreground"
         android:gravity="center"
         app:iconifiedByDefault="false"
         app:layout_constraintTop_toTopOf="parent"
