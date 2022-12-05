@@ -29,13 +29,13 @@ public class Bikes implements Serializable {
     int kmThisYear = 0;
 
     @ColumnInfo(name = "name")
-    String name = "";
+    String name = "Bike";
 
     @ColumnInfo(name = "brand")
-    String brand = "";
+    String brand = "Brand";
 
     @ColumnInfo(name = "model")
-    String model = "";
+    String model = "Model";
 
     @ColumnInfo(name = "day")
     int day = 0;
@@ -217,5 +217,31 @@ public class Bikes implements Serializable {
 
     public void setYearToCompare(int yearToCompare) {
         this.yearToCompare = yearToCompare;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Bikes{" +
+                "ID=" + ID +
+                ", mileage=" + mileage +
+                ", kmToday=" + kmToday +
+                ", kmThisWeek=" + kmThisWeek +
+                ", kmThisMonth=" + kmThisMonth +
+                ", kmThisYear=" + kmThisYear +
+                ", name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", day=" + day +
+                ", dayToCompare=" + dayToCompare +
+                ", weekToCompare=" + weekToCompare +
+                ", monthToCompare=" + monthToCompare +
+                ", yearToCompare=" + yearToCompare +
+                ", month=" + month +
+                ", year=" + year +
+                ", bikeImageID=" + bikeImageID +
+                ", bikeImageBoardPosition=" + bikeImageBoardPosition +
+                ", bikeCreated=" + bikeCreated +
+                '}';
     }
 }

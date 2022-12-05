@@ -5,10 +5,8 @@
     android:id="@+id/bikes_list_adapter_layout_ID"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardBackgroundColor="@color/background_color"
-    app:cardElevation="4dp">
-    <!--    app:cardCornerRadius="15dp"-->
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/background_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +17,7 @@
         <ImageView
             android:id="@+id/bikes_list_image_ID"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="190dp"
             tools:ignore="ContentDescription" />
 
         <TextView

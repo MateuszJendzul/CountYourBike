@@ -19,12 +19,12 @@ import java.util.Random;
 @SuppressWarnings("Convert2Lambda")
 public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
     Context context;
-    List<Bikes> list;
+    List<Bikes> bikesList;
     BikesClickListener listener;
 
-    public BikesListAdapter(Context context, List<Bikes> list, BikesClickListener listener) {
+    public BikesListAdapter(Context context, List<Bikes> bikesList, BikesClickListener listener) {
         this.context = context;
-        this.list = list;
+        this.bikesList = bikesList;
         this.listener = listener;
     }
 
@@ -37,25 +37,25 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BikeViewHolder holder, int position) {
-        holder.textViewName.setText(list.get(position).getName());
+        holder.textViewName.setText(bikesList.get(position).getName());
 
         int color = getColor();
         holder.bikesContainer.setCardBackgroundColor(holder.itemView.getResources()
                 .getColor(color, null));
 
-        holder.bikesListImage.setImageResource(setImage(list.get(position).getBikeImageID()));
+        holder.bikesListImage.setImageResource(setImage(bikesList.get(position).getBikeImageID()));
 
         holder.bikesContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClick(list.get(holder.getAdapterPosition()));
+                listener.onClick(bikesList.get(holder.getAdapterPosition()));
             }
         });
 
         holder.bikesContainer.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                listener.onLongClick(list.get(holder.getAdapterPosition()), holder.bikesContainer);
+                listener.onLongClick(bikesList.get(holder.getAdapterPosition()), holder.bikesContainer);
                 return true;
             }
         });
@@ -103,6 +103,6 @@ public class BikesListAdapter extends RecyclerView.Adapter<BikeViewHolder> {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return bikesList.size();
     }
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
+    android:foreground="@drawable/activity_foreground"
     tools:ignore="HardcodedText">
 
     <androidx.appcompat.widget.Toolbar
@@ -77,11 +78,12 @@
         android:id="@+id/bike_profile_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="220dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginEnd="3dp"
         android:layout_marginBottom="200dp"
-        android:foreground="@drawable/recycler_foreground"
+        android:background="@color/darker_background_color"
+        android:foreground="@drawable/window_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

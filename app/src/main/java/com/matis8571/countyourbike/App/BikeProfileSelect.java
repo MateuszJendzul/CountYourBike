@@ -36,7 +36,7 @@ import java.util.List;
 @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
 public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private static final String TAG = "BikeProfileSelect";
-    List<Bikes> bikes = new ArrayList<>();
+    List<Bikes> bikesList = new ArrayList<>();
     RecyclerView bikeProfileRecycler;
     BikesListAdapter bikesListAdapter;
     BikesRoomDB bikesRoomDB;
@@ -65,8 +65,8 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         bikeProfileText.setTextSize(28);
 
         bikesRoomDB = BikesRoomDB.getInstance(this);
-        bikes = bikesRoomDB.bikesDAO().getAll();
-        updateRecycler(bikes);
+        bikesList = bikesRoomDB.bikesDAO().getAll();
+        updateRecycler(bikesList);
 
         bikeProfileAddNewBikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,28 +100,34 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: profileSelectToMainButton");
-                finish();
+                Intent bikeProfileBackButtonIntent = new Intent(BikeProfileSelect.this,
+                        MainActivity.class);
+                startActivity(bikeProfileBackButtonIntent);
             }
         });
     }
 
+    public List<Bikes> getBikesList(){
+        return bikesList;
+    }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
         Log.d(TAG, "onActivityResult");
         if (requestCode == 201) {
             if (resultCode == Activity.RESULT_OK) {
-                assert data != null;
-                Bikes newBikes = (Bikes) data.getSerializableExtra("bike");
+                assert intent != null;
+                Bikes newBikes = (Bikes) intent.getSerializableExtra("bike");
                 bikesRoomDB.bikesDAO().insert(newBikes);
-                bikes.clear();
-                bikes.addAll(bikesRoomDB.bikesDAO().getAll());
+                bikesList.clear();
+                bikesList.addAll(bikesRoomDB.bikesDAO().getAll());
                 bikesListAdapter.notifyDataSetChanged();
             }
         } else if (requestCode == 202) {
             if (resultCode == Activity.RESULT_OK) {
-                assert data != null;
-                Bikes newBikes = (Bikes) data.getSerializableExtra("bike");
+                assert intent != null;
+                Bikes newBikes = (Bikes) intent.getSerializableExtra("bike");
                 bikesRoomDB.bikesDAO().update(newBikes.getID(), newBikes.getName(),
                         newBikes.getBrand(), newBikes.getModel(), newBikes.getMileage(),
                         newBikes.getDay(), newBikes.getMonth(), newBikes.getYear(),
@@ -130,18 +136,18 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
                         newBikes.getBikeImageBoardPosition(), newBikes.isBikeCreated(),
                         newBikes.getDayToCompare(), newBikes.getWeekToCompare(),
                         newBikes.getMonthToCompare(), newBikes.getYearToCompare());
-                bikes.clear();
-                bikes.addAll(bikesRoomDB.bikesDAO().getAll());
+                bikesList.clear();
+                bikesList.addAll(bikesRoomDB.bikesDAO().getAll());
                 bikesListAdapter.notifyDataSetChanged();
             }
         }
     }
 
-    private void updateRecycler(List<Bikes> bikes) {
+    private void updateRecycler(List<Bikes> bikesList) {
         Log.d(TAG, "updateRecycler");
         bikeProfileRecycler.setHasFixedSize(true);
         bikeProfileRecycler.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
-        bikesListAdapter = new BikesListAdapter(BikeProfileSelect.this, bikes, bikesClickListener);
+        bikesListAdapter = new BikesListAdapter(BikeProfileSelect.this, bikesList, bikesClickListener);
         bikeProfileRecycler.setAdapter(bikesListAdapter);
         snapHelper.attachToRecyclerView(bikeProfileRecycler);
     }
@@ -179,7 +185,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         Log.d(TAG, "onMenuItemClick");
         if (item.getItemId() == R.id.delete_bike_menu_ID) {
             bikesRoomDB.bikesDAO().delete(selectedBike);
-            bikes.remove(selectedBike);
+            bikesList.remove(selectedBike);
             bikesListAdapter.notifyDataSetChanged();
             Toast.makeText(this, "Removed", Toast.LENGTH_SHORT).show();
             return true;

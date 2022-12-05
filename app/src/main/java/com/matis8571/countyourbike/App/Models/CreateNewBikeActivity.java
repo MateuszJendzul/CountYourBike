@@ -35,7 +35,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             kmThisYearText, kmToCountText, bikeTypeSelectorText;
     EditText nameEdit, brandEdit, modelEdit, mileageEdit, kmToCountEdit;
     Bikes bikes;
-    private final String[] bikeImageBoardNames = {"Mountain", "Road", "Gravel", "Electric", "City"};
+    private final String[] BIKE_IMAGE_BARD_NAMES = {"Mountain", "Road", "Gravel", "Electric", "City"};
     private int toAdd, toRemove;
     private boolean isOldBike = false;
 
@@ -85,7 +85,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             try {
                 bikes = (Bikes) getIntent().getSerializableExtra("oldBike");
                 nameEdit.setText(bikes.getName());
-                bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getBikeImageBoardPosition()]);
+                bikeTypeSelectorText.setText(BIKE_IMAGE_BARD_NAMES[bikes.getBikeImageBoardPosition()]);
                 brandEdit.setText(bikes.getBrand());
                 modelEdit.setText(bikes.getModel());
                 mileageEdit.setText("" + bikes.getMileage());
@@ -107,19 +107,19 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             // Makes new bike object if none is already created, initiates all required variables
             // and sets condition to true to prevent further usage of this code.
             if (!bikes.isBikeCreated()) {
-                bikes.setName(null);
-                bikes.setBrand(null);
-                bikes.setModel(null);
-                bikes.setMileage(0);
-                bikes.setBikeImageID(0);
-                bikes.setDay(0);
-                bikes.setMonth(0);
-                bikes.setYear(0);
+                bikes.setName(bikes.getName());
+                bikes.setBrand(bikes.getBrand());
+                bikes.setModel(bikes.getModel());
+                bikes.setMileage(bikes.getMileage());
+                bikes.setBikeImageID(bikes.getBikeImageID());
+                bikes.setDay(bikes.getDay());
+                bikes.setMonth(bikes.getMonth());
+                bikes.setYear(bikes.getYear());
                 bikes.setDayToCompare(getCurrentDay());
                 bikes.setWeekToCompare(getCurrentWeek());
                 bikes.setMonthToCompare(getCurrentMonth());
                 bikes.setYearToCompare(getCurrentYear());
-                bikeTypeSelectorText.setText(bikeImageBoardNames[0]);
+                bikeTypeSelectorText.setText(BIKE_IMAGE_BARD_NAMES[0]);
                 datePickerButton.setText(makeDateString(getCurrentDay(), getCurrentMonth(), getCurrentYear()));
                 bikes.setDay(getCurrentDay());
                 bikes.setMonth(getCurrentMonth());
@@ -247,11 +247,11 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 bikes.setBikeImageBoardPosition(bikes.getBikeImageBoardPosition() + 1);
-                if (bikes.getBikeImageBoardPosition() > bikeImageBoardNames.length - 1) {
+                if (bikes.getBikeImageBoardPosition() > BIKE_IMAGE_BARD_NAMES.length - 1) {
                     bikes.setBikeImageBoardPosition(0);
                 }
 
-                bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getBikeImageBoardPosition()]);
+                bikeTypeSelectorText.setText(BIKE_IMAGE_BARD_NAMES[bikes.getBikeImageBoardPosition()]);
                 bikes.setBikeImageID(bikes.getBikeImageBoardPosition());
             }
         });
@@ -263,13 +263,20 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 bikes.setBikeImageBoardPosition(bikes.getBikeImageBoardPosition() - 1);
                 if (bikes.getBikeImageBoardPosition() < 0) {
-                    bikes.setBikeImageBoardPosition(bikeImageBoardNames.length - 1);
+                    bikes.setBikeImageBoardPosition(BIKE_IMAGE_BARD_NAMES.length - 1);
                 }
 
-                bikeTypeSelectorText.setText(bikeImageBoardNames[bikes.getBikeImageBoardPosition()]);
+                bikeTypeSelectorText.setText(BIKE_IMAGE_BARD_NAMES[bikes.getBikeImageBoardPosition()]);
                 bikes.setBikeImageID(bikes.getBikeImageBoardPosition());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+//        System.out.println("bikesList.get(0) " + bikesList.get(0) + " ///////////////");
+//        bikesList.remove(0);
+//        finish();
     }
 
     /**
