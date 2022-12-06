@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         mainActivityTitleText.setTextSize(40);
 
         mainLeaderboardRecycler = findViewById(R.id.main_leaderboard_recycler_ID);
-
         updateLeaderboardRecycler(bikesList);
 
         bikesButton.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateLeaderboardRecycler(List<Bikes> bikesList){
+    private void updateLeaderboardRecycler(List<Bikes> bikesList) {
         mainLeaderboardRecycler.setHasFixedSize(true);
         mainLeaderboardRecycler.setLayoutManager(new StaggeredGridLayoutManager(
                 1, LinearLayoutManager.VERTICAL));

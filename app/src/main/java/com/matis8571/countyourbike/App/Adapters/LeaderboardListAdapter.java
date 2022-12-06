@@ -44,23 +44,24 @@ public class LeaderboardListAdapter extends RecyclerView.Adapter<LeaderboardView
                 return Integer.compare(bike2.getMileage(), bike1.getMileage());
             }
         });
+
         String place = "";
         if (bikesList.get(position) == bikesList.get(0)) {
-            place = "1st:  ";
+            place = "1 st:  ";
             holder.leaderboardName.setTextSize(18);
             holder.leaderboardKM.setTextSize(18);
 
         } else if (bikesList.get(position) == bikesList.get(1)) {
-            place = "2nd:  ";
+            place = "2 nd:  ";
             holder.leaderboardName.setTextSize(17);
             holder.leaderboardKM.setTextSize(17);
 
         } else if (bikesList.get(position) == bikesList.get(2)) {
-            place = "3th:  ";
+            place = "3 th:  ";
             holder.leaderboardName.setTextSize(16);
             holder.leaderboardKM.setTextSize(16);
 
-        } else  {
+        } else {
             holder.leaderboardName.setTextSize(15);
             holder.leaderboardKM.setTextSize(15);
         }
@@ -69,7 +70,6 @@ public class LeaderboardListAdapter extends RecyclerView.Adapter<LeaderboardView
         String kmString = "TOTAL: " + bikesList.get(position).getMileage() + "KM";
         holder.leaderboardName.setText(nameString);
         holder.leaderboardKM.setText(kmString);
-
 
         holder.leaderboardContainer.setOnClickListener(new View.OnClickListener() {
             @Override

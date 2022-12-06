@@ -9,21 +9,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
+import com.matis8571.countyourbike.App.MainActivity;
 import com.matis8571.countyourbike.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@SuppressWarnings("Convert2Lambda")
 public class NotesTakerActivity extends AppCompatActivity {
     private static final String TAG = "NotesTakerActivity";
-    EditText editTextTitle, editTextNotes;
+    EditText noteTitleEdit, noteTextEdit;
     Notes notes;
-    Button notesTakerBackButton, notesTakerAddButton;
+    Button notesTakerBackButton, notesTakerAddButton, notesTakerHomeButton;
     boolean isOldNote = false;
 
     @Override
@@ -31,29 +30,40 @@ public class NotesTakerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_taker_activity_layout);
 
-        editTextTitle = findViewById(R.id.edit_text_title_ID);
-        editTextNotes = findViewById(R.id.edit_text_notes_ID);
+        noteTitleEdit = findViewById(R.id.note_taker_bote_title_ID);
+        noteTextEdit = findViewById(R.id.note_taker_note_text_ID);
         notesTakerBackButton = findViewById(R.id.notes_taker_back_button_ID);
         notesTakerAddButton = findViewById(R.id.notes_taker_add_button_ID);
+        notesTakerHomeButton = findViewById(R.id.notes_taker_home_button_ID);
 
         notes = new Notes();
         try {
             notes = (Notes) getIntent().getSerializableExtra("oldNote");
-            editTextTitle.setText(notes.getTitle());
-            editTextNotes.setText(notes.getNotes());
+            noteTitleEdit.setText(notes.getTitle());
+            noteTextEdit.setText(notes.getNotes());
             isOldNote = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        notesTakerHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent notesTakerHomeButtonIntent = new Intent(NotesTakerActivity.this,
+                        MainActivity.class);
+                startActivity(notesTakerHomeButtonIntent);
+            }
+        });
+
         notesTakerAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = editTextTitle.getText().toString();
-                String description = editTextNotes.getText().toString();
+                String title = noteTitleEdit.getText().toString();
+                String description = noteTextEdit.getText().toString();
 
-                if (description.isEmpty()) {
-                    Toast.makeText(NotesTakerActivity.this, "Empty notes", Toast.LENGTH_SHORT).show();
+                if (noteTitleEdit.getText().toString().isEmpty()) {
+                    Toast.makeText(NotesTakerActivity.this, "Empty title",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 

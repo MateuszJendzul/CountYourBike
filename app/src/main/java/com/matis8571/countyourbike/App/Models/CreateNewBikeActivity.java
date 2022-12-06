@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.matis8571.countyourbike.App.BikeProfileSelect;
 import com.matis8571.countyourbike.App.MainActivity;
 import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
 import com.matis8571.countyourbike.R;
@@ -216,7 +217,9 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: createNewBikeBackButton");
-                finish();
+                Intent createNewBikeBackButtonIntent = new Intent(CreateNewBikeActivity.this,
+                        BikeProfileSelect.class);
+                startActivity(createNewBikeBackButtonIntent);
             }
         });
 
@@ -274,9 +277,10 @@ public class CreateNewBikeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        System.out.println("bikesList.get(0) " + bikesList.get(0) + " ///////////////");
-//        bikesList.remove(0);
-//        finish();
+        Log.d(TAG, "onBackPressed");
+        Intent createNewBikeBackButtonIntent = new Intent(CreateNewBikeActivity.this,
+                BikeProfileSelect.class);
+        startActivity(createNewBikeBackButtonIntent);
     }
 
     /**

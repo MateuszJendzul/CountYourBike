@@ -3,13 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:foreground="@drawable/activity_foreground"
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
     tools:context=".Notepad.Models.NotesTakerActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/notes_taker_activity_toolbar_ID"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/darker_text_color"
+        app:contentInsetStart="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/notes_taker_home_button_ID"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/light_ripple_circle_background"
+                android:fontFamily="@font/airstrike"
+                android:foreground="@drawable/ic_home_24"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/darker_background_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1"
+                tools:layout_editor_absoluteX="0dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <EditText
-        android:id="@+id/edit_text_title_ID"
+        android:id="@+id/note_taker_bote_title_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -34,7 +84,7 @@
         android:background="@color/white" />
 
     <EditText
-        android:id="@+id/edit_text_notes_ID"
+        android:id="@+id/note_taker_note_text_ID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_color"

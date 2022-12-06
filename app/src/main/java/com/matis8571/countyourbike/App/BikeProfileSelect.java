@@ -107,8 +107,16 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         });
     }
 
-    public List<Bikes> getBikesList(){
-        return bikesList;
+    /**
+     * Overrides default action on pressing phone back button.
+     * Takes user back to previous activity, but using Intent.
+     */
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed");
+        Intent createNewBikeBackButtonIntent = new Intent(BikeProfileSelect.this,
+                MainActivity.class);
+        startActivity(createNewBikeBackButtonIntent);
     }
 
     @Override

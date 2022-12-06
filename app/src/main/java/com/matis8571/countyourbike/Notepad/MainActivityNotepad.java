@@ -166,10 +166,8 @@ public class MainActivityNotepad extends AppCompatActivity implements PopupMenu.
             case R.id.pin:
                 if (selectedNote.isPinned()) {
                     database.mainNotepadDAO().pin(selectedNote.getID(), false);
-                    Toast.makeText(this, "Unpinned", Toast.LENGTH_SHORT).show();
                 } else {
                     database.mainNotepadDAO().pin(selectedNote.getID(), true);
-                    Toast.makeText(this, "Pinned", Toast.LENGTH_SHORT).show();
                 }
                 notes.clear();
                 notes.addAll(database.mainNotepadDAO().getAll());
