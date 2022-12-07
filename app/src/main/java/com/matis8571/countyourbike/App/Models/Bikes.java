@@ -64,6 +64,9 @@ public class Bikes implements Serializable {
     @ColumnInfo(name = "bikeImageBoardPosition")
     int bikeImageBoardPosition = 0;
 
+    @ColumnInfo(name = "dateAndTime")
+    String dateAndTime = "";
+
     @ColumnInfo(name = "bikeCreated")
     boolean bikeCreated = false;
 
@@ -219,6 +222,14 @@ public class Bikes implements Serializable {
         this.yearToCompare = yearToCompare;
     }
 
+    public String getDateAndTime() {
+        return dateAndTime;
+    }
+
+    public void setDateAndTime(String dateAndTime) {
+        this.dateAndTime = dateAndTime;
+    }
+
     @NonNull
     @Override
     public String toString() {
@@ -241,6 +252,7 @@ public class Bikes implements Serializable {
                 ", year=" + year +
                 ", bikeImageID=" + bikeImageID +
                 ", bikeImageBoardPosition=" + bikeImageBoardPosition +
+                ", dateAndTime='" + dateAndTime + '\'' +
                 ", bikeCreated=" + bikeCreated +
                 '}';
     }

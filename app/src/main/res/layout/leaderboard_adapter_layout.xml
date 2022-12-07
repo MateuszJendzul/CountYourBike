@@ -5,17 +5,18 @@
     android:id="@+id/leaderboard_adapter_layout_ID"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardBackgroundColor="@color/lil_darker_background_color"
-    app:cardCornerRadius="8dp">
+    android:layout_margin="2dp"
+    app:cardBackgroundColor="@color/darker_background_color"
+    tools:ignore="HardcodedText">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/leaderboard_name_ID"
+            android:id="@+id/leaderboard_name_text_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
@@ -32,15 +33,14 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/leaderboard_km_ID"
+            app:layout_constraintEnd_toStartOf="@+id/leaderboard_km_text_ID"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/leaderboard_km_ID"
+            android:id="@+id/leaderboard_km_text_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
@@ -61,8 +61,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

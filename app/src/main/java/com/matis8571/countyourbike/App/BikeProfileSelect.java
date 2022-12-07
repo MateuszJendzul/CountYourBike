@@ -26,7 +26,7 @@ import com.matis8571.countyourbike.App.Database.BikesClickListener;
 import com.matis8571.countyourbike.App.Database.BikesRoomDB;
 import com.matis8571.countyourbike.App.Models.Bikes;
 import com.matis8571.countyourbike.App.Models.CreateNewBikeActivity;
-import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
+import com.matis8571.countyourbike.Notepad.NotepadActivity;
 import com.matis8571.countyourbike.R;
 
 import java.util.ArrayList;
@@ -81,8 +81,9 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         bikeProfileNotesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: bikeProfileNotesButton");
                 Intent bikeProfileNotesButtonIntent = new Intent(BikeProfileSelect.this,
-                        MainActivityNotepad.class);
+                        NotepadActivity.class);
                 startActivity(bikeProfileNotesButtonIntent);
             }
         });
@@ -90,6 +91,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         bikeProfileHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: bikeProfileHomeButton");
                 Intent bikeProfileHomeButtonIntent = new Intent(BikeProfileSelect.this,
                         MainActivity.class);
                 startActivity(bikeProfileHomeButtonIntent);
@@ -109,7 +111,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
 
     /**
      * Overrides default action on pressing phone back button.
-     * Takes user back to previous activity, but using Intent.
+     * Takes user back to previous activity using Intent.
      */
     @Override
     public void onBackPressed() {
@@ -119,6 +121,12 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         startActivity(createNewBikeBackButtonIntent);
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param intent
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);

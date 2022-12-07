@@ -1,5 +1,6 @@
 package com.matis8571.countyourbike.App.Adapters;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,13 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matis8571.countyourbike.R;
 
 public class LeaderboardViewHolder extends RecyclerView.ViewHolder {
-    TextView leaderboardName, leaderboardKM;
+    private static final String TAG = "LeaderboardViewHolder";
+    TextView leaderboardNameText, leaderboardKmText;
     CardView leaderboardContainer;
 
     public LeaderboardViewHolder(@NonNull View itemView) {
         super(itemView);
-        leaderboardName = itemView.findViewById(R.id.leaderboard_name_ID);
-        leaderboardKM = itemView.findViewById(R.id.leaderboard_km_ID);
+        Log.d(TAG, "Constructor");
+        leaderboardNameText = itemView.findViewById(R.id.leaderboard_name_text_ID);
+        leaderboardKmText = itemView.findViewById(R.id.leaderboard_km_text_ID);
         leaderboardContainer = itemView.findViewById(R.id.leaderboard_adapter_layout_ID);
     }
 }

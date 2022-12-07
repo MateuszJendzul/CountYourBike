@@ -20,7 +20,7 @@ import com.matis8571.countyourbike.App.Database.BikesRoomDB;
 import com.matis8571.countyourbike.App.Database.LeaderboardClickListener;
 import com.matis8571.countyourbike.App.Models.Bikes;
 import com.matis8571.countyourbike.App.Models.CreateNewBikeActivity;
-import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
+import com.matis8571.countyourbike.Notepad.NotepadActivity;
 import com.matis8571.countyourbike.R;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import java.util.List;
 @SuppressWarnings({"Convert2Lambda", "deprecation"})
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    Button bikesButton, mainToNotesButton, mainActivityNotesButton;
+    Button bikesButton, mainActivityNotesButton;
     TextView mainActivityTitleText;
     RecyclerView mainLeaderboardRecycler;
     BikesRoomDB bikesRoomDB;
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         bikesList = bikesRoomDB.bikesDAO().getAll();
 
         bikesButton = findViewById(R.id.bikes_button_ID);
-        mainToNotesButton = findViewById(R.id.main_to_notes_button_ID);
         mainActivityNotesButton = findViewById(R.id.main_activity_notes_button_ID);
 
         mainActivityTitleText = findViewById(R.id.main_activity_title_text_ID);
@@ -69,16 +68,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent mainActivityNotesButtonIntent = new Intent(MainActivity.this,
-                        MainActivityNotepad.class);
+                        NotepadActivity.class);
                 startActivity(mainActivityNotesButtonIntent);
-            }
-        });
-
-        mainToNotesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mainToNotesButtonIntent = new Intent(MainActivity.this, MainActivityNotepad.class);
-                startActivity(mainToNotesButtonIntent);
             }
         });
     }

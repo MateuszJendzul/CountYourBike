@@ -18,10 +18,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.matis8571.countyourbike.App.BikeProfileSelect;
 import com.matis8571.countyourbike.App.MainActivity;
-import com.matis8571.countyourbike.Notepad.MainActivityNotepad;
+import com.matis8571.countyourbike.Notepad.NotepadActivity;
 import com.matis8571.countyourbike.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 @SuppressWarnings("Convert2Lambda")
 @SuppressLint("SetTextI18n")
@@ -44,7 +46,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_new_bike_activity_layout);
-        Log.d(TAG, "onCreate");
+        Log.d(TAG, "onCreate: CreateNewBikeActivity");
 
         createNewBikeAddButton = findViewById(R.id.create_new_bike_add_button_ID);
         createNewBikeBackButton = findViewById(R.id.create_new_bike_back_button_ID);
@@ -108,6 +110,12 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             // Makes new bike object if none is already created, initiates all required variables
             // and sets condition to true to prevent further usage of this code.
             if (!bikes.isBikeCreated()) {
+                // Week day, date, month, year, hour:minute, AM or PM
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter
+                        = new SimpleDateFormat("EEE, dd MMM yyyy");
+                Date date = new Date();
+
+                bikes.setDateAndTime(formatter.format(date));
                 bikes.setName(bikes.getName());
                 bikes.setBrand(bikes.getBrand());
                 bikes.setModel(bikes.getModel());
@@ -229,7 +237,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: createNewBikeNotesButton");
                 Intent createNewBikeNotesButtonIntent = new Intent(
-                        CreateNewBikeActivity.this, MainActivityNotepad.class);
+                        CreateNewBikeActivity.this, NotepadActivity.class);
                 startActivity(createNewBikeNotesButtonIntent);
             }
         });
@@ -238,6 +246,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         createNewBikeHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: createNewBikeHomeButton");
                 Intent createNewBikeHomeButtonIntent = new Intent(CreateNewBikeActivity.this,
                         MainActivity.class);
                 startActivity(createNewBikeHomeButtonIntent);
@@ -249,6 +258,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         bikeTypeRightArrowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: bikeTypeRightArrowButton");
                 bikes.setBikeImageBoardPosition(bikes.getBikeImageBoardPosition() + 1);
                 if (bikes.getBikeImageBoardPosition() > BIKE_IMAGE_BARD_NAMES.length - 1) {
                     bikes.setBikeImageBoardPosition(0);
@@ -264,6 +274,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
         bikeTypeLeftArrowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: bikeTypeLeftArrowButton");
                 bikes.setBikeImageBoardPosition(bikes.getBikeImageBoardPosition() - 1);
                 if (bikes.getBikeImageBoardPosition() < 0) {
                     bikes.setBikeImageBoardPosition(BIKE_IMAGE_BARD_NAMES.length - 1);
@@ -284,7 +295,7 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     }
 
     /**
-     * Dedicated to reset values of variables responsible for counting values of driven kilometers.
+     * Resets values of variables responsible for counting values of driven kilometers.
      * Resets values of individual variables based on how much time passed between.
      * e.g. if saved day is not equal to current day, reset kilometers driven today and set saved
      * day as current one.
@@ -292,23 +303,31 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     private void resetVariables() {
         Log.d(TAG, "resetVariables");
         if (getCurrentDay() != bikes.getDayToCompare()) {
+            Log.d(TAG, "resetDay");
             bikes.setKmToday(0);
             bikes.setDayToCompare(getCurrentDay());
+            kmTodayText.setText("" + bikes.getKmToday());
         }
 
         if (getCurrentWeek() != bikes.getWeekToCompare()) {
+            Log.d(TAG, "resetWeek");
             bikes.setKmThisWeek(0);
             bikes.setWeekToCompare(getCurrentWeek());
+            kmThisWeekText.setText("" + bikes.getKmThisWeek());
         }
 
         if (getCurrentMonth() != bikes.getMonthToCompare()) {
+            Log.d(TAG, "resetMonth");
             bikes.setKmThisMonth(0);
             bikes.setMonthToCompare(getCurrentMonth());
+            kmThisMonthText.setText("" + bikes.getKmThisMonth());
         }
 
         if (getCurrentYear() != bikes.getYearToCompare()) {
+            Log.d(TAG, "resetYear");
             bikes.setKmThisYear(0);
             bikes.setYearToCompare(getCurrentYear());
+            kmThisYearText.setText("" + bikes.getKmThisYear());
         }
     }
 
@@ -396,49 +415,48 @@ public class CreateNewBikeActivity extends AppCompatActivity {
     }
 
     /**
-     * Standalone method which returns current day.
-     *
+     * Returns current day.
      * @return returns current day as integer value.
      */
     private int getCurrentDay() {
+        Log.d(TAG, "getCurrentDay");
         Calendar currentDateCalendar = Calendar.getInstance();
         return currentDateCalendar.get(Calendar.DAY_OF_MONTH);
     }
 
     /**
-     * Standalone method which returns current week of the month.
-     *
+     * Returns current week of the month.
      * @return returns current week of the month as integer value.
      */
     private int getCurrentWeek() {
+        Log.d(TAG, "getCurrentWeek");
         Calendar currentDateCalendar = Calendar.getInstance();
         return currentDateCalendar.get(Calendar.WEEK_OF_YEAR);
     }
 
     /**
-     * Standalone method which returns current month.
+     * Returns current month.
      * Remember that months counting starts from 0 instead of 1.
-     *
      * @return returns current month as integer value.
      */
     private int getCurrentMonth() {
+        Log.d(TAG, "getCurrentMonth");
         Calendar currentDateCalendar = Calendar.getInstance();
         return currentDateCalendar.get(Calendar.MONTH);
     }
 
     /**
-     * Standalone method which returns current year.
-     *
+     * Returns current year.
      * @return returns current year as integer value.
      */
     private int getCurrentYear() {
+        Log.d(TAG, "getCurrentYear");
         Calendar currentDateCalendar = Calendar.getInstance();
         return currentDateCalendar.get(Calendar.YEAR);
     }
 
     /**
      * Matches numeric month value with its text name, which will be returned.
-     *
      * @param month gets month in its numeric (int) format.
      * @return displays ERROR (probably when number is out of range).
      */

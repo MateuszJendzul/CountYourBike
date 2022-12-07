@@ -39,7 +39,7 @@
             android:label="CreateNewBikeActivity"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
         <activity
-            android:name=".Notepad.MainActivityNotepad"
+            android:name=".Notepad.NotepadActivity"
             android:theme="@style/Theme.NotepadApp.NoActionBar" />
         <activity
             android:name=".Notepad.Models.NotesTakerActivity"

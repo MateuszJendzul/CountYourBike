@@ -39,12 +39,8 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
         holder.textViewTitle.setText(list.get(position).getTitle());
-        holder.textViewTitle.setSelected(true);
-
         holder.textViewNotes.setText(list.get(position).getNotes());
-
         holder.textViewDate.setText(list.get(position).getDateAndTime());
-        holder.textViewDate.setSelected(true);
 
         if (list.get(position).isPinned()) {
             holder.imageViewPin.setImageResource(R.drawable.ic_pin);

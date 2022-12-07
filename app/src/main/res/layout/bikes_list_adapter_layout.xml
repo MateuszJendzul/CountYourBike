@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/light_ripple_edit_background"
         android:orientation="vertical"
         tools:ignore="UseCompoundDrawables">
 
@@ -21,19 +22,41 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/bike_text_view_name_ID"
+            android:id="@+id/bike_list_name_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:fontFamily="@font/airstrikecond"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            android:padding="8dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:text="Name"
             android:textColor="@color/white"
             android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/bike_list_date_text_ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/airstrikecond"
+            android:gravity="end"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:paddingVertical="1dp"
+            android:paddingHorizontal="8dp"
+            android:scrollHorizontally="true"
+            android:shadowColor="@color/transparent"
+            android:shadowDx="10"
+            android:shadowRadius="1"
+            android:singleLine="true"
+            android:text="Date"
+            android:textColor="@color/white"
+            android:textSize="12sp"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>
