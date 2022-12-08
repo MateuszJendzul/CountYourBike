@@ -4,27 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bikes_list_adapter_layout_ID"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="8dp"
     app:cardBackgroundColor="@color/background_color">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/light_ripple_edit_background"
-        android:orientation="vertical"
-        tools:ignore="UseCompoundDrawables">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/bikes_list_image_ID"
             android:layout_width="match_parent"
             android:layout_height="190dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/bike_list_name_text_ID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.534"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/bike_list_name_text_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:ellipsize="marquee"
             android:fontFamily="@font/airstrikecond"
             android:gravity="center"
@@ -36,6 +41,11 @@
             android:text="Name"
             android:textColor="@color/white"
             android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/bike_list_date_text_ID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1"
             tools:ignore="HardcodedText" />
 
         <TextView
@@ -47,8 +57,8 @@
             android:gravity="end"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
-            android:paddingVertical="1dp"
             android:paddingHorizontal="8dp"
+            android:paddingVertical="1dp"
             android:scrollHorizontally="true"
             android:shadowColor="@color/transparent"
             android:shadowDx="10"
@@ -57,8 +67,13 @@
             android:text="Date"
             android:textColor="@color/white"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1"
             tools:ignore="HardcodedText" />
 
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

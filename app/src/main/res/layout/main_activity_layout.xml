@@ -47,9 +47,9 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="4dp"
-                android:foreground="@drawable/ic_notes"
                 android:background="@drawable/light_ripple_circle_background"
                 android:fontFamily="@font/airstrike"
+                android:foreground="@drawable/ic_notes"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,16 +57,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:background="@color/darker_background_color"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1"
-                tools:layout_editor_absoluteX="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,13 +84,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_leaderboard_recycler_ID"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="160dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="450dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="60dp"
-        android:background="@color/darker_background_color"
-        android:foreground="@drawable/window_foreground"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

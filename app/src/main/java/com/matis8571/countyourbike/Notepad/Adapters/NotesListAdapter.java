@@ -29,6 +29,15 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder> {
         this.listener = listener;
     }
 
+    /**
+     * Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent
+     * an item.
+     * @param parent The ViewGroup into which the new View will be added after it is bound to
+     *               an adapter position.
+     * @param viewType The view type of the new View.
+     * @return A new ViewHolder inflated from notes_list_adapter_layout that holds
+     * a View of Note object.
+     */
     @NonNull
     @Override
     public NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,6 +45,14 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder> {
                 parent, false));
     }
 
+    /**
+     * Called by RecyclerView to display the data at the specified position.
+     * Checks is object is set as pinned, displays pin image if it is.
+     * Sets objects background colors to be displayed randomly (from the provided color list).
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     *               item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
         holder.textViewTitle.setText(list.get(position).getTitle());
@@ -68,6 +85,10 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder> {
         });
     }
 
+    /**
+     * Creates new list of colors and uses Random to pick and return random one from list.
+     * @return returns color.
+     */
     private int getRandomColor() {
         List<Integer> colorCode = new ArrayList<>();
 

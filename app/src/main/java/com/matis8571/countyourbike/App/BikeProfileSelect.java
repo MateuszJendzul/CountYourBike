@@ -68,6 +68,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         bikesList = bikesRoomDB.bikesDAO().getAll();
         updateRecycler(bikesList);
 
+        // Starts new activity based on request code, which is described in onActivityResult
         bikeProfileAddNewBikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,10 +123,12 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
     }
 
     /**
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param intent
+     * Called when an activity you launched exits, giving you the requestCode you started it with
+     * the resultCode it returned, and any additional data from it.
+     * The resultCode will be RESULT_CANCELED if the activity explicitly returned that
+     * didn't return any result, or crashed during its operation.
+     * Based on received requestCode opens CreateNewBikeActivity activity to create new or import
+     * and edit old bike object.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
@@ -159,6 +162,14 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         }
     }
 
+    /**
+     * Formats recycler window.
+     * Sets layout and how many objects are displayed in one row or column, based on set view
+     * (horizontal/vertical). Creates BikesListAdapter instance with context, list, and interface
+     * then uses it to setAdapter of RecyclerView. Uses snapHelper to snap to center displayed
+     * objects while scrolling.
+     * @param bikesList pass list here.
+     */
     private void updateRecycler(List<Bikes> bikesList) {
         Log.d(TAG, "updateRecycler");
         bikeProfileRecycler.setHasFixedSize(true);
@@ -168,9 +179,14 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         snapHelper.attachToRecyclerView(bikeProfileRecycler);
     }
 
+    // Creates instance of interface object
     private final BikesClickListener bikesClickListener = new BikesClickListener() {
         private static final String TAG = "bikesClickListener";
 
+        /* On click sends to onActivityResult requestCode which is responsible for opening
+            bike object edit activity with tag of "oldBike", so imports old bike data
+            and allows to edit.
+         */
         @Override
         public void onClick(Bikes bikes) {
             Log.d(TAG, "onClick");
@@ -179,6 +195,7 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
             startActivityForResult(bikesClickListenerIntent, 202);
         }
 
+        // On long mouse button click, displays menu
         @Override
         public void onLongClick(Bikes bikes, CardView cardView) {
             Log.d(TAG, "onLongClick");
@@ -187,6 +204,11 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         }
     };
 
+    /**
+     * Creates new PopupMenu to display after user calls it in RecyclerView.
+     * Menu has option to delete selected bike.
+     * @param cardView pass menu cardView here.
+     */
     private void showPopUp(CardView cardView) {
         Log.d(TAG, "showPopUp");
         PopupMenu popupMenu = new PopupMenu(this, cardView);
@@ -195,6 +217,10 @@ public class BikeProfileSelect extends AppCompatActivity implements PopupMenu.On
         popupMenu.show();
     }
 
+    /**
+     * If user selects delete option from menu called on specific bike object, removes
+     * selected object from list.
+     */
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public boolean onMenuItemClick(MenuItem item) {

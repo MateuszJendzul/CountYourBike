@@ -18,11 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountYourBike"
+        tools:ignore="LockedOrientationActivity"
         tools:targetApi="31">
         <activity
             android:name=".App.MainActivity"
             android:exported="true"
-            android:label="MainActivity"
+            android:label="CountYourBike"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.CountYourBike.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,17 +35,21 @@
         <activity
             android:name=".App.BikeProfileSelect"
             android:label="BikeProfileSelect"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
         <activity
             android:name=".App.Models.CreateNewBikeActivity"
             android:label="CreateNewBikeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
         <activity
             android:name=".Notepad.NotepadActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NotepadApp.NoActionBar" />
         <activity
             android:name=".Notepad.Models.NotesTakerActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NotepadApp.NoActionBar" />
 
     </application>

@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         mainActivityNotesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: mainActivityNotesButton");
                 Intent mainActivityNotesButtonIntent = new Intent(MainActivity.this,
                         NotepadActivity.class);
                 startActivity(mainActivityNotesButtonIntent);
@@ -74,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Called when an activity you launched exits, giving you the requestCode you started it with
+     * the resultCode it returned, and any additional data from it.
+     * The resultCode will be RESULT_CANCELED if the activity explicitly returned that
+     * didn't return any result, or crashed during its operation.
+     * Based on received requestCode opens CreateNewBikeActivity activity to import and edit
+     * old bike object.
+     */
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
@@ -98,7 +107,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Formats recycler window.
+     * Sets layout and how many objects are displayed in one row or column, based on set view
+     * (horizontal/vertical). Creates LeaderboardListAdapter instance with context, list, and interface
+     * then uses it to setAdapter of RecyclerView.
+     * @param bikesList pass list here.
+     */
     private void updateLeaderboardRecycler(List<Bikes> bikesList) {
+        Log.d(TAG, "updateLeaderboardRecycler");
         mainLeaderboardRecycler.setHasFixedSize(true);
         mainLeaderboardRecycler.setLayoutManager(new StaggeredGridLayoutManager(
                 1, LinearLayoutManager.VERTICAL));
@@ -107,7 +124,12 @@ public class MainActivity extends AppCompatActivity {
         mainLeaderboardRecycler.setAdapter(leaderboardListAdapter);
     }
 
+    /* On click sends to onActivityResult requestCode which is responsible for opening
+            bike object edit activity (create_new_bike_activity) with tag of "oldBike", so imports
+            old bike data and allows to edit.
+         */
     private final LeaderboardClickListener leaderboardClickListener = new LeaderboardClickListener() {
+        private static final String TAG = "leaderboardClickListener";
 
         @Override
         public void onClick(Bikes bikes) {
@@ -117,5 +139,4 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(bikesClickListenerIntent, 202);
         }
     };
-    //SP - SharedPreferences
 }

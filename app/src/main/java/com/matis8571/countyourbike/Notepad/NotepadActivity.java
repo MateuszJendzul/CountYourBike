@@ -59,15 +59,18 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
         notes = database.mainNotepadDAO().getAll();
         updateRecycler(notes);
 
+        // Creates new intent and uses it to start activity for a result with provided requestCode.
         noteAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent noteAddButtonIntent = new Intent(NotepadActivity.this, NotesTakerActivity.class);
+                Intent noteAddButtonIntent = new Intent(NotepadActivity.this,
+                        NotesTakerActivity.class);
                 //noinspection deprecation
                 startActivityForResult(noteAddButtonIntent, 101);
             }
         });
 
+        // Search panel of notepad from NotepadActivity. Searches notes based on typed words.
         searchViewHome.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -90,6 +93,7 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
             }
         });
 
+        // Closes activity and returns to one from within it was called.
         notesBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +102,11 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
         });
     }
 
+    /**
+     * Filters notes and searches for ones with matching texts.
+     *
+     * @param newText texts to search for.
+     */
     private void filter(String newText) {
         Log.d(TAG, "filter");
         List<Notes> filteredList = new ArrayList<>();
@@ -110,6 +119,14 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
         notesListAdapter.filterList(filteredList);
     }
 
+    /**
+     * Called when an activity you launched exits, giving you the requestCode you started it with
+     * the resultCode it returned, and any additional data from it.
+     * The resultCode will be RESULT_CANCELED if the activity explicitly returned that
+     * didn't return any result, or crashed during its operation.
+     * Based on received requestCode opens NotepadActivity to create new or import
+     * and edit old note object.
+     */
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -136,6 +153,15 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
         }
     }
 
+    /**
+     * Formats recycler window.
+     * Sets layout and how many objects are displayed in one row or column, based on set view
+     * (horizontal/vertical). Creates BikesListAdapter instance with context, list, and interface
+     * then uses it to setAdapter of RecyclerView. Uses snapHelper to snap to center displayed
+     * objects while scrolling.
+     *
+     * @param notes pass list here.
+     */
     private void updateRecycler(List<Notes> notes) {
         Log.d(TAG, "updateRecycler");
         recyclerHome.setHasFixedSize(true);
@@ -144,9 +170,14 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
         recyclerHome.setAdapter(notesListAdapter);
     }
 
+    // Creates instance of interface object
     private final NotesClickListener notesClickListener = new NotesClickListener() {
         private static final String TAG = "notesClickListener";
 
+        /* On click sends to onActivityResult requestCode which is responsible for opening
+            note object edit activity with tag of "oldNote", so imports old note data and
+            allows to edit.
+        */
         @Override
         public void onClick(Notes notes) {
             Log.d(TAG, "onClick");
@@ -156,6 +187,7 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
             startActivityForResult(notesClickListenerIntent, 102);
         }
 
+        // On long mouse button click, displays menu
         @Override
         public void onLongClick(Notes notes, CardView cardView) {
             Log.d(TAG, "onLongClick");
@@ -164,6 +196,11 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
         }
     };
 
+    /**
+     * Creates new PopupMenu to display after user calls it in RecyclerView.
+     * Menu has option to delete, or pin selected note.
+     * @param cardView pass menu cardView here.
+     */
     private void showPopUp(CardView cardView) {
         Log.d(TAG, "showPopup");
         PopupMenu popupMenu = new PopupMenu(this, cardView);
@@ -172,6 +209,11 @@ public class NotepadActivity extends AppCompatActivity implements PopupMenu.OnMe
         popupMenu.show();
     }
 
+    /**
+     * Allows user to select from delete or pin option from menu called on specific note object.
+     * Delete removes selected object from list.
+     * Pin displays little pin icon in the top right corner of the displayed object adapter view.
+     */
     @SuppressLint({"NonConstantResourceId", "NotifyDataSetChanged"})
     @Override
     public boolean onMenuItemClick(MenuItem item) {
