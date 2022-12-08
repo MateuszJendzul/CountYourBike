@@ -5,44 +5,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:foreground="@drawable/activity_foreground"
     android:theme="@style/Theme.CountYourBike.NoActionBar"
     tools:ignore="HardcodedText">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bikes_button_id"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="180dp"
-        android:background="@drawable/button_background"
-        android:fontFamily="@font/airstrike"
-        android:foreground="@drawable/button_foreground"
-        android:gravity="center"
-        android:paddingHorizontal="8sp"
-        android:text="bikes"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:id="@+id/bikes_button_ID"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/light_ripple_circle_background"
+        android:foreground="@drawable/ic_arrow_forward"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/mainActivityTitleID"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/create_new_bike_activity_toolbar_ID"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/airstrikeacad"
-        android:gravity="center"
-        android:paddingVertical="2sp"
-        android:text="Count Your Bike"
-        android:textColor="#E3E3E3"
-        android:textSize="36sp"
+        android:layout_height="50dp"
+        android:background="@color/darker_text_color"
+        app:contentInsetStart="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/main_activity_notes_button_ID"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/light_ripple_circle_background"
+                android:fontFamily="@font/airstrike"
+                android:foreground="@drawable/ic_notes"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/main_activity_title_text_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/airstrikelaser"
+        android:gravity="center"
+        android:paddingStart="0dp"
+        android:paddingEnd="4dp"
+        android:text="main_activity_title_text_ID"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_new_bike_activity_toolbar_ID"
         app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_leaderboard_recycler_ID"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="60dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_title_text_ID"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

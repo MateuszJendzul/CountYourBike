@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.matis8571.countyourbike">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,11 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountYourBike"
+        tools:ignore="LockedOrientationActivity"
         tools:targetApi="31">
         <activity
             android:name=".App.MainActivity"
             android:exported="true"
-            android:label="MainActivity"
+            android:label="CountYourBike"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.CountYourBike.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,19 +35,23 @@
         <activity
             android:name=".App.BikeProfileSelect"
             android:label="BikeProfileSelect"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
         <activity
-            android:name=".App.Bike1"
-            android:label="Bike1"
+            android:name=".App.Models.CreateNewBikeActivity"
+            android:label="CreateNewBikeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.CountYourBike.NoActionBar" />
-
         <activity
-            android:name=".Notepad.Models.MainActivityNotepad"
+            android:name=".Notepad.NotepadActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NotepadApp.NoActionBar" />
         <activity
-            android:name=".Notepad.NotesTakerActivity"
+            android:name=".Notepad.Models.NotesTakerActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NotepadApp.NoActionBar" />
+
     </application>
 
 </manifest>

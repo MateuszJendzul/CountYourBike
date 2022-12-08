@@ -6,11 +6,9 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-// Add class annotation name, to easily access it from elsewhere later
 @Entity(tableName = "notes")
 public class Notes implements Serializable {
 
-    // ID of this note generated automatically id every time we add new item
     @PrimaryKey(autoGenerate = true)
     int ID = 0;
 
@@ -25,9 +23,6 @@ public class Notes implements Serializable {
 
     @ColumnInfo(name = "pinned")
     boolean pinned = false;
-
-    /* To automatically generate getter and setter for method use
-        RMB - Generate (alt + insert) - Getter and Setter - select which ones and press ok */
 
     public int getID() {
         return ID;
